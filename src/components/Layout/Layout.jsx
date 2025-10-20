@@ -4,13 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../AppContext";
 import { LayoutContext } from "./LayoutContext";
 import { callApi } from "../../utils/Utils";
-import Header from "./Header";
 import Sidebar from "./Sidebar";
 import LoginModal from "../Modal/LoginModal";
 import { NavigationContext } from "./NavigationContext";
 import FullDivLoading from "../Loading/FullDivLoading";
 import ChatButton from "../ChatButton";
-import MobileSearch from "../MobileSearch";
 
 const Layout = () => {
     const { contextData } = useContext(AppContext);
@@ -162,25 +160,11 @@ const Layout = () => {
                             onLoginSuccess={handleLoginSuccess}
                         />
                     )}
-                    <div className={`menu-layout ${isSmallScreen ? 'absolute' : 'fixed'}`}>
-                        <Header
-                            isLogin={isLogin}
-                            isMobile={isMobile}
-                            userBalance={userBalance}
-                            handleLoginClick={handleLoginClick}
-                            handleLogoutClick={handleLogoutClick}
-                        />
+                    <div className="page">
                         <Sidebar isSlotsOnly={isSlotsOnly} isMobile={isMobile} />
-                        <main className={`menu-layout-content ${isSidebarExpanded ? 'expanded' : 'collapsed'} ${isSportsPage ? 'sports' : ''}`}>
+                        <main>
                             <Outlet context={{ isSlotsOnly, isMobile }} />
                         </main>
-                        {showMobileSearch && isMobile && (
-                            <MobileSearch
-                                isLogin={isLogin}
-                                isMobile={isMobile}
-                                onClose={() => setShowMobileSearch(false)}
-                            />
-                        )}
                     </div>
                 </>
             </NavigationContext.Provider>

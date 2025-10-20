@@ -19,12 +19,6 @@ const Sidebar = ({ isSlotsOnly, isMobile }) => {
     const [liveCasinoMenus, setLiveCasinoMenus] = useState([]);
     const [hasFetchedLiveCasino, setHasFetchedLiveCasino] = useState(false);
     const [activeSubmenuItem, setActiveSubmenuItem] = useState("");
-    const [countdown, setCountdown] = useState({
-        days: 1,
-        hours: 5,
-        minutes: 8,
-        seconds: 25
-    });
 
     const languages = [
         { code: "en", name: "English" },
@@ -68,42 +62,6 @@ const Sidebar = ({ isSlotsOnly, isMobile }) => {
         setCurrentLanguage(language);
         closeLanguageDropdown();
     };
-
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setCountdown(prevCountdown => {
-                let { days, hours, minutes, seconds } = prevCountdown;
-
-                if (seconds > 0) {
-                    seconds--;
-                } else {
-                    seconds = 59;
-                    if (minutes > 0) {
-                        minutes--;
-                    } else {
-                        minutes = 59;
-                        if (hours > 0) {
-                            hours--;
-                        } else {
-                            hours = 23;
-                            if (days > 0) {
-                                days--;
-                            } else {
-                                days = 1;
-                                hours = 5;
-                                minutes = 8;
-                                seconds = 25;
-                            }
-                        }
-                    }
-                }
-
-                return { days, hours, minutes, seconds };
-            });
-        }, 1000);
-
-        return () => clearInterval(timer);
-    }, []);
 
     useEffect(() => {
         if (!hasFetchedLiveCasino) {
