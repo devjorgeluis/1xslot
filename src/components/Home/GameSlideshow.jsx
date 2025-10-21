@@ -10,88 +10,124 @@ const GameSlideshow = ({ games, name, title, icon, link, onGameClick }) => {
     const { contextData } = useContext(AppContext);
     const swiperRef = useRef(null);
 
+    const handleGameClick = (game) => {
+        if (onGameClick) {
+            onGameClick(game);
+        }
+    };
+
+    const handleFavoriteClick = (game) => {
+        console.log('Favorite clicked for:', game.name);
+    };
+
+    const handlePlayFreeClick = (game) => {
+        console.log('Play free clicked for:', game.name);
+    };
+
     return (
-        <div className="gameSlider ocultar-logged-in">
-            <div className="container">
-                <div className="section-outer">
-                    <div className="title-wrapper">
-                        <div className="title-text">
-                            <h4 className="title">
-                                <img src={icon} className="icon" alt="Juegos en vivo principales" />
-                                {title}
-                            </h4>
-                        </div>
-                        <div className="panel-navigate">
-                            <div className="show-all-wrapper">
-                                <div className="see-all"><a href={link}>Show all</a></div>
-                            </div>
-                            <div className="d-none d-md-block">
-                                <div className="navigate-wrapper navigate-bottom d-flex">
-                                    <button type="button" className={`${name}-navigate-prev navigate-prev`}>
-                                        <svg className="icon icon-arrowLeft" viewBox="0 0 24 24" width="24px" height="24px">
-                                            <title>Arrow Left</title>
-                                            <path d="M0 0h24v24H0z" fill="none"></path>
-                                            <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"></path>
-                                        </svg>
-                                    </button>
-                                    <button type="button" className={`${name}-navigate-next navigate-prev`}>
-                                        <svg className="icon icon-arrowRight" viewBox="0 0 24 24" width="24px" height="24px">
-                                            <title>Arrow Right</title>
-                                            <path d="M0 0h24v24H0z" fill="none"></path>
-                                            <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path>
-                                        </svg>
-                                    </button>
+        <div className="content-tile">
+            <div className="content-tile__header">
+                {icon && <svg className="content-tile__ico"><use xlinkHref={icon}></use></svg>}
+                {title || name}
+                {link && <a href={link} className="content-tile__link">{name}</a>}
+            </div>
+            <div className="content-tile__body">
+                <Swiper
+                    ref={swiperRef}
+                    modules={[Navigation]}
+                    spaceBetween={3}
+                    slidesPerView="auto"
+                    navigation={{
+                        prevEl: '.content-tile__back',
+                        nextEl: '.content-tile__next',
+                    }}
+                    className="swiper-container"
+                    style={{ width: '100%' }}
+                >
+                    {games?.map((game, index) => (
+                        <SwiperSlide key={game.id || index} className="swiper-slide" style={{ width: '285.4px' }}>
+                            <div className="slots-games__item-wrap">
+                                <div className="slots-games__bg">
+                                    <div
+                                        className="slots-games__item"
+                                        style={{
+                                            backgroundImage: `url('${game.imageDataSrc || (contextData.cdnUrl + game.image_local)}')`,
+                                        }}
+                                    >
+                                        <div className="slots-games__overlay">
+                                            <div className="slots-games__name">{game.name}</div>
+                                            <div className="slots-games__buttons">
+                                                <a
+                                                    href="javascript:void(0)"
+                                                    className="slots-games__fav"
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        handleFavoriteClick(game);
+                                                    }}
+                                                ></a>
+                                                <div className="slots-games__play-wrap show">
+                                                    <a
+                                                        href="javascript:void(0)"
+                                                        className="slots-games__play"
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            handleGameClick(game);
+                                                        }}
+                                                    ></a>
+                                                </div>
+                                            </div>
+                                            <div className="slots-games__playfree-wrap">
+                                                <a
+                                                    href="javascript:void(0)"
+                                                    className="slots-games__playfree"
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        handlePlayFreeClick(game);
+                                                    }}
+                                                >
+                                                    Play for free
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div className="slots-games__ribbons">
+                                            {game.promoted && (
+                                                <div className="slots-games__ribbon slots-games__ribbon--orange">
+                                                    Promo
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </SwiperSlide>
+                    ))}
+                    <span className="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                </Swiper>
+                <div className="content-tile__arrows">
+                    <div
+                        className="content-tile__arrow content-tile__back"
+                        tabIndex={0}
+                        role="button"
+                        aria-label="Previous slide"
+                    >
+                        <svg className="content-tile__ico">
+                            <use xlinkHref="/genfiles/cms/99-61/desktop/media_asset/icons.svg#arrow-left"></use>
+                        </svg>
                     </div>
-                    <div className="inner-section desktop">
-                        <Swiper
-                            modules={[Navigation]}
-                            spaceBetween={10}
-                            slidesPerView={5}
-                            navigation={{
-                                nextEl: "." + name + "-navigate-next",
-                                prevEl: "." + name + "-navigate-prev",
-                            }}
-                            loop={true}
-                            breakpoints={{
-                                320: {
-                                    slidesPerView: 3,
-                                },
-                                992: {
-                                    slidesPerView: 6,
-                                },
-                            }}
-                            onSwiper={(swiper) => {
-                                swiperRef.current = swiper;
-                            }}
-                        >
-                            {games.map((game) => (
-                                <SwiperSlide key={game.id}>
-                                    <a
-                                        className="card-wrapper play-button"
-                                        onClick={() => onGameClick && onGameClick(game)}
-                                    >
-                                        <div className="card-game-list">
-                                            <img
-                                                src={game.image_local != null && game.image_local !== "" ? contextData.cdnUrl + game.image_local : game.image_url}
-                                                className="bg game-img"
-                                                alt={game.name}
-                                            />
-                                        </div>
-                                        <div className="card-game-name">
-                                            <p className="name">{game.name}</p>
-                                        </div>
-                                    </a>
-                                </SwiperSlide>
-                            ))}
-                        </Swiper>
+                    <div
+                        className="content-tile__arrow content-tile__next"
+                        tabIndex={0}
+                        role="button"
+                        aria-label="Next slide"
+                    >
+                        <svg className="content-tile__ico">
+                            <use xlinkHref="/genfiles/cms/99-61/desktop/media_asset/icons.svg#arrow-right"></use>
+                        </svg>
                     </div>
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default GameSlideshow
+export default GameSlideshow;

@@ -5,21 +5,10 @@ import { LayoutContext } from "../components/Layout/LayoutContext";
 import { NavigationContext } from "../components/Layout/NavigationContext";
 import { callApi } from "../utils/Utils";
 import Slideshow from "../components/Home/Slideshow";
-import GameLogos from "../components/Home/GameLogos";
 import GameSlideshow from "../components/Home/GameSlideshow";
-import Welcome from "../components/Home/Welcome";
-import GameProviders from "../components/Home/GameProviders";
-import Discover from "../components/Home/Discover";
-import Promotions from "../components/Home/Promotions";
-import About from "../components/Home/About";
 import Footer from "../components/Layout/Footer";
 import GameModal from "../components/Modal/GameModal";
 import LoginModal from "../components/Modal/LoginModal";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
-import "animate.css";
 
 import IconLive from "/src/assets/svg/live.svg";
 import IconHot from "/src/assets/svg/hot.svg";
@@ -231,6 +220,20 @@ const Home = () => {
                 <div className="page__row">
                   <Slideshow />
                 </div>
+                  { topLiveCasino.length > 0 && <GameSlideshow games={topLiveCasino} name="liveCasino" title="Juegos en vivo principales" icon={IconLive} link="/live-casino" onGameClick={(game) => {
+                    if (isLogin) {
+                      launchGame(game, "slot", "tab");
+                    } else {
+                      setShowLoginModal(true);
+                    }
+                  }} /> }
+                  { topGames.length > 0 && <GameSlideshow games={topGames} name="casino" title="Juegos más populares" icon={IconHot} link="/casino" onGameClick={(game) => {
+                    if (isLogin) {
+                      launchGame(game, "slot", "tab");
+                    } else {
+                      setShowLoginModal(true);
+                    }
+                  }} /> }                
               </div>
             </div>
 
