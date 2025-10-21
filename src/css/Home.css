@@ -4038,7 +4038,8 @@ body.swal2-shown.swal2-height-auto {
     color: #a5a5a7;
     text-decoration: none;
     font-size: 1.25em;
-    transition: color .2s linear
+    transition: color .2s linear;
+    cursor: pointer;
 }
 
 @media(max-width: 1599px) {

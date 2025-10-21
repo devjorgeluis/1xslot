@@ -4,6 +4,9 @@ import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import Icons from '/src/assets/svg/icons.svg';
+import IconGcb from '/src/assets/svg/gcb.svg';
+import ImgVisa from '/src/assets/img/visa_mastercard.png';
 
 const providerLogos = [
     {
@@ -178,10 +181,10 @@ const Footer = ({ isSlotsOnly }) => {
                                     Juegos
                                 </p>
                                 <ul className="footer-menu__list">
-                                    <li className="footer-menu__item"><a href="/casino" target="_self" className="footer-menu__link">Casino</a></li>
-                                    <li className="footer-menu__item"><a href="/live-casino" target="_self" className="footer-menu__link">Casino en vivo</a></li>
-                                    <li className="footer-menu__item"><a href="/sports" target="_self" className="footer-menu__link">Deportes</a></li>
-                                    <li className="footer-menu__item"><a href="/live-sports" target="_self" className="footer-menu__link">Deportes en vivo</a></li>
+                                    <li className="footer-menu__item"><a onClick={() => navigate("/casino")} className="footer-menu__link">Casino</a></li>
+                                    <li className="footer-menu__item"><a onClick={() => navigate("/live-casino")} className="footer-menu__link">Casino en vivo</a></li>
+                                    <li className="footer-menu__item"><a onClick={() => navigate("/sports")} className="footer-menu__link">Deportes</a></li>
+                                    <li className="footer-menu__item"><a onClick={() => navigate("/live-sports")} className="footer-menu__link">Deportes en vivo</a></li>
                                 </ul>
                             </div>
                             <div className="footer-menu__col">
@@ -189,60 +192,26 @@ const Footer = ({ isSlotsOnly }) => {
                                     Información
                                 </p>
                                 <ul className="footer-menu__list">
-                                    <li className="footer-menu__item"><a href="/information/about" target="_self" className="footer-menu__link">Quiénes somos</a></li>
-                                    <li className="footer-menu__item"><a href="/information/contacts" target="_self" className="footer-menu__link">Contacto</a></li>
-                                    <li className="footer-menu__item"><a href="/information/rules" target="_self" className="footer-menu__link">Términos y Condiciones</a></li>
-                                    <li className="footer-menu__item"><a href="/information/rules/9" target="_self" className="footer-menu__link">Términos y condiciones de los bonos</a></li>
-                                    <li className="footer-menu__item"><a href="/information/rules/10" target="_self" className="footer-menu__link">Juego Responsable</a></li>
-                                    <li className="footer-menu__item"><a href="https://1xslotspartners.com" target="_self" className="footer-menu__link">Programa de Afiliados</a></li>
-                                    <li className="footer-menu__item"><a href="https://1xslotsagent.shop" target="_self" className="footer-menu__link">Hacerse agente de pagos</a></li>
-                                    <li className="footer-menu__item"><a href="/information/rules/6" target="_self" className="footer-menu__link">Política de privacidad</a></li>
-                                    <li className="footer-menu__item"><a href="/?platform_type=mobile" target="_self" className="footer-menu__link">Versión móvil</a></li>
+                                    <li className="footer-menu__item"><a onClick={() => navigate("/information/about")} className="footer-menu__link">Quiénes somos</a></li>
+                                    <li className="footer-menu__item"><a onClick={() => navigate("/information/contacts")} className="footer-menu__link">Contacto</a></li>
+                                    <li className="footer-menu__item"><a href="https://1xslotspartners.com" className="footer-menu__link">Programa de Afiliados</a></li>
+                                    <li className="footer-menu__item"><a href="https://1xslotsagent.shop" className="footer-menu__link">Hacerse agente de pagos</a></li>
                                 </ul>
                             </div>
 
-                            <button tabIndex="-1" title="Back to top" aria-label="Back to top" className="footer-menu__btn footer-menu-btn">
-                                <svg className="footer-menu-btn__ico"><use xlinkHref="/genfiles/cms/99-61/desktop/media_asset/icons.svg#arrow-up"></use></svg>
+                            <button
+                                title="Back to top"
+                                className="footer-menu__btn footer-menu-btn"
+                                onClick={() => window.scrollTo({
+                                    top: 0,
+                                    behavior: 'smooth'
+                                })}
+                            >
+                                <svg className="footer-menu-btn__ico">
+                                    <use xlinkHref={`${Icons}#arrow-up`}></use>
+                                </svg>
                             </button>
                         </div>
-                        <Swiper
-                            modules={[Pagination, Autoplay]}
-                            spaceBetween={10}
-                            slidesPerView={5}
-                            autoplay={{ delay: 3000, disableOnInteraction: false }}
-                            loop={true}
-                            className="footer-logo footer__item footer__logo"
-                        >
-                            {providerLogos.map((logo, index) => (
-                                <SwiperSlide key={index} className="swiper-slide">
-                                    <a href={logo.href} className="footer-logo__item">
-                                        <img
-                                            src={logo.src}
-                                            alt={logo.alt}
-                                            className="footer-logo__img"
-                                        />
-                                    </a>
-                                </SwiperSlide>
-                            ))}
-                            <span className="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-                        </Swiper>
-                        <Swiper
-                            modules={[Pagination, Autoplay]}
-                            spaceBetween={10}
-                            slidesPerView={5}
-                            autoplay={{ delay: 3000, disableOnInteraction: false }}
-                            loop={true}
-                            className="footer-logo footer__item footer__logo"
-                        >
-                            {paymentLogos.map((logo, index) => (
-                                <SwiperSlide key={index} className="swiper-slide">
-                                    <svg className="footer-logo__svg">
-                                        <use xlinkHref={`/genfiles/cms/99-61/desktop/media_asset/payments.svg#${logo.icon}`}></use>
-                                    </svg>
-                                </SwiperSlide>
-                            ))}
-                            <span className="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-                        </Swiper>
                         <div className="footer-bottom">
                             <div className="footer-bottom__item footer-bottom__item--center">
                                 <div className="footer-bottom__support">
@@ -284,14 +253,13 @@ const Footer = ({ isSlotsOnly }) => {
                                             href="https://cert.gcb.cw/certificate?id=ZXlKcGRpSTZJaXRrYm10V2VEbGtVWE41YjFsTVR6VktOVlI2YzBFOVBTSXNJblpoYkhWbElqb2lTblJVVHpoNlJtczJiVU5GZWxKdVZrTktSalp4ZHowOUlpd2liV0ZqSWpvaVptSXdPVEZoWmpsbE5tUXlZekZoT0dJM01XVTFOR001TmpabU1qZzJaV1UwT0RZMVpXUmpNVEprTWpJM09UZzBNbUUzTnpVeU5qRmpZbUZtWlRWaU1TSXNJblJoWnlJNklpSjk="
                                             className="footer-bottom__link"
                                         >
-                                            <img src="https://v2l.traincdn.com/genfiles/license-images/2025-04-09_15-03-35_phpD6nGl8.svg" alt="GCB logo" width="150" height="85" className="footer-bottom__img" />
+                                            <img src={IconGcb} alt="GCB logo" width="150" height="85" className="footer-bottom__img" />
                                         </a>
                                     </div>
                                     <div className="footer-age">
                                         18+
                                     </div>
-                                    <div id="apg-15ffe01c-a9d2-46f8-94f5-0142c261a191" data-apg-seal-id="15ffe01c-a9d2-46f8-94f5-0142c261a191" data-apg-image-size="70" data-apg-image-type="basic-small"></div>
-                                    <img src="https://v2l.traincdn.com/genfiles/cms/desktop/all-types-images/visa_mastercard.png" alt="Visa and Mastercard" className="footer-bottom__img" />
+                                    <img src={ImgVisa} alt="Visa and Mastercard" className="footer-bottom__img" />
                                 </div>
                             </div>
                         </div>
