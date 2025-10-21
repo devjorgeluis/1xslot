@@ -3851,7 +3851,7 @@ fieldset[disabled] .multiselect {
     width: 18.75em;
     height: 22.5em;
     content: "";
-    background: url("/genfiles/cms/99-61/desktop/information/machine.png") center no-repeat;
+    background: url("../assets/img/machine.png") center no-repeat;
     background-size: cover
 }
 
@@ -3867,7 +3867,7 @@ fieldset[disabled] .multiselect {
     flex-grow: 1;
     display: flex;
     justify-content: center;
-    background-image: url("/genfiles/cms/99-61/desktop/media_asset/background-contacts.jpg");
+    background-image: url("../assets/img/background-contacts.jpg");
     background-position: left top;
     background-repeat: no-repeat;
     background-size: cover;

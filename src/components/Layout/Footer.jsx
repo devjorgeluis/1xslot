@@ -128,42 +128,42 @@ const Footer = ({ isSlotsOnly }) => {
         <>
             <div id="footer">
                 <div className="footer">
-                    <div class="footer__col">
-                        <div class="footer__info footer-info">
-                            <div class="footer-info__col">
-                                <p class="footer-info__title">
+                    <div className="footer__col">
+                        <div className="footer__info footer-info">
+                            <div className="footer-info__col">
+                                <p className="footer-info__title">
                                     Juegue en 1xSlots
                                 </p>
-                                <p class="footer-info__text">
+                                <p className="footer-info__text">
                                     Nuestro <strong>casino online</strong> ofrece más de 11 000 juegos de 100 proveedores populares. Pase un fantástico rato en nuestro <strong>casino en directo</strong>, ya sea jugando a las
                                     <strong>tragamonedas con jugosos jackpots</strong>, póker o probando suerte en otros <strong>juegos de mesa</strong>. ¿Busca una experiencia de juego móvil cómoda y accesible? Descárguese nuestra aplicación para Android.
                                     ¡Regístrese en 1xSlots y ¡consiga un generoso bono de bienvenida y <strong>giros gratis!</strong>!
                                 </p>
                             </div>
-                            <div class="footer-info__col">
-                                <p class="footer-info__title">
+                            <div className="footer-info__col">
+                                <p className="footer-info__title">
                                     Live Casino de 1xSlots
                                 </p>
-                                <p class="footer-info__text">
+                                <p className="footer-info__text">
                                     Descubra nuestro Casino en Directo y sumérjase en su emocionante jugabilidad. Los amables crupieres estarán encantados de jugar con usted una partida de póker, blackjack, baccarat o ruleta. Pruebe suerte con la Ruleta de la
                                     Fortuna y otros fantásticos juegos de TV. Disfrute de la experiencia 1xSlots: ¡consiga bonos, haga apuestas y gane!
                                 </p>
                             </div>
-                            <div class="footer-info__col">
-                                <p class="footer-info__title">
+                            <div className="footer-info__col">
+                                <p className="footer-info__title">
                                     Tragamonedas de 1xSlots
                                 </p>
-                                <p class="footer-info__text">
+                                <p className="footer-info__text">
                                     1xSlots ofrece clásicas <strong>tragamonedas online</strong> y nuevos juegos de los líderes de la industria. Todo el mundo puede saborear la victoria con un elevado RTP (retorno al jugador) de hasta el 96%. ¡Juegue a las
                                     excitantes tragamonedas para poder ganar el jackpot!
                                 </p>
                             </div>
-                            <div class="footer-info__col">
-                                <p class="footer-info__title">
+                            <div className="footer-info__col">
+                                <p className="footer-info__title">
                                     Juego Responsable
                                 </p>
-                                <p class="footer-info__text">
-                                    El juego puede ser perjudicial si no está controlado. Consulte la página de <a href="information/rules/10">Juego Responsable</a> para obtener más información y conocer las herramientas disponibles para el juego responsable.
+                                <p className="footer-info__text">
+                                    El juego puede ser perjudicial si no está controlado. Consulte la página de <a href="/information/rules/10">Juego Responsable</a> para obtener más información y conocer las herramientas disponibles para el juego responsable.
                                     <br />
                                     18+ Juegue de manera responsable: <a href="http://www.gamblersanonymous.org/">www.gamblersanonymous.org</a>
                                 </p>
@@ -189,17 +189,18 @@ const Footer = ({ isSlotsOnly }) => {
                                     Información
                                 </p>
                                 <ul className="footer-menu__list">
-                                    <li className="footer-menu__item"><a href="/information/about" target="_self" className="footer-menu__link">About Us</a></li>
-                                    <li className="footer-menu__item"><a href="/information/contacts" target="_self" className="footer-menu__link">Contact</a></li>
-                                    <li className="footer-menu__item"><a href="/information/rules" target="_self" className="footer-menu__link">Terms and Conditions</a></li>
-                                    <li className="footer-menu__item"><a href="/information/rules/9" target="_self" className="footer-menu__link">Bonus Terms and Conditions</a></li>
-                                    <li className="footer-menu__item"><a href="/information/rules/10" target="_self" className="footer-menu__link">Responsible Gaming</a></li>
-                                    <li className="footer-menu__item"><a href="https://1xslotspartners.com" target="_self" className="footer-menu__link">Affiliate Program</a></li>
-                                    <li className="footer-menu__item"><a href="https://1xslotsagent.shop" target="_self" className="footer-menu__link">Become a Payment Agent</a></li>
-                                    <li className="footer-menu__item"><a href="information/rules/6" target="_self" className="footer-menu__link">Privacy Policy</a></li>
-                                    <li className="footer-menu__item"><a href="/?platform_type=mobile" target="_self" className="footer-menu__link">Mobile Version</a></li>
+                                    <li className="footer-menu__item"><a href="/information/about" target="_self" className="footer-menu__link">Quiénes somos</a></li>
+                                    <li className="footer-menu__item"><a href="/information/contacts" target="_self" className="footer-menu__link">Contacto</a></li>
+                                    <li className="footer-menu__item"><a href="/information/rules" target="_self" className="footer-menu__link">Términos y Condiciones</a></li>
+                                    <li className="footer-menu__item"><a href="/information/rules/9" target="_self" className="footer-menu__link">Términos y condiciones de los bonos</a></li>
+                                    <li className="footer-menu__item"><a href="/information/rules/10" target="_self" className="footer-menu__link">Juego Responsable</a></li>
+                                    <li className="footer-menu__item"><a href="https://1xslotspartners.com" target="_self" className="footer-menu__link">Programa de Afiliados</a></li>
+                                    <li className="footer-menu__item"><a href="https://1xslotsagent.shop" target="_self" className="footer-menu__link">Hacerse agente de pagos</a></li>
+                                    <li className="footer-menu__item"><a href="/information/rules/6" target="_self" className="footer-menu__link">Política de privacidad</a></li>
+                                    <li className="footer-menu__item"><a href="/?platform_type=mobile" target="_self" className="footer-menu__link">Versión móvil</a></li>
                                 </ul>
                             </div>
+
                             <button tabIndex="-1" title="Back to top" aria-label="Back to top" className="footer-menu__btn footer-menu-btn">
                                 <svg className="footer-menu-btn__ico"><use xlinkHref="/genfiles/cms/99-61/desktop/media_asset/icons.svg#arrow-up"></use></svg>
                             </button>
