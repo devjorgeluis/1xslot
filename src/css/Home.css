@@ -7528,7 +7528,7 @@ body.swal2-shown.swal2-height-auto {
 }
 
 .slider__text {
-    max-width: 21.875em;
+    max-width: 22.5em;
     margin-bottom: 2.1875em;
     font-size: 1em;
     line-height: 1.6
@@ -11902,4 +11902,8 @@ body.swal2-shown.swal2-height-auto {
 
 .shake-product:hover {
     animation: none
+}
+
+.d-none {
+    display: none;
 }

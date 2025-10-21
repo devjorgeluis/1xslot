@@ -3,8 +3,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { LayoutContext } from "./LayoutContext";
 import { AppContext } from "../../AppContext";
 import { callApi } from "../../utils/Utils";
-import IconDots from "/src/assets/svg/dots.svg";
-import IconDownload from "/src/assets/svg/download.svg";
 import ImgLogo from "/src/assets/svg/logo.svg";
 
 const Sidebar = ({ isSlotsOnly, isMobile }) => {
@@ -72,7 +70,7 @@ const Sidebar = ({ isSlotsOnly, isMobile }) => {
         if (hash && hash.startsWith('#')) {
             const categoryCode = hash.substring(1);
             setActiveSubmenuItem(categoryCode);
-            
+
             if (location.pathname === '/live-casino' && !expandedMenus.includes('live-casino')) {
                 setExpandedMenus(prev => [...prev, 'live-casino']);
             }
@@ -101,7 +99,7 @@ const Sidebar = ({ isSlotsOnly, isMobile }) => {
             result.data.categories.forEach(element => {
                 menus.push({
                     name: element.name,
-                    icon: element.image_local != null && element.image_local !== ""  && contextData.cdnUrl + element.image_local,
+                    icon: element.image_local != null && element.image_local !== "" && contextData.cdnUrl + element.image_local,
                     href: "/live-casino#" + element.code
                 })
             });
@@ -171,241 +169,219 @@ const Sidebar = ({ isSlotsOnly, isMobile }) => {
 
     return (
         <>
-            <div className={`menu-layout-sidebar ${isSidebarExpanded ? 'expanded' : 'collapsed'}`}>
-                <div className={`sidemenu-container sidemenu-container-collapsed ${!isSidebarExpanded ? 'active' : ''}`}>
-                    <div className="sidemenu-header collapsed">
-                        <div className="close-button collapsed fixed">
-                            <span
-                                className="hamburger-bars sidemenu-toggle"
-                                onClick={toggleSidebar}
-                                style={{ cursor: 'pointer' }}
-                            >
-                                <span className="material-icons">menu</span>
-                            </span>
-                        </div>
-                    </div>
-                    <div className="content collapsed"></div>
-                    <div className="menu-items menu-items-collapsed">
-                        {collapsedMenuItems.map((item, index) => (
-                            <button
-                                key={index}
-                                className={`nav-link fixed-nav-link ${item.name} ${item.name === 'sports' ? 'active-collapsed' : ''}`}
-                                onClick={() => navigate(item.href)}
-                                aria-current={item.name === 'sports' ? 'page' : undefined}
-                            >
-                                <i className={item.icon}></i>
-                            </button>
-                        ))}
-                    </div>
-                    <div className="menu-divider"></div>
-                    <div className="footer-items footer-items-collapsed"></div>
-                </div>
+            <div className="column">
+                <div className="column__body">
 
-                <div className={`sidemenu-container sidemenu-container-expanded ${isSidebarExpanded ? 'active' : ''}`}>
-                    <div className="sidemenu-header expanded">
-                        <div className="close-button expanded logo fixed">
-                            <span
-                                className="hamburger-bars sidemenu-toggle"
-                                onClick={toggleSidebar}
-                                style={{ cursor: 'pointer' }}
-                            >
-                                <span className="material-icons">{isMobile ? "close" : "menu"}</span>
+                    <div className="column__header">
+                        <a href="/" className="column__logo"><img src={ImgLogo} alt="Logo de la compañía" title="Ir a la página de Inicio" className="column__img" /></a>
+                    </div>
+                    <div className="column__action">
+                        <button id="curLoginForm" className="btn btn--transparent curloginDropTop">
+                            Iniciar sesión
+                        </button>
+                        <button className="btn btn--second register_button_main">
+                            Registro
+                        </button>
+                    </div>
+                    <div className="column-menu column__menu scrollbar">
+                        <a href="/" className="column-menu__link active">
+                            <div className="column-menu__item">
+                                <svg className="column-menu__ico"><use xlinkHref="/genfiles/cms/99-61/desktop/media_asset/icons.svg#home"></use></svg>
+                            </div>
+
+                            Página principal
+                        </a>
+                        <a href="slots/" className="column-menu__link">
+                            <div className="column-menu__item">
+                                <svg className="column-menu__ico"><use xlinkHref="/genfiles/cms/99-61/desktop/media_asset/icons.svg#cherry"></use></svg>
+                            </div>
+
+                            Tragamonedas
+                        </a>
+                        <a href="casino/" className="column-menu__link">
+                            <div className="column-menu__item">
+                                <svg className="column-menu__ico"><use xlinkHref="/genfiles/cms/99-61/desktop/media_asset/icons.svg#live_casino"></use></svg>
+                            </div>
+
+                            Casino en Directo
+                        </a>
+                        <a href="/games" className="column-menu__link">
+                            <div className="column-menu__item">
+                                <svg className="column-menu__ico"><use xlinkHref="/genfiles/cms/99-61/desktop/media_asset/icons.svg#games-left"></use></svg>
+                            </div>
+
+                            Games
+                        </a>
+                        <a href="bonus/rules" className="column-menu__link">
+                            <div className="column-menu__item">
+                                <svg className="column-menu__ico"><use xlinkHref="/genfiles/cms/99-61/desktop/media_asset/icons.svg#promo"></use></svg>
+                            </div>
+
+                            Promoción
+                        </a>
+                        <a href="/bonus/casino/tournaments" className="column-menu__link">
+                            <div className="column-menu__item">
+                                <svg className="column-menu__ico"><use xlinkHref="/genfiles/cms/99-61/desktop/media_asset/icons.svg#cup"></use></svg>
+                            </div>
+
+                            Torneos
+                        </a>
+                        <a href="bonus/casino/bonus-system-guide" className="column-menu__link">
+                            <div className="column-menu__item">
+                                <svg className="column-menu__ico"><use xlinkHref="/genfiles/cms/99-61/desktop/media_asset/icons.svg#bonus-system-guide"></use></svg>
+                            </div>
+
+                            Guía de bonos
+                        </a>
+                        <a href="bonus/casino/tasks-app" className="column-menu__link">
+                            <div className="column-menu__item">
+                                <svg className="column-menu__ico"><use xlinkHref="/genfiles/cms/99-61/desktop/media_asset/icons.svg#tasks-app"></use></svg>
+                            </div>
+
+                            Tareas en la aplicación
+                        </a>
+                    </div>
+                </div>
+                <div className="column-support">
+
+                    <div className="time-block-gmt">
+                        <p className="time-block-gmt__title">
+                            Hora del casino:
+                        </p>
+                        <div className="time-block-gmt__value">
+                            <span className="time-block-gmt__date">
+                                Mon, Oct 20
+                            </span>
+                            <span className="time-block-gmt__time">
+                                19:01(GMT)
                             </span>
                         </div>
-                        <div className="brand-logo">
-                            <a className="linkCss" onClick={() => navigate("/")}>
-                                <img alt="logo" className="logo light-logo" src={ImgLogo} />
-                            </a>
-                        </div>
                     </div>
-                    <div className="content d-none">
-                        <div className="cashback-component">
-                            <div className="cashback-header-container">
-                                <h4>Cashback semanal en</h4>
+                    <div className="column-support__row">
+                        <a href="https://1xslot.com/downloads/androidclient/releases_android/1xSlots/site/1xSlots.apk" className="column-support__link">
+                            <svg className="column-support__ico"><use xlinkHref="/genfiles/cms/99-61/desktop/media_asset/icons.svg#android"></use></svg>
+                        </a>
+                        <a href="/mobile" className="column-support__link">
+                            <svg className="column-support__ico"><use xlinkHref="/genfiles/cms/99-61/desktop/media_asset/icons.svg#apple"></use></svg>
+                        </a>
+                    </div>
+                    <div className="column-support__row">
+                        <div className="column-support__link">
+                            <div className="column-support__inner">
+                                <svg className="column-support__ico"><use xlinkHref="/genfiles/cms/99-61/desktop/media_asset/icons.svg#support"></use></svg>
                             </div>
-                            <div className="cashback-timer-container">
-                                <div className="cashback-timer-item">
-                                    <div className="cachback-timer-item-count nav-link">
-                                        <h3>{countdown.days}</h3>
-                                    </div>
-                                    <div className="cachback-timer-item-text">
-                                        <span>DÍAS</span>
-                                    </div>
-                                </div>
-                                <span className="timer-dots">
-                                    <img src={IconDots} alt="dots" />
-                                </span>
-                                <div className="cashback-timer-item">
-                                    <div className="cachback-timer-item-count nav-link">
-                                        <h3>{countdown.hours.toString().padStart(2, '0')}</h3>
-                                    </div>
-                                    <div className="cachback-timer-item-text">
-                                        <span>H</span>
-                                    </div>
-                                </div>
-                                <span className="timer-dots">
-                                    <img src={IconDots} alt="dots" />
-                                </span>
-                                <div className="cashback-timer-item">
-                                    <div className="cachback-timer-item-count nav-link">
-                                        <h3>{countdown.minutes.toString().padStart(2, '0')}</h3>
-                                    </div>
-                                    <div className="cachback-timer-item-text">
-                                        <span>MIN</span>
-                                    </div>
-                                </div>
-                                <span className="timer-dots">
-                                    <img src={IconDots} alt="dots" />
-                                </span>
-                                <div className="cashback-timer-item">
-                                    <div className="cachback-timer-item-count nav-link">
-                                        <h3>{countdown.seconds.toString().padStart(2, '0')}</h3>
-                                    </div>
-                                    <div className="cachback-timer-item-text">
-                                        <span>SEG</span>
-                                    </div>
-                                </div>
+
+                        </div>
+                        <div id="languages_block" className="column-support__link">
+                            <div className="column-support__language">
+                                <svg aria-hidden="true" className="dropdown-language__ico"><use xlinkHref="/genfiles/cms/desktop/all-types-images/flags-sprite.svg#es"></use></svg>
+                                <svg aria-hidden="true" className="column-support__arrow"><use xlinkHref="/genfiles/cms/99-61/desktop/media_asset/icons.svg#arrow-bottom"></use></svg>
+                            </div>
+                            <div className="dropdown dropdown--lang dropdown-language d-none">
+                                <a title="العربية" className="dropdown-language__item">
+                                    <svg aria-hidden="true" className="dropdown-language__ico"><use xlinkHref="/genfiles/cms/desktop/all-types-images/flags-sprite.svg#ar"></use></svg> <span className="dropdown-language__name">ar</span>
+                                </a>
+                                <a title="Azərbaycan dili" className="dropdown-language__item">
+                                    <svg aria-hidden="true" className="dropdown-language__ico"><use xlinkHref="/genfiles/cms/desktop/all-types-images/flags-sprite.svg#az"></use></svg> <span className="dropdown-language__name">az</span>
+                                </a>
+                                <a title="বাংলা" className="dropdown-language__item">
+                                    <svg aria-hidden="true" className="dropdown-language__ico"><use xlinkHref="/genfiles/cms/desktop/all-types-images/flags-sprite.svg#bn"></use></svg> <span className="dropdown-language__name">bd</span>
+                                </a>
+                                <a title="Português (Brasil)" className="dropdown-language__item">
+                                    <svg aria-hidden="true" className="dropdown-language__ico"><use xlinkHref="/genfiles/cms/desktop/all-types-images/flags-sprite.svg#br"></use></svg> <span className="dropdown-language__name">br</span>
+                                </a>
+                                <a title="汉语" className="dropdown-language__item">
+                                    <svg aria-hidden="true" className="dropdown-language__ico"><use xlinkHref="/genfiles/cms/desktop/all-types-images/flags-sprite.svg#cn"></use></svg> <span className="dropdown-language__name">cn</span>
+                                </a>
+                                <a title="Deutsch" className="dropdown-language__item">
+                                    <svg aria-hidden="true" className="dropdown-language__ico"><use xlinkHref="/genfiles/cms/desktop/all-types-images/flags-sprite.svg#de"></use></svg> <span className="dropdown-language__name">de</span>
+                                </a>
+                                <a title="English" className="dropdown-language__item">
+                                    <svg aria-hidden="true" className="dropdown-language__ico"><use xlinkHref="/genfiles/cms/desktop/all-types-images/flags-sprite.svg#en"></use></svg> <span className="dropdown-language__name">en</span>
+                                </a>
+                                <a title="Español" className="dropdown-language__item">
+                                    <svg aria-hidden="true" className="dropdown-language__ico"><use xlinkHref="/genfiles/cms/desktop/all-types-images/flags-sprite.svg#es"></use></svg> <span className="dropdown-language__name">es</span>
+                                </a>
+                                <a title="Français" className="dropdown-language__item">
+                                    <svg aria-hidden="true" className="dropdown-language__ico"><use xlinkHref="/genfiles/cms/desktop/all-types-images/flags-sprite.svg#fr"></use></svg> <span className="dropdown-language__name">fr</span>
+                                </a>
+                                <a title="עברית" className="dropdown-language__item">
+                                    <svg aria-hidden="true" className="dropdown-language__ico"><use xlinkHref="/genfiles/cms/desktop/all-types-images/flags-sprite.svg#he"></use></svg> <span className="dropdown-language__name">he</span>
+                                </a>
+                                <a title="हिन्दी" className="dropdown-language__item">
+                                    <svg aria-hidden="true" className="dropdown-language__ico"><use xlinkHref="/genfiles/cms/desktop/all-types-images/flags-sprite.svg#hi"></use></svg> <span className="dropdown-language__name">hi</span>
+                                </a>
+                                <a title="Magyar nyelv" className="dropdown-language__item">
+                                    <svg aria-hidden="true" className="dropdown-language__ico"><use xlinkHref="/genfiles/cms/desktop/all-types-images/flags-sprite.svg#hu"></use></svg> <span className="dropdown-language__name">hu</span>
+                                </a>
+                                <a title="Bahasa Indonesia" className="dropdown-language__item">
+                                    <svg aria-hidden="true" className="dropdown-language__ico"><use xlinkHref="/genfiles/cms/desktop/all-types-images/flags-sprite.svg#id"></use></svg> <span className="dropdown-language__name">id</span>
+                                </a>
+                                <a title="日本語" className="dropdown-language__item">
+                                    <svg aria-hidden="true" className="dropdown-language__ico"><use xlinkHref="/genfiles/cms/desktop/all-types-images/flags-sprite.svg#ja"></use></svg> <span className="dropdown-language__name">jp</span>
+                                </a>
+                                <a title="한국어" className="dropdown-language__item">
+                                    <svg aria-hidden="true" className="dropdown-language__ico"><use xlinkHref="/genfiles/cms/desktop/all-types-images/flags-sprite.svg#ko"></use></svg> <span className="dropdown-language__name">kr</span>
+                                </a>
+                                <a title="Bahasa Melayu" className="dropdown-language__item">
+                                    <svg aria-hidden="true" className="dropdown-language__ico"><use xlinkHref="/genfiles/cms/desktop/all-types-images/flags-sprite.svg#ms"></use></svg> <span className="dropdown-language__name">ms</span>
+                                </a>
+                                <a title="Español mexicano" className="dropdown-language__item">
+                                    <svg aria-hidden="true" className="dropdown-language__ico"><use xlinkHref="/genfiles/cms/desktop/all-types-images/flags-sprite.svg#mx"></use></svg> <span className="dropdown-language__name">mx</span>
+                                </a>
+                                <a title="Português" className="dropdown-language__item">
+                                    <svg aria-hidden="true" className="dropdown-language__ico"><use xlinkHref="/genfiles/cms/desktop/all-types-images/flags-sprite.svg#pt"></use></svg> <span className="dropdown-language__name">pt</span>
+                                </a>
+                                <a title="Русский" className="dropdown-language__item">
+                                    <svg aria-hidden="true" className="dropdown-language__ico"><use xlinkHref="/genfiles/cms/desktop/all-types-images/flags-sprite.svg#ru"></use></svg> <span className="dropdown-language__name">ru</span>
+                                </a>
+                                <a title="Somali - English" className="dropdown-language__item">
+                                    <svg aria-hidden="true" className="dropdown-language__ico"><use xlinkHref="/genfiles/cms/desktop/all-types-images/flags-sprite.svg#so"></use></svg> <span className="dropdown-language__name">so</span>
+                                </a>
+                                <a title="Tagalog" className="dropdown-language__item">
+                                    <svg aria-hidden="true" className="dropdown-language__ico"><use xlinkHref="/genfiles/cms/desktop/all-types-images/flags-sprite.svg#tl"></use></svg> <span className="dropdown-language__name">tl</span>
+                                </a>
+                                <a title="Türkçe" className="dropdown-language__item">
+                                    <svg aria-hidden="true" className="dropdown-language__ico"><use xlinkHref="/genfiles/cms/desktop/all-types-images/flags-sprite.svg#tr"></use></svg> <span className="dropdown-language__name">tr</span>
+                                </a>
+                                <a title="漢語" className="dropdown-language__item">
+                                    <svg aria-hidden="true" className="dropdown-language__ico"><use xlinkHref="/genfiles/cms/desktop/all-types-images/flags-sprite.svg#tw"></use></svg> <span className="dropdown-language__name">tw</span>
+                                </a>
+                                <a title="Українська мова" className="dropdown-language__item">
+                                    <svg aria-hidden="true" className="dropdown-language__ico"><use xlinkHref="/genfiles/cms/desktop/all-types-images/flags-sprite.svg#ua"></use></svg> <span className="dropdown-language__name">ua</span>
+                                </a>
+                                <a title="Oʻzbek tili" className="dropdown-language__item">
+                                    <svg aria-hidden="true" className="dropdown-language__ico"><use xlinkHref="/genfiles/cms/desktop/all-types-images/flags-sprite.svg#uz"></use></svg> <span className="dropdown-language__name">uz</span>
+                                </a>
+                                <a title="Tiếng Việt" className="dropdown-language__item">
+                                    <svg aria-hidden="true" className="dropdown-language__ico"><use xlinkHref="/genfiles/cms/desktop/all-types-images/flags-sprite.svg#vi"></use></svg> <span className="dropdown-language__name">vi</span>
+                                </a>
                             </div>
                         </div>
                     </div>
-                    <div className="menu-items-container">
-                        <div className="menu-items menu-items-fixed">
-                            {menuItems.map((menu) => (
-                                <div key={menu.id} className="side-submenu-container">
-                                    <div className={`submenu-container ${isMenuExpanded(menu.id) ? 'expanded-submenu-container' : ''}`}>
-                                        <button
-                                            className={`nav-link submenu-link expandable CUSTOM ${menu.id}`}
-                                            onClick={() => {
-                                                toggleMenu(menu.id);
-                                            }}
-                                            style={{ cursor: 'pointer' }}
-                                        >
-                                            <div className="nav-link-logo">
-                                                <i className={menu.icon}></i>
-                                                {menu.name}
-                                            </div>
-                                            <div>
-                                                <div className="submenu-chevron">
-                                                    <i className="material-icons">
-                                                        {isMenuExpanded(menu.id) ? 'expand_more' : 'chevron_right'}
-                                                    </i>
-                                                </div>
-                                            </div>
-                                        </button>
-                                        <div className={`expandeble-sub-menu collapse ${isMenuExpanded(menu.id) ? 'expanded-sub-menu show' : ''}`}>
-                                            {menu.subItems.map((subItem, subIndex) => {
-                                                let categoryCode = "";
-                                                if (menu.id === "live-casino" && subItem.href.includes("#")) {
-                                                    categoryCode = subItem.href.split("#")[1];
-                                                }
-                                                
-                                                const isActive = menu.id === "live-casino" 
-                                                    ? categoryCode === activeSubmenuItem
-                                                    : subItem.href === location.pathname + location.hash;
-                                                
-                                                return (
-                                                    <button
-                                                        key={subIndex}
-                                                        className={`nav-link submenu-tab-link CUSTOM ${subItem.name.toLowerCase().replace(/\s+/g, '-')} ${isActive ? 'active' : ''}`}
-                                                        onClick={() => {navigate(subItem.href), isMobile && toggleSidebar()}}
-                                                    >
-                                                        <i className={subItem.icon}></i>
-                                                        {/* {
-                                                            menu.id !== "live-casino" ? <i className={subItem.icon}></i> : <img src={subItem.icon} width={25} />
-                                                        } */}
-                                                        {subItem.name}
-                                                    </button>
-                                                );
-                                            })}
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                    <div className="menu-divider"></div>
-                    <div className="footer-items footer-items-fixed"></div>
-                    <div className="language-wrapper-container d-none">
-                        <div className="dropdown-btn small dropdown">
-                            <button
-                                aria-haspopup="true"
-                                aria-expanded={showLanguageDropdown}
-                                id="dropdown-btn"
-                                type="button"
-                                className="dropdown-toggle btn btn-secondary"
-                                onClick={toggleLanguageDropdown}
-                                style={{ cursor: 'pointer' }}
-                            >
-                                <i className="material-icons">language</i>
-                                {currentLanguage.name} ({currentLanguage.code})
-                            </button>
-                            {showLanguageDropdown && (
-                                <div
-                                    aria-labelledby="dropdown-btn"
-                                    className="dropdown-menu show"
-                                >
-                                    {languages.map((language) => (
-                                        <a
-                                            key={language.code}
-                                            href="#"
-                                            className={`dropdown-item ${language.code === currentLanguage.code ? 'active' : ''}`}
-                                            role="button"
-                                            onClick={(e) => {
-                                                e.preventDefault();
-                                                handleLanguageSelect(language.code);
-                                            }}
-                                        >
-                                            {language.name} ({language.code})
-                                        </a>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                    <div className="footer-content footer-content-fixed d-none">
-                        <div className="app-install-container">
-                            <div className="app-buttons-container">
-                                <div className="download-text-area">Download App</div>
-                                <button name="windows app download button" aria-label="windows app download button" className="app-button windows">
-                                    <i className="device-icon">
-                                        <img src={IconDownload} alt="Windows app" />
-                                    </i>
-                                    <div className="hoverBubble bubblePosition windows">
-                                        <p></p>
-                                        <p></p>
-                                        <p>Haz clic para instalar la aplicación</p>
-                                    </div>
-                                </button>
-                            </div>
+                    <div className="column-support__row column-support-social">
+                        <div className="column-support-social__content column-social-content">
+                            <ul className="column-social-content__list">
+                                <li className="column-social-content__item">
+                                    <a target="_blank" href="https://t.me/+aC3UrOGZmANjY2Iy" className="column-social-content__link g-analytics-social--telegram">
+                                        <svg className="column-social-content__ico"><use xlinkHref="/genfiles/cms/99-61/desktop/media_asset/icons.svg#tg"></use></svg>
+                                    </a>
+                                </li>
+                                <li className="column-social-content__item">
+                                    <a target="_blank" href="https://t.me/+Rp1KFRam2CxhZDky" className="column-social-content__link g-analytics-social--telegramchat">
+                                        <svg className="column-social-content__ico"><use xlinkHref="/genfiles/cms/99-61/desktop/media_asset/icons.svg#telegramchat"></use></svg>
+                                    </a>
+                                </li>
+                                <li className="column-social-content__item">
+                                    <a target="_blank" href="https://www.instagram.com/1xslotslatam/" className="column-social-content__link g-analytics-social--instagram">
+                                        <svg className="column-social-content__ico"><use xlinkHref="/genfiles/cms/99-61/desktop/media_asset/icons.svg#in"></use></svg>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-
-            {
-                !isSportsPage && <nav className="bottom-menu">
-                    <button className="mobile-menu-item" onClick={() => navigate("/casino")}>
-                        <div className="icon"><i className="custom-icon-bp-casino"></i></div>
-                        <div className="menu-text">Casino</div>
-                    </button>
-                    {
-                        !isSlotsOnlyMode && <>
-                            <button className="mobile-menu-item" onClick={() => navigate("/live-casino")}>
-                                <div className="icon"><i className="custom-icon-bp-live-casino"></i></div>
-                                <div className="menu-text">Casino en Vivo</div>
-                            </button>
-                            <button className="mobile-menu-item" onClick={() => navigate("/sports")}>
-                                <div className="icon"><i className="custom-icon-bp-sports"></i></div>
-                                <div className="menu-text">Deportes</div>
-                            </button>
-                        </>
-                    }
-                    <button className="mobile-menu-item" onClick={toggleSidebar}>
-                        <div className="icon"><span className="material-icons">menu</span></div>
-                        <div className="menu-text">Menú</div>
-                    </button>
-                </nav>
-            }
         </>
     );
 };

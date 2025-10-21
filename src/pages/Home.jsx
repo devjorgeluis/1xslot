@@ -15,6 +15,10 @@ import About from "../components/Home/About";
 import Footer from "../components/Layout/Footer";
 import GameModal from "../components/Modal/GameModal";
 import LoginModal from "../components/Modal/LoginModal";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
 import "animate.css";
 
 import IconLive from "/src/assets/svg/live.svg";
@@ -66,7 +70,7 @@ const Home = () => {
 
   const callbackGetStatus = (result) => {
     if (result.status === 500 || result.status === 422) {
-      
+      // Handle error
     } else {
       setTopGames(result.top_hot);
       setTopLiveCasino(result.top_livecasino);
@@ -77,12 +81,12 @@ const Home = () => {
   const getPage = (page) => {
     setCategories([]);
     setGames([]);
-    callApi(contextData, "GET", "/get-page?page=" + page, callbackGetPage, null);
+    callApi(contextData, "GET", `/get-page?page=${page}`, callbackGetPage, null);
   };
 
   const callbackGetPage = (result) => {
     if (result.status === 500 || result.status === 422) {
-      
+      // Handle error
     } else {
       setCategories(result.data.categories);
       setPageData(result.data);
@@ -129,16 +133,7 @@ const Home = () => {
     callApi(
       contextData,
       "GET",
-      "/get-content?page_group_type=categories&page_group_code=" +
-      groupCode +
-      "&table_name=" +
-      tableName +
-      "&apigames_category_id=" +
-      categoryId +
-      "&page=" +
-      pageCurrent +
-      "&length=" +
-      pageSize,
+      `/get-content?page_group_type=categories&page_group_code=${groupCode}&table_name=${tableName}&apigames_category_id=${categoryId}&page=${pageCurrent}&length=${pageSize}`,
       callbackFetchContent,
       null
     );
@@ -146,7 +141,7 @@ const Home = () => {
 
   const callbackFetchContent = (result) => {
     if (result.status === 500 || result.status === 422) {
-      
+      // Handle error
     } else {
       if (pageCurrent === 0) {
         configureImageSrc(result);
@@ -177,7 +172,7 @@ const Home = () => {
     selectedGameLauncher = launcher !== null ? launcher : selectedGameLauncher;
     selectedGameName = game?.name;
     selectedGameImg = game?.image_local != null ? contextData.cdnUrl + game?.image_local : null;
-    callApi(contextData, "GET", "/get-game-url?game_id=" + selectedGameId, callbackLaunchGame, null);
+    callApi(contextData, "GET", `/get-game-url?game_id=${selectedGameId}`, callbackLaunchGame, null);
   };
 
   const callbackLaunchGame = (result) => {
@@ -230,57 +225,30 @@ const Home = () => {
         />
       ) : (
         <>
-          <div className="landingPage">
-            <div className="root-container" id="pageContainer">
-              <div className="root-wrapper">
-                <div className="page">
-                  {
-                    !isLogin && <>
-                      <Slideshow />
-                      <GameLogos /> 
-                    </>
-                  }
-                  { topLiveCasino.length > 0 && <GameSlideshow games={topLiveCasino} name="liveCasino" title="Juegos en vivo principales" icon={IconLive} link="/live-casino" onGameClick={(game) => {
-                    if (isLogin) {
-                      launchGame(game, "slot", "tab");
-                    } else {
-                      setShowLoginModal(true);
-                    }
-                  }} /> }
-                  { topGames.length > 0 && <GameSlideshow games={topGames} name="casino" title="Juegos más populares" icon={IconHot} link="/casino" onGameClick={(game) => {
-                    if (isLogin) {
-                      launchGame(game, "slot", "tab");
-                    } else {
-                      setShowLoginModal(true);
-                    }
-                  }} /> }
-                  {
-                    !isLogin && <>
-                      <Welcome />
-                      { mainCategories.length > 0 && <GameProviders categories={mainCategories} /> }
-                      <Discover />
-                    </>
-                  }
-                  <Promotions />
-                  <About />
+          <div className="page__wrap">
+            <div>
+              <div>
+                <div className="page__row">
+                  <Slideshow />
                 </div>
               </div>
-              <Footer isSlotsOnly={isSlotsOnly} />
             </div>
+
+            <Footer />
           </div>
         </>
       )}
 
-      {
-        isGameLoadingError && <div className="container">
+      {isGameLoadingError && (
+        <div className="container">
           <div className="row">
             <div className="col-md-6 error-loading-game">
-              <div className="alert alert-warning">Error al cargar el juego. Inténtalo de nuevo o ponte en contacto con el equipo de soporte.</div>
-              <a className="btn btn-primary" onClick={() => window.location.reload()}>Volver a la página principal</a>
+              <div className="alert alert-warning">Error loading the game. Please try again or contact the support team.</div>
+              <a className="btn btn-primary" onClick={() => window.location.reload()}>Return to Home Page</a>
             </div>
           </div>
         </div>
-      }
+      )}
     </>
   );
 };

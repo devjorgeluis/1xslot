@@ -151,7 +151,7 @@ const Layout = () => {
             >
                 <>
                     <FullDivLoading show={showFullDivLoading} />
-                    {!isSportsPage && <ChatButton />}
+                    {/* {!isSportsPage && <ChatButton />} */}
                     {showLoginModal && (
                         <LoginModal
                             isMobile={isMobile}
