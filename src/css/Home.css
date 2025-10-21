@@ -6082,9 +6082,13 @@ body.swal2-shown.swal2-height-auto {
     bottom: 100%;
     left: 0;
     z-index: 1;
-    padding: .9375em;
+    padding: 0;
     width: 100%;
     background-color: rgba(51,51,51,.8)
+}
+
+.game-search__dropdown.has-text {
+    padding: .9375em;
 }
 
 .game-search__dropdown .ps {
@@ -11906,4 +11910,9 @@ body.swal2-shown.swal2-height-auto {
 
 .d-none {
     display: none;
+}
+
+.loading-icon {
+    margin: 10px auto;
+    display: block;
 }

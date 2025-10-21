@@ -5,13 +5,11 @@ import { LayoutContext } from "../components/Layout/LayoutContext";
 import { NavigationContext } from "../components/Layout/NavigationContext";
 import { callApi } from "../utils/Utils";
 import Slideshow from "../components/Home/Slideshow";
+import MenuContainer from "../components/Home/MenuContainer";
 import GameSlideshow from "../components/Home/GameSlideshow";
 import Footer from "../components/Layout/Footer";
 import GameModal from "../components/Modal/GameModal";
 import LoginModal from "../components/Modal/LoginModal";
-
-import IconLive from "/src/assets/svg/live.svg";
-import IconHot from "/src/assets/svg/hot.svg";
 
 let selectedGameId = null;
 let selectedGameType = null;
@@ -27,6 +25,7 @@ const Home = () => {
   const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
   const [games, setGames] = useState([]);
   const [topGames, setTopGames] = useState([]);
+  const [topCasino, setTopCasino] = useState([]);
   const [topLiveCasino, setTopLiveCasino] = useState([]);
   const [categories, setCategories] = useState([]);
   const [mainCategories, setMainCategories] = useState([]);
@@ -62,6 +61,7 @@ const Home = () => {
       // Handle error
     } else {
       setTopGames(result.top_hot);
+      setTopCasino(result.top_slot);
       setTopLiveCasino(result.top_livecasino);
       contextData.slots_only = result && result.slots_only;
     }
@@ -215,27 +215,31 @@ const Home = () => {
       ) : (
         <>
           <div className="page__wrap">
-            <div>
-              <div>
-                <div className="page__row">
-                  <Slideshow />
-                </div>
-                  { topLiveCasino.length > 0 && <GameSlideshow games={topLiveCasino} name="liveCasino" title="Juegos en vivo principales" icon={IconLive} link="/live-casino" onGameClick={(game) => {
-                    if (isLogin) {
-                      launchGame(game, "slot", "tab");
-                    } else {
-                      setShowLoginModal(true);
-                    }
-                  }} /> }
-                  { topGames.length > 0 && <GameSlideshow games={topGames} name="casino" title="Juegos más populares" icon={IconHot} link="/casino" onGameClick={(game) => {
-                    if (isLogin) {
-                      launchGame(game, "slot", "tab");
-                    } else {
-                      setShowLoginModal(true);
-                    }
-                  }} /> }                
-              </div>
+            <div className="page__row">
+              <Slideshow />
             </div>
+            <MenuContainer />
+            {topCasino.length > 0 && <GameSlideshow games={topCasino} name="casino" title="Tragamonedas Destacadas" icon="/src/assets/svg/players_choice.svg" onGameClick={(game) => {
+              if (isLogin) {
+                launchGame(game, "slot", "tab");
+              } else {
+                setShowLoginModal(true);
+              }
+            }} />}
+            {topLiveCasino.length > 0 && <GameSlideshow games={topLiveCasino} name="liveCasino" title="Juegos en vivo principales" icon="/src/assets/svg/players_choice.svg" onGameClick={(game) => {
+              if (isLogin) {
+                launchGame(game, "slot", "tab");
+              } else {
+                setShowLoginModal(true);
+              }
+            }} />}
+            {topGames.length > 0 && <GameSlideshow games={topGames} name="casino" title="Juegos más populares" icon="/src/assets/svg/popular.svg" onGameClick={(game) => {
+              if (isLogin) {
+                launchGame(game, "slot", "tab");
+              } else {
+                setShowLoginModal(true);
+              }
+            }} />}
 
             <Footer />
           </div>

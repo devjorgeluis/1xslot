@@ -1,18 +1,19 @@
-import { useContext, useRef } from 'react';
+import { useContext, useRef, useMemo } from 'react';
 import { AppContext } from '../../AppContext';
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import Icons from '/src/assets/svg/icons.svg';
 
-const GameSlideshow = ({ games, name, title, icon, link, onGameClick }) => {
+const GameSlideshow = ({ games, name, title, icon, onGameClick }) => {
     const { contextData } = useContext(AppContext);
     const swiperRef = useRef(null);
+    const uniqueId = useMemo(() => `slideshow-${name}-${Math.random().toString(36).substr(2, 9)}`, [name]);
 
-    const handleGameClick = (game) => {
+    const handleGameClick = (game, isDemo = false) => {
         if (onGameClick) {
-            onGameClick(game);
+            onGameClick(game, isDemo);
         }
     };
 
@@ -21,15 +22,22 @@ const GameSlideshow = ({ games, name, title, icon, link, onGameClick }) => {
     };
 
     const handlePlayFreeClick = (game) => {
-        console.log('Play free clicked for:', game.name);
+        handleGameClick(game, true);
     };
 
     return (
         <div className="content-tile">
             <div className="content-tile__header">
-                {icon && <svg className="content-tile__ico"><use xlinkHref={icon}></use></svg>}
-                {title || name}
-                {link && <a href={link} className="content-tile__link">{name}</a>}
+                {icon && (
+                    <svg className="content-tile__ico">
+                        <use xlinkHref={icon}></use>
+                    </svg>
+                )}
+                {title ? (
+                    <span className="content-tile__title">{title}</span>
+                ) : (
+                    <span className="content-tile__name">{name}</span>
+                )}
             </div>
             <div className="content-tile__body">
                 <Swiper
@@ -38,8 +46,8 @@ const GameSlideshow = ({ games, name, title, icon, link, onGameClick }) => {
                     spaceBetween={3}
                     slidesPerView="auto"
                     navigation={{
-                        prevEl: '.content-tile__back',
-                        nextEl: '.content-tile__next',
+                        prevEl: `.${uniqueId}-back`,
+                        nextEl: `.${uniqueId}-next`,
                     }}
                     className="swiper-container"
                     style={{ width: '100%' }}
@@ -51,7 +59,10 @@ const GameSlideshow = ({ games, name, title, icon, link, onGameClick }) => {
                                     <div
                                         className="slots-games__item"
                                         style={{
-                                            backgroundImage: `url('${game.imageDataSrc || (contextData.cdnUrl + game.image_local)}')`,
+                                            backgroundImage: `url('${
+                                                game.imageDataSrc ||
+                                                (game.image_local !== null ? contextData.cdnUrl + game.image_local : game.image_url)
+                                            }')`,
                                         }}
                                     >
                                         <div className="slots-games__overlay">
@@ -105,23 +116,23 @@ const GameSlideshow = ({ games, name, title, icon, link, onGameClick }) => {
                 </Swiper>
                 <div className="content-tile__arrows">
                     <div
-                        className="content-tile__arrow content-tile__back"
+                        className={`content-tile__arrow ${uniqueId}-back content-tile__back`}
                         tabIndex={0}
                         role="button"
                         aria-label="Previous slide"
                     >
                         <svg className="content-tile__ico">
-                            <use xlinkHref="/genfiles/cms/99-61/desktop/media_asset/icons.svg#arrow-left"></use>
+                            <use xlinkHref={`${Icons}#arrow-left`}></use>
                         </svg>
                     </div>
                     <div
-                        className="content-tile__arrow content-tile__next"
+                        className={`content-tile__arrow ${uniqueId}-next content-tile__next`}
                         tabIndex={0}
                         role="button"
                         aria-label="Next slide"
                     >
                         <svg className="content-tile__ico">
-                            <use xlinkHref="/genfiles/cms/99-61/desktop/media_asset/icons.svg#arrow-right"></use>
+                            <use xlinkHref={`${Icons}#arrow-right`}></use>
                         </svg>
                     </div>
                 </div>
