@@ -214,35 +214,31 @@ const Home = () => {
         />
       ) : (
         <>
-          <div className="page__wrap">
-            <div className="page__row">
-              <Slideshow />
-            </div>
-            <MenuContainer />
-            {topCasino.length > 0 && <GameSlideshow games={topCasino} name="casino" title="Tragamonedas Destacadas" icon="/src/assets/svg/players_choice.svg" onGameClick={(game) => {
-              if (isLogin) {
-                launchGame(game, "slot", "tab");
-              } else {
-                setShowLoginModal(true);
-              }
-            }} />}
-            {topLiveCasino.length > 0 && <GameSlideshow games={topLiveCasino} name="liveCasino" title="Juegos en vivo principales" icon="/src/assets/svg/players_choice.svg" onGameClick={(game) => {
-              if (isLogin) {
-                launchGame(game, "slot", "tab");
-              } else {
-                setShowLoginModal(true);
-              }
-            }} />}
-            {topGames.length > 0 && <GameSlideshow games={topGames} name="casino" title="Juegos más populares" icon="/src/assets/svg/popular.svg" onGameClick={(game) => {
-              if (isLogin) {
-                launchGame(game, "slot", "tab");
-              } else {
-                setShowLoginModal(true);
-              }
-            }} />}
-
-            <Footer />
+          <div className="page__row">
+            <Slideshow />
           </div>
+          <MenuContainer />
+          {topCasino.length > 0 && <GameSlideshow games={topCasino} name="casino" title="Tragamonedas Destacadas" icon="/src/assets/svg/players_choice.svg" onGameClick={(game) => {
+            if (isLogin) {
+              launchGame(game, "slot", "tab");
+            } else {
+              setShowLoginModal(true);
+            }
+          }} />}
+          {topLiveCasino.length > 0 && <GameSlideshow games={topLiveCasino} name="liveCasino" title="Juegos en vivo principales" icon="/src/assets/svg/players_choice.svg" onGameClick={(game) => {
+            if (isLogin) {
+              launchGame(game, "slot", "tab");
+            } else {
+              setShowLoginModal(true);
+            }
+          }} />}
+          {topGames.length > 0 && <GameSlideshow games={topGames} name="casino" title="Juegos más populares" icon="/src/assets/svg/popular.svg" onGameClick={(game) => {
+            if (isLogin) {
+              launchGame(game, "slot", "tab");
+            } else {
+              setShowLoginModal(true);
+            }
+          }} />}
         </>
       )}
 

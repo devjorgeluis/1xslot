@@ -128,92 +128,72 @@ const Footer = ({ isSlotsOnly }) => {
         <>
             <div id="footer">
                 <div className="footer">
-                    <div className="footer__col">
-                        <div className="footer__info footer-info">
-                            <div className="footer-info__col">
-                                <p className="footer-info__title">
-                                    Play at 1xSlots
+                    <div class="footer__col">
+                        <div class="footer__info footer-info">
+                            <div class="footer-info__col">
+                                <p class="footer-info__title">
+                                    Juegue en 1xSlots
                                 </p>
-                                <p className="footer-info__text">
-                                    Our <strong>online casino</strong> offers over 11,000 games from 100 popular providers. Enjoy a fantastic time at our <strong>live casino</strong>, whether playing
-                                    <strong>slots with juicy jackpots</strong>, poker, or trying your luck at other <strong>table games</strong>. Looking for a convenient and accessible mobile gaming experience? Download our Android app. Sign up at 1xSlots and claim a generous welcome bonus and <strong>free spins</strong>!
-                                </p>
-                            </div>
-                            <div className="footer-info__col">
-                                <p className="footer-info__title">
-                                    1xSlots Live Casino
-                                </p>
-                                <p className="footer-info__text">
-                                    Discover our Live Casino and immerse yourself in its thrilling gameplay. Friendly dealers are ready to play poker, blackjack, baccarat, or roulette with you. Try your luck with Wheel of Fortune and other exciting TV games. Enjoy the 1xSlots experience: claim bonuses, place bets, and win!
+                                <p class="footer-info__text">
+                                    Nuestro <strong>casino online</strong> ofrece más de 11 000 juegos de 100 proveedores populares. Pase un fantástico rato en nuestro <strong>casino en directo</strong>, ya sea jugando a las
+                                    <strong>tragamonedas con jugosos jackpots</strong>, póker o probando suerte en otros <strong>juegos de mesa</strong>. ¿Busca una experiencia de juego móvil cómoda y accesible? Descárguese nuestra aplicación para Android.
+                                    ¡Regístrese en 1xSlots y ¡consiga un generoso bono de bienvenida y <strong>giros gratis!</strong>!
                                 </p>
                             </div>
-                            <div className="footer-info__col">
-                                <p className="footer-info__title">
-                                    1xSlots Slots
+                            <div class="footer-info__col">
+                                <p class="footer-info__title">
+                                    Live Casino de 1xSlots
                                 </p>
-                                <p className="footer-info__text">
-                                    1xSlots offers classic <strong>online slots</strong> and new games from industry leaders. Everyone can taste victory with a high RTP (return to player) of up to 96%.
-                                    Play exciting slots to win the jackpot!
+                                <p class="footer-info__text">
+                                    Descubra nuestro Casino en Directo y sumérjase en su emocionante jugabilidad. Los amables crupieres estarán encantados de jugar con usted una partida de póker, blackjack, baccarat o ruleta. Pruebe suerte con la Ruleta de la
+                                    Fortuna y otros fantásticos juegos de TV. Disfrute de la experiencia 1xSlots: ¡consiga bonos, haga apuestas y gane!
                                 </p>
                             </div>
-                            <div className="footer-info__col">
-                                <p className="footer-info__title">
-                                    Responsible Gaming
+                            <div class="footer-info__col">
+                                <p class="footer-info__title">
+                                    Tragamonedas de 1xSlots
                                 </p>
-                                <p className="footer-info__text">
-                                    Gambling can be harmful if not controlled. Visit the <a href="information/rules/10">Responsible Gaming</a> page for more information and tools for responsible gaming.<br />
-                                    18+ Play responsibly: <a href="http://www.gamblersanonymous.org/">www.gamblersanonymous.org</a>
+                                <p class="footer-info__text">
+                                    1xSlots ofrece clásicas <strong>tragamonedas online</strong> y nuevos juegos de los líderes de la industria. Todo el mundo puede saborear la victoria con un elevado RTP (retorno al jugador) de hasta el 96%. ¡Juegue a las
+                                    excitantes tragamonedas para poder ganar el jackpot!
+                                </p>
+                            </div>
+                            <div class="footer-info__col">
+                                <p class="footer-info__title">
+                                    Juego Responsable
+                                </p>
+                                <p class="footer-info__text">
+                                    El juego puede ser perjudicial si no está controlado. Consulte la página de <a href="information/rules/10">Juego Responsable</a> para obtener más información y conocer las herramientas disponibles para el juego responsable.
+                                    <br />
+                                    18+ Juegue de manera responsable: <a href="http://www.gamblersanonymous.org/">www.gamblersanonymous.org</a>
                                 </p>
                             </div>
                         </div>
                     </div>
+
                     <div className="footer__col">
                         <div className="footer-menu footer__item">
                             <div className="footer-menu__col">
                                 <p className="footer-menu__title">
-                                    Promotions
+                                    Juegos
                                 </p>
                                 <ul className="footer-menu__list">
-                                    <li className="footer-menu__item"><a href="bonus/rules" target="_self" className="footer-menu__link">Special Offers</a></li>
-                                    <li className="footer-menu__item"><a href="bonus/casino/tournaments" target="_self" className="footer-menu__link">Tournaments</a></li>
-                                    <li className="footer-menu__item"><a href="bonus/casino/tasks-app" target="_self" className="footer-menu__link">App Tasks</a></li>
+                                    <li className="footer-menu__item"><a href="/casino" target="_self" className="footer-menu__link">Casino</a></li>
+                                    <li className="footer-menu__item"><a href="/live-casino" target="_self" className="footer-menu__link">Casino en vivo</a></li>
+                                    <li className="footer-menu__item"><a href="/sports" target="_self" className="footer-menu__link">Deportes</a></li>
+                                    <li className="footer-menu__item"><a href="/live-sports" target="_self" className="footer-menu__link">Deportes en vivo</a></li>
                                 </ul>
                             </div>
                             <div className="footer-menu__col">
                                 <p className="footer-menu__title">
-                                    Live Casino
+                                    Información
                                 </p>
                                 <ul className="footer-menu__list">
-                                    <li className="footer-menu__item"><a href="casino/roulette" target="_self" className="footer-menu__link">Roulette</a></li>
-                                    <li className="footer-menu__item"><a href="casino/blackjack" target="_self" className="footer-menu__link">Blackjack</a></li>
-                                    <li className="footer-menu__item"><a href="casino/poker" target="_self" className="footer-menu__link">Poker</a></li>
-                                    <li className="footer-menu__item"><a href="casino/baccarat" target="_self" className="footer-menu__link">Baccarat</a></li>
-                                    <li className="footer-menu__item"><a href="casino/other" target="_self" className="footer-menu__link">Other</a></li>
-                                </ul>
-                            </div>
-                            <div className="footer-menu__col">
-                                <p className="footer-menu__title">
-                                    Slots
-                                </p>
-                                <ul className="footer-menu__list">
-                                    <li className="footer-menu__item"><a href="slots/new" target="_self" className="footer-menu__link">New</a></li>
-                                    <li className="footer-menu__item"><a href="slots/popular" target="_self" className="footer-menu__link">Popular</a></li>
-                                    <li className="footer-menu__item"><a href="slots/feature-buy-bonus" target="_self" className="footer-menu__link">Buy Bonus</a></li>
-                                    <li className="footer-menu__item"><a href="slots/mechanics-megaways" target="_self" className="footer-menu__link">Megaways</a></li>
-                                    <li className="footer-menu__item"><a href="slots/feature-jackpot" target="_self" className="footer-menu__link">Jackpot</a></li>
-                                    <li className="footer-menu__item"><a href="slots/exclusive-99" target="_self" className="footer-menu__link">Exclusive</a></li>
-                                </ul>
-                            </div>
-                            <div className="footer-menu__col">
-                                <p className="footer-menu__title">
-                                    Information
-                                </p>
-                                <ul className="footer-menu__list">
-                                    <li className="footer-menu__item"><a href="information/about" target="_self" className="footer-menu__link">About Us</a></li>
-                                    <li className="footer-menu__item"><a href="information/contacts" target="_self" className="footer-menu__link">Contact</a></li>
-                                    <li className="footer-menu__item"><a href="information/rules" target="_self" className="footer-menu__link">Terms and Conditions</a></li>
-                                    <li className="footer-menu__item"><a href="information/rules/9" target="_self" className="footer-menu__link">Bonus Terms and Conditions</a></li>
-                                    <li className="footer-menu__item"><a href="information/rules/10" target="_self" className="footer-menu__link">Responsible Gaming</a></li>
+                                    <li className="footer-menu__item"><a href="/information/about" target="_self" className="footer-menu__link">About Us</a></li>
+                                    <li className="footer-menu__item"><a href="/information/contacts" target="_self" className="footer-menu__link">Contact</a></li>
+                                    <li className="footer-menu__item"><a href="/information/rules" target="_self" className="footer-menu__link">Terms and Conditions</a></li>
+                                    <li className="footer-menu__item"><a href="/information/rules/9" target="_self" className="footer-menu__link">Bonus Terms and Conditions</a></li>
+                                    <li className="footer-menu__item"><a href="/information/rules/10" target="_self" className="footer-menu__link">Responsible Gaming</a></li>
                                     <li className="footer-menu__item"><a href="https://1xslotspartners.com" target="_self" className="footer-menu__link">Affiliate Program</a></li>
                                     <li className="footer-menu__item"><a href="https://1xslotsagent.shop" target="_self" className="footer-menu__link">Become a Payment Agent</a></li>
                                     <li className="footer-menu__item"><a href="information/rules/6" target="_self" className="footer-menu__link">Privacy Policy</a></li>

@@ -5,6 +5,7 @@ import { AppContext } from "../../AppContext";
 import { LayoutContext } from "./LayoutContext";
 import { callApi } from "../../utils/Utils";
 import Sidebar from "./Sidebar";
+import Footer from "./Footer";
 import LoginModal from "../Modal/LoginModal";
 import { NavigationContext } from "./NavigationContext";
 import FullDivLoading from "../Loading/FullDivLoading";
@@ -162,9 +163,12 @@ const Layout = () => {
                     )}
                     <div className="page">
                         <Sidebar isSlotsOnly={isSlotsOnly} isMobile={isMobile} />
-                        <main>
-                            <Outlet context={{ isSlotsOnly, isMobile }} />
-                        </main>
+                        <div className="page__wrap">
+                            <main>
+                                <Outlet context={{ isSlotsOnly, isMobile }} />
+                            </main>
+                            <Footer />
+                        </div>
                     </div>
                 </>
             </NavigationContext.Provider>
