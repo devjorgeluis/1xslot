@@ -4,7 +4,7 @@ import AppContextProvider from './AppContext.jsx'
 import './css/1xslot.css'
 import './css/Home.css'
 import './css/Calendar.css'
-
+import './css/Responsive.css'
 
 import App from './App.jsx'
 

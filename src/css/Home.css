@@ -2260,7 +2260,7 @@ body {
     margin: 0;
     color: #20292d;
     display: flex;
-    background: #060509 url("/genfiles/cms/99-61/desktop/media_asset/bg.jpg") center top no-repeat;
+    background: #1F1F1F url("../assets/img/bg.jpg") center top no-repeat;
     background-size: 100% auto
 }
 
@@ -2455,7 +2455,6 @@ body.swal2-shown.swal2-height-auto {
 
 @media(max-width: 1599px) {
     .page__row .slider {
-        min-width:35.625em;
         margin-bottom: .9375em;
         -webkit-margin-end: 0;
         margin-inline-end:0}
@@ -7561,7 +7560,7 @@ body.swal2-shown.swal2-height-auto {
     opacity: 1;
     width: 1.75em;
     height: .5em;
-    margin: 0 .1875em;
+    margin: 0 2px !important;
     outline: none;
     border-radius: .1875em;
     background-color: #fff;
@@ -7694,24 +7693,34 @@ body.swal2-shown.swal2-height-auto {
 .content-tile__header {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: .8em 1.2em;
     padding-top: 1.3333333333em;
     text-transform: uppercase;
     font-size: .9375em;
-    line-height: 1.2;
-    letter-spacing: .25px
+    line-height: 1;
+}
+
+.content-tile-with-icon {
+    display: flex;
+    align-items: center;
 }
 
 .content-tile__header .content-tile__ico {
     width: 1.3333333333em;
     height: 1.3333333333em;
-    fill: #fff;
-    margin-right: .6666666667em
+    fill: #858585;
+    margin-right: .5em
 }
 
 .content-tile__body {
     position: relative;
-    padding: 1px 1px 2px
+}
+
+.hot-games .content-tile__body {
+    padding: 5px 5px 0;
+    background-color: #292929;
+    border-radius: 15px;
 }
 
 .content-tile__body .swiper-container {
@@ -8025,7 +8034,7 @@ body.swal2-shown.swal2-height-auto {
 .page:not(.lk) .page__wrap {
     position: relative;
     z-index: 1;
-    background: #060509 url("/genfiles/cms/99-61/desktop/media_asset/bg.jpg") center top no-repeat;
+    background: #1F1F1F url("/genfiles/cms/99-61/desktop/media_asset/bg.jpg") center top no-repeat;
     background-size: 100% auto
 }
 
@@ -11916,4 +11925,12 @@ body.swal2-shown.swal2-height-auto {
 .loading-icon {
     margin: 10px auto;
     display: block;
+}
+
+.content-title__all {
+    background-color: #35353a;
+    padding: 8px 15px;
+    color: #C9B58B;
+    font-size: 13px;
+    border-radius: 10px;
 }

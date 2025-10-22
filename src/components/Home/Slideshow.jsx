@@ -113,7 +113,6 @@ const Slideshow = () => {
         slidesPerView={1}
         pagination={{ clickable: true }}
         autoplay={{ delay: 5000, disableOnInteraction: false }}
-        style={{ width: "1445px" }}
         className="swiper-container"
       >
         {slides.map((slide, index) => (
@@ -142,7 +141,6 @@ const Slideshow = () => {
           aria-atomic="true"
         ></span>
       </Swiper>
-      <div className="slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div>
     </div>
   );
 };

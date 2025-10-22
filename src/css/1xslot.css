@@ -6939,10 +6939,6 @@ body .slots-bottom__list {
     z-index: 1
 }
 
-.swiper-slide {
-    height: auto !important
-}
-
 .swiper-slide .slots-games__item-wrap {
     width: 100%;
     min-width: 100%

@@ -8,7 +8,7 @@ import 'swiper/css/navigation';
 import Icons from '/src/assets/svg/icons.svg';
 import GameCard from '../GameCard';
 
-const GameSlideshow = ({ games, name, title, icon, link, onGameClick }) => {
+const HotGameSlideshow = ({ games, name, title, icon, link, onGameClick }) => {
     const { contextData } = useContext(AppContext);
     const navigate = useNavigate();
     const swiperRef = useRef(null);
@@ -39,19 +39,10 @@ const GameSlideshow = ({ games, name, title, icon, link, onGameClick }) => {
                     ref={swiperRef}
                     modules={[Navigation]}
                     spaceBetween={3}
+                    slidesPerView={4}
                     navigation={{
                         prevEl: `.${uniqueId}-back`,
                         nextEl: `.${uniqueId}-next`,
-                    }}
-                    breakpoints={{
-                        0: {
-                            slidesPerView: 2,
-                            spaceBetween: 3,
-                        },
-                        768: {
-                            slidesPerView: 5,
-                            spaceBetween: 3,
-                        },
                     }}
                     className="swiper-container"
                     style={{ width: '100%' }}
@@ -100,4 +91,4 @@ const GameSlideshow = ({ games, name, title, icon, link, onGameClick }) => {
     );
 };
 
-export default GameSlideshow;
+export default HotGameSlideshow;
