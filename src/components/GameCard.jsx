@@ -1,29 +1,21 @@
 const GameCard = (props) => {
   return (
-    <div className={`casino-game ${props.mobileShowMore ? 'mobile' : ''}`} onClick={props.onClick} data-game-id={props.id || props.gameId}>
-      <div className="game-box">
-        <div className="content">
-          <div className="content-overlay"></div>
-          <div className="thumbnail thumb-bg" style={{ backgroundImage: `url(${props.imageSrc})` }}>
-            <div className="play-now">
-              <div className="game-description">
-                <div className="game-text-container">
-                  <div className="content game-name">{props.title}</div>
-                  <div className="meta">
-                    <div className="provider">{props.provider}</div>
-                  </div>
-                </div>
-                <div className="favourite-container">
-                  <a className="favourite"><i className="material-icons favourite-icon">favorite_border</i></a>
-                </div>
-              </div>
-              <div className="game-play-button">
-                <span className="click-to-play">
-                  <i className="material-icons">play_circle_filled</i>
-                </span>
+    <div className={`slots-games__item-wrap ${props.mobileShowMore ? 'mobile' : ''}`} onClick={props.onClick} data-game-id={props.id || props.gameId}>
+      <div className="slots-games__bg">
+        <div className="slots-games__item" style={{ backgroundImage: `url(${props.imageSrc})` }}>
+          <div className="slots-games__overlay">
+            <div className="slots-games__name">{props.title}</div>
+            <div className="slots-games__buttons">
+              <a href="javascript:void(0)" className="slots-games__fav"></a>
+              <div class="slots-games__play-wrap show">
+                <a href="javascript:void(0)" class="slots-games__play"></a>
               </div>
             </div>
+            <div class="slots-games__playfree-wrap">
+              <a href="javascript:void(0)" class="slots-games__playfree">{props.provider}</a>
+            </div>
           </div>
+          <div className="slots-games__ribbons"></div>
         </div>
       </div>
     </div>

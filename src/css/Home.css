@@ -242,7 +242,7 @@
 }
 
 .slots-games__bg {
-    background-image: url("/genfiles/cms/1/desktop/slots/new/blankslot.jpg");
+    background-image: url("../assets/img/blankslot.jpg");
     background-size: cover
 }
 

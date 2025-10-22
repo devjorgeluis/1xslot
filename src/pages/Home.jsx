@@ -7,7 +7,6 @@ import { callApi } from "../utils/Utils";
 import Slideshow from "../components/Home/Slideshow";
 import MenuContainer from "../components/Home/MenuContainer";
 import GameSlideshow from "../components/Home/GameSlideshow";
-import Footer from "../components/Layout/Footer";
 import GameModal from "../components/Modal/GameModal";
 import LoginModal from "../components/Modal/LoginModal";
 

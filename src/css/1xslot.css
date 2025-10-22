@@ -4068,11 +4068,6 @@ fieldset[disabled] .multiselect {
     background-color: #1a1a1a
 }
 
-.slots-games__bg {
-    background-image: url("/genfiles/cms/1/desktop/slots/new/blankslot.jpg");
-    background-size: cover
-}
-
 .slots-games__ribbons {
     position: absolute;
     top: .3125em;
@@ -4933,7 +4928,7 @@ body #maincontent {
 }
 
 .slots-filter .providers__item img {
-    width: 90%
+    height: 80%
 }
 
 .slots-filter .products-sort {
@@ -8625,7 +8620,22 @@ body .slots-bottom__list {
 }
 
 .slots-filter .providers__list {
-    padding: 0 1.25em
+    padding: 0 1.25em;
+    height: 21.375em;
+    overflow: auto;
+}
+
+.slots-filter .providers__list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.slots-filter .providers__list::-webkit-scrollbar-thumb,
+.slots-filter .providers__list::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+}
+
+.slots-filter .providers__list::-webkit-scrollbar-track {
+    background: rgb(0, 0, 0);
 }
 
 .slots-filter .providers__scroll {

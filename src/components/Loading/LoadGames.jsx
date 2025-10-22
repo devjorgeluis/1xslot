@@ -1,28 +1,22 @@
 const LoadGames = () => {
     const GameSkeleton = () => (
-        <div className="casino-game">
-            <div className="game-box">
-                <div className="content">
-                    <div className="content-overlay"></div>
+        <div className="slots-games__item-wrap">
+            <div className="slots-games__bg">
+                <div className="slots-games__item">
                     <div className="thumbnail thumb-bg">
-                        <div className="play-now">
-                            <div className="game-description">
-                                <div className="game-text-container">
-                                    <div className="content game-name"></div>
-                                    <div className="meta">
-                                        <div className=""></div>
-                                    </div>
-                                </div>
-                                <div className="favourite-container">
-                                    <a className="favourite"><i className="material-icons favourite-icon">favorite_border</i></a>
+                        <div className="slots-games__overlay">
+                            <div className="slots-games__name"></div>
+                            <div className="slots-games__buttons">
+                                <a href="javascript:void(0)" className="slots-games__fav"></a>
+                                <div className="slots-games__play-wrap show">
+                                    <a href="javascript:void(0)" className="slots-games__play"></a>
                                 </div>
                             </div>
-                            <div className="game-play-button">
-                                <span className="click-to-play">
-                                <i className="material-icons">play_circle_filled</i>
-                                </span>
+                            <div className="slots-games__playfree-wrap">
+                                <a href="javascript:void(0)" className="slots-games__playfree"></a>
                             </div>
                         </div>
+                        <div className="slots-games__ribbons"></div>
                     </div>
                 </div>
             </div>
@@ -30,8 +24,8 @@ const LoadGames = () => {
     );
 
     return (
-        <div className="casino-games-container">
-            <div className="row games-list limited-games-list popular">
+        <div className="slots-games__wrap">
+            <div className="slots-games__list">
                 {Array.from({ length: 5 }, (_, index) => (
                     <GameSkeleton key={index} />
                 ))}
