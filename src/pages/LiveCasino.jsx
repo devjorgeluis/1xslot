@@ -8,7 +8,6 @@ import GameCard from "/src/components/GameCard";
 import Slideshow from "../components/LiveCasino/Slideshow";
 import CategoryContainer from "../components/CategoryContainer";
 import GameModal from "../components/Modal/GameModal";
-import Footer from "../components/Layout/Footer";
 import LoadGames from "../components/Loading/LoadGames";
 import SearchInput from "../components/SearchInput";
 import SearchSelect from "../components/SearchSelect";
@@ -751,7 +750,6 @@ const LiveCasino = () => {
                 </div>
               </div>
             </div>
-            <Footer isSlotsOnly={isSlotsOnly} />
           </div>
         </>
       )}

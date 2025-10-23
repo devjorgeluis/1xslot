@@ -8938,3 +8938,86 @@ body .slots-bottom__list {
 .game-search__dropdown .scrollbar {
     max-height: 26.875em
 }
+
+@media (min-width: 768px) {
+    .headerWrapper {
+        display: none;
+    }
+}
+
+.headerWrapper {
+    margin: 0 auto;
+    background-color: #292929;
+    padding-bottom: 10px;
+}
+
+.header-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+.headerLeft {
+    order: 1;
+    width: 33.3333%
+}
+
+.headerMiddle {
+    order: 2;
+    width: 33.3333%
+}
+
+.headerRight {
+    order: 3;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.headerLeft {
+    display: flex;
+    align-items: center;
+    justify-content: space-between
+}
+
+.linkCss {
+    cursor: pointer;
+}
+
+.headerLeft .linkCss {
+    margin-right: .8rem
+}
+
+.headerLeft .groupWrapper {
+    display: flex
+}
+
+.headerRight .btn.btn-secondary {
+    font-size: 12px
+}
+
+.top-menu-nav {
+    z-index: 1;
+    display: flex;
+    flex: 1;
+    margin-top: 10px;
+    margin-bottom: 10px
+}
+
+.login-container {
+    text-align: center;
+}
+
+.login-btn {
+    background-color: #FDDC8D;
+    border-radius: 10px;
+    width: 150px;
+    display: block;
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+    margin: auto;
+}

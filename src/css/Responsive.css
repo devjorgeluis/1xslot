@@ -2,6 +2,12 @@
     display: none;
 }
 
+@media (min-width: 768px) {
+    .footer {
+        display: none;
+    }
+}
+
 @media (max-width: 768px) {
     .page:not(.lk) .column {
         display: none;
@@ -14,13 +20,10 @@
 
     .page {
         min-width: auto;
+        min-height: 80vh;
     }
 
     .page .content__row {
-        display: none;
-    }
-
-    #footer {
         display: none;
     }
 

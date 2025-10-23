@@ -10,7 +10,6 @@ import GameSlideshow from "../components/Home/GameSlideshow";
 import GameCard from "/src/components/GameCard";
 import CategoryContainer from "../components/CategoryContainer";
 import GameModal from "../components/Modal/GameModal";
-import Footer from "../components/Layout/Footer";
 import LoadGames from "../components/Loading/LoadGames";
 import SearchInput from "../components/SearchInput";
 import SearchSelect from "../components/SearchSelect";
@@ -677,7 +676,6 @@ const Casino = () => {
                 </div>
               </div>
             </section>
-            <Footer isSlotsOnly={isSlotsOnly} />
           </div>
         </>
       )}

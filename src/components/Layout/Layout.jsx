@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../AppContext";
 import { LayoutContext } from "./LayoutContext";
 import { callApi } from "../../utils/Utils";
+import Header from "./Header";
 import Sidebar from "./Sidebar";
 import Footer from "./Footer";
 import LoginModal from "../Modal/LoginModal";
@@ -161,15 +162,16 @@ const Layout = () => {
                             onLoginSuccess={handleLoginSuccess}
                         />
                     )}
+                    <Header />
                     <div className="page">
                         <Sidebar isSlotsOnly={isSlotsOnly} isMobile={isMobile} />
                         <div className="page__wrap">
                             <main>
                                 <Outlet context={{ isSlotsOnly, isMobile }} />
                             </main>
-                            <Footer />
                         </div>
                     </div>
+                    <Footer />
                 </>
             </NavigationContext.Provider>
         </LayoutContext.Provider>
