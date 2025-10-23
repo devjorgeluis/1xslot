@@ -2,6 +2,7 @@ import { createRoot } from 'react-dom/client'
 import AppContextProvider from './AppContext.jsx'
 
 import './css/1xslot.css'
+import './css/Login.css'
 import './css/Home.css'
 import './css/Calendar.css'
 import './css/Responsive.css'

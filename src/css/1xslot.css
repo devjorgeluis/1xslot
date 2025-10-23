@@ -8940,15 +8940,18 @@ body .slots-bottom__list {
 }
 
 @media (min-width: 768px) {
-    .headerWrapper {
+    .header {
         display: none;
     }
 }
 
-.headerWrapper {
+.header {
     margin: 0 auto;
     background-color: #292929;
     padding-bottom: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .header-container {
@@ -9007,8 +9010,9 @@ body .slots-bottom__list {
     margin-bottom: 10px
 }
 
-.login-container {
+.login-header-container {
     text-align: center;
+    margin-top: 10px;
 }
 
 .login-btn {
@@ -9020,4 +9024,21 @@ body .slots-bottom__list {
     padding: 10px;
     font-weight: bold;
     margin: auto;
+}
+
+.back-button {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, .5);
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.back-button i {
+    color: white;
 }

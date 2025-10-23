@@ -162,16 +162,14 @@ const Layout = () => {
                             onLoginSuccess={handleLoginSuccess}
                         />
                     )}
-                    <Header />
                     <div className="page">
                         <Sidebar isSlotsOnly={isSlotsOnly} isMobile={isMobile} />
                         <div className="page__wrap">
                             <main>
-                                <Outlet context={{ isSlotsOnly, isMobile }} />
+                                <Outlet context={{ isSlotsOnly, isLogin, isMobile }} />
                             </main>
                         </div>
                     </div>
-                    <Footer />
                 </>
             </NavigationContext.Provider>
         </LayoutContext.Provider>

@@ -16,6 +16,11 @@
     .page:not(.lk) .page__wrap {
         width: 100vw;
         margin-inline-start: 0;
+        padding: 0;
+    }
+
+    .main-content {
+        padding: 1em .625em 60px;
     }
 
     .page {

@@ -14,54 +14,12 @@ const Header = ({
 }) => {
     const { isSidebarExpanded } = useContext(LayoutContext);
     const navigate = useNavigate();
-    const [showUserMenu, setShowUserMenu] = useState(false);
-    const [showLanguageMenu, setShowLanguageMenu] = useState(false);
-    const [showMenuContainer, setShowMenuContainer] = useState(false);
     const [showMobileMenuContainer, setShowMobileMenuContainer] = useState(false);
     const [isLogoutLoading, setIsLogoutLoading] = useState(false);
-
-    const closeUserMenu = () => {
-        setShowUserMenu(false);
-    };
-
-    const toggleMenuContainer = () => {
-        setShowMenuContainer(!showMenuContainer);
-    };
 
     const toggleMobileMenuContainer = () => {
         setShowMobileMenuContainer(!showMobileMenuContainer);
     };
-
-    const closeMenuContainer = () => {
-        setShowMenuContainer(false);
-    };
-
-    const toggleLanguageMenu = () => {
-        setShowLanguageMenu(!showLanguageMenu);
-    };
-
-    const closeLanguageMenu = () => {
-        setShowLanguageMenu(false);
-    };
-
-    const handleLanguageSelect = () => {
-        closeLanguageMenu();
-    };
-
-    const handleClickOutside = (event) => {
-        if (!event.target.closest('.dropdown') && !event.target.closest('.user-menu-container') && !event.target.closest('.account-button') && !event.target.closest('.menuContainer')) {
-            closeLanguageMenu();
-            closeUserMenu();
-            closeMenuContainer();
-        }
-    };
-
-    useState(() => {
-        document.addEventListener('click', handleClickOutside);
-        return () => {
-            document.removeEventListener('click', handleClickOutside);
-        };
-    }, []);
 
     const menuItems = [
         {
@@ -91,7 +49,7 @@ const Header = ({
     ];
 
     return (
-        <div className="headerWrapper">
+        <div className="header">
             <div className="header-container">
                 <div className="headerLeft">
                     <a aria-current="page" className="linkCss active" onClick={() => navigate("/")}>
@@ -100,15 +58,9 @@ const Header = ({
                 </div>
                 <div className="headerRight">
                     {
-                        isLogin ? <div className="loggedin">
-                            <div className="loggedinContainer">
-                                <div
-                                    className="mobile-account-button"
-                                    onClick={toggleMobileMenuContainer}
-                                    style={{ cursor: 'pointer' }}
-                                >
-                                    <i className="material-icons">account_circle</i>
-                                </div>
+                        isLogin ? <>
+                                <i className="material-icons">search</i>
+                                <i className="material-icons" onClick={toggleMobileMenuContainer}>account_circle</i>
                                 {
                                     showMobileMenuContainer && <div className="menuContainer">
                                         <div className="menu">
@@ -144,16 +96,15 @@ const Header = ({
                                         </div>
                                     </div>
                                 }
-                            </div>
-                        </div> : <>
+                        </> : <>
                             <i className="material-icons">search</i>
                             <i className="material-icons">account_circle</i>
                         </>
                     }
                 </div>
             </div>
-            <div className="login-container">
-                <button className="login-btn">Acceso</button>
+            <div className="login-header-container">
+                <button className="login-btn" onClick={() => navigate("/login")}>Acceso</button>
             </div>
         </div>
     );

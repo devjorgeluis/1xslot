@@ -3798,13 +3798,16 @@ body.swal2-shown.swal2-height-auto {
 }
 
 .footer {
-    position: relative;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     background-color: #292929;
     padding: 10px;
     color: white;
+    z-index: 100;
 }
 
 .footer__col {
@@ -8061,13 +8064,6 @@ body.swal2-shown.swal2-height-auto {
     border: 1px solid rgba(64,64,64,.1);
     background-color: rgba(51,51,51,.5);
     box-shadow: none
-}
-
-.page:not(.lk) .page__wrap {
-    position: relative;
-    z-index: 1;
-    background: #1F1F1F url("/genfiles/cms/99-61/desktop/media_asset/bg.jpg") center top no-repeat;
-    background-size: 100% auto
 }
 
 .page:not(.lk) .page__wrap--hearts {

@@ -4,6 +4,8 @@ import { AppContext } from "../AppContext";
 import { LayoutContext } from "../components/Layout/LayoutContext";
 import { NavigationContext } from "../components/Layout/NavigationContext";
 import { callApi } from "../utils/Utils";
+import Header from "../components/Layout/Header";
+import Footer from "../components/Layout/Footer";
 import Slideshow from "../components/Home/Slideshow";
 import MenuContainer from "../components/Home/MenuContainer";
 import GameSlideshow from "../components/Home/GameSlideshow";
@@ -20,7 +22,6 @@ let pageCurrent = 0;
 
 const Home = () => {
   const { contextData } = useContext(AppContext);
-  const { isLogin } = useContext(LayoutContext);
   const { setShowFullDivLoading } = useContext(NavigationContext);
   const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
   const [games, setGames] = useState([]);
@@ -35,7 +36,7 @@ const Home = () => {
   const [shouldShowGameModal, setShouldShowGameModal] = useState(false);
   const [isGameLoadingError, setIsGameLoadingError] = useState(false);
   const refGameModal = useRef();
-  const { isSlotsOnly } = useOutletContext();
+  const { isSlotsOnly, isLogin } = useOutletContext();
 
   useEffect(() => {
     selectedGameId = null;
@@ -214,12 +215,29 @@ const Home = () => {
         />
       ) : (
         <>
-          <div className="page__row">
-            <Slideshow />
-          </div>
-          <MenuContainer />
-          <div className="hot-games">
-            {topGames.length > 0 && <HotGameSlideshow games={topGames} name="games" title="Juegos" icon="" onGameClick={(game) => {
+          <Header isLogin={isLogin} />
+          <div className="main-content">
+            <div className="page__row">
+              <Slideshow />
+            </div>
+            <MenuContainer />
+            <div className="hot-games">
+              {topGames.length > 0 && <HotGameSlideshow games={topGames} name="games" title="Juegos" icon="" onGameClick={(game) => {
+                if (isLogin) {
+                  launchGame(game, "slot", "tab");
+                } else {
+                  setShowLoginModal(true);
+                }
+              }} />}
+            </div>
+            {topCasino.length > 0 && <GameSlideshow games={topCasino} name="casino" title="Tragamonedas" icon="cherry" link="/casino" onGameClick={(game) => {
+              if (isLogin) {
+                launchGame(game, "slot", "tab");
+              } else {
+                setShowLoginModal(true);
+              }
+            }} />}
+            {topLiveCasino.length > 0 && <GameSlideshow games={topLiveCasino} name="liveCasino" title="Casino en Vivo" icon="spades" link="/live-casino" onGameClick={(game) => {
               if (isLogin) {
                 launchGame(game, "slot", "tab");
               } else {
@@ -227,20 +245,7 @@ const Home = () => {
               }
             }} />}
           </div>
-          {topCasino.length > 0 && <GameSlideshow games={topCasino} name="casino" title="Tragamonedas" icon="cherry" link="/casino" onGameClick={(game) => {
-            if (isLogin) {
-              launchGame(game, "slot", "tab");
-            } else {
-              setShowLoginModal(true);
-            }
-          }} />}
-          {topLiveCasino.length > 0 && <GameSlideshow games={topLiveCasino} name="liveCasino" title="Casino en Vivo" icon="spades" link="/live-casino" onGameClick={(game) => {
-            if (isLogin) {
-              launchGame(game, "slot", "tab");
-            } else {
-              setShowLoginModal(true);
-            }
-          }} />}
+          <Footer isLogin={isLogin} isSlotsOnly={isSlotsOnly} />
         </>
       )}
 
