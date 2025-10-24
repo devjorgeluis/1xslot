@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import ImgLoader from "/src/assets/img/loader.png";
+import ImgLoader from "/src/assets/svg/loading.gif";
 
 const FullDivLoading = (props) => {
   useEffect(() => {
@@ -14,7 +14,7 @@ const FullDivLoading = (props) => {
 
   return (
     <div id="jsLoader" className="js-loader d-none">
-      <img id="site-loader" src={ImgLoader} width={64} />
+      <img id="site-loader" src={ImgLoader} width={32} />
     </div>
   );
 };

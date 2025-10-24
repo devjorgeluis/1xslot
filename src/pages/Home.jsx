@@ -10,6 +10,7 @@ import MenuContainer from "../components/Home/MenuContainer";
 import GameSlideshow from "../components/Home/GameSlideshow";
 import HotGameSlideshow from "../components/Home/HotGameSlideshow";
 import GameModal from "../components/Modal/GameModal";
+import PlayConfirmModal from "../components/Modal/PlayConfirmModal";
 
 let selectedGameId = null;
 let selectedGameType = null;
@@ -21,6 +22,8 @@ let pageCurrent = 0;
 const Home = () => {
   const { contextData } = useContext(AppContext);
   const { setShowFullDivLoading } = useContext(NavigationContext);
+  const [showPlayConfirm, setShowPlayConfirm] = useState(false);
+  const [selectedGameForPlay, setSelectedGameForPlay] = useState(null);
   const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
   const [games, setGames] = useState([]);
   const [topGames, setTopGames] = useState([]);
@@ -201,7 +204,7 @@ const Home = () => {
           isMobile={isMobile}
         />
       ) : (
-        <>
+      <>
           <Header isLogin={isLogin} isMobile={isMobile} />
           <div className="main-content">
             <div className="page__row">
@@ -211,7 +214,8 @@ const Home = () => {
             <div className="hot-games">
               {topGames.length > 0 && <HotGameSlideshow games={topGames} name="games" title="Juegos" icon="" onGameClick={(game) => {
                 if (isLogin) {
-                  launchGame(game, "slot", "tab");
+                  setSelectedGameForPlay(game);
+                  setShowPlayConfirm(true);
                 } else {
                   navigate("/login");
                 }
@@ -219,14 +223,16 @@ const Home = () => {
             </div>
             {topCasino.length > 0 && <GameSlideshow games={topCasino} name="casino" title="Tragamonedas" icon="cherry" link="/casino" onGameClick={(game) => {
               if (isLogin) {
-                launchGame(game, "slot", "tab");
+                setSelectedGameForPlay(game);
+                setShowPlayConfirm(true);
               } else {
                 navigate("/login");
               }
             }} />}
             {topLiveCasino.length > 0 && <GameSlideshow games={topLiveCasino} name="liveCasino" title="Casino en Vivo" icon="spades" link="/live-casino" onGameClick={(game) => {
               if (isLogin) {
-                launchGame(game, "slot", "tab");
+                setSelectedGameForPlay(game);
+                setShowPlayConfirm(true);
               } else {
                 navigate("/login");
               }
@@ -236,12 +242,23 @@ const Home = () => {
         </>
       )}
 
+      <PlayConfirmModal
+        isOpen={showPlayConfirm}
+        onClose={() => setShowPlayConfirm(false)}
+        onPlay={() => {
+          setShowPlayConfirm(false);
+          if (selectedGameForPlay) launchGame(selectedGameForPlay, "slot", "tab");
+        }}
+        gameName={selectedGameForPlay?.name}
+        costText={selectedGameForPlay?.costText}
+      />
+
       {isGameLoadingError && (
         <div className="container">
           <div className="row">
             <div className="col-md-6 error-loading-game">
-              <div className="alert alert-warning">Error loading the game. Please try again or contact the support team.</div>
-              <a className="btn btn-primary" onClick={() => window.location.reload()}>Return to Home Page</a>
+              <div className="alert alert-warning">Error al cargar el juego. Inténtalo de nuevo o contacta con el equipo de soporte.</div>
+              <a className="btn btn-primary" onClick={() => window.location.reload()}>Regresar a la página de inicio</a>
             </div>
           </div>
         </div>

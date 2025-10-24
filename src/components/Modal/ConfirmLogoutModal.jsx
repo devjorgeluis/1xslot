@@ -1,21 +1,18 @@
-import React from 'react';
-import '../../css/Auth.css';
-
 const ConfirmLogoutModal = ({ isOpen, onClose, onConfirm }) => {
     if (!isOpen) return null;
 
     return (
         <div className="auth-error-modal-overlay">
             <div className="confirm-logout-modal">
-                <h3 className="confirm-title">Do you want to log out?</h3>
-                <p className="confirm-sub">We're sorry to see you go.</p>
+                <h3 className="confirm-title">¿Quieres cerrar sesión?</h3>
+                <p className="confirm-sub">Lamentamos que te vayas.</p>
 
                 <button className="confirm-btn stay" onClick={onClose}>
-                    Stay here
+                    Quédate aquí
                 </button>
 
                 <button className="confirm-btn exit" onClick={onConfirm}>
-                    Exit
+                    Salida
                 </button>
             </div>
         </div>

@@ -9294,3 +9294,31 @@ body .slots-bottom__list {
 .game-window-iframe-wrapper {
     height: 75vh;
 }
+
+.js-loader {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    z-index: 99997;
+    pointer-events: none;
+    transition: opacity 0.3s ease-out;
+    background-color: #000;
+}
+
+.error-loading-game {
+    text-align: center;
+    margin: 10% auto;
+    color: #fff;
+    padding: 0 30px;
+}
+
+.error-loading-game .btn {
+    font-weight: 600;
+    margin-top: 5% !important
+}
+
+.error-loading-game .alert-warning {
+    color: #fff;
+    border-color: #36e6e5;
+}
