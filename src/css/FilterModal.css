@@ -1,0 +1,146 @@
+.filter-modal {
+    background-color: #1c1c1e;
+    height: 100vh;
+    color: white;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    overflow: scroll;
+    padding-bottom: 60px;
+}
+
+.filter-header {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: #2c2c2e;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.back-filter-button {
+    color: #989898;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.search-container {
+    flex: 1;
+    position: relative;
+}
+
+.search-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: #181818;
+    border: none;
+    border-radius: 20px;
+    color: #989898;
+    font-size: 1rem;
+    padding-left: 2.5rem;
+}
+
+.search-icon {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    color: #989898;
+}
+
+.tabs-container {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    border-bottom: 1px solid #2c2c2e;
+}
+
+.tab {
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.tab.active {
+    background-color: #ffd700;
+    color: black;
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    padding: 8px;
+}
+
+.game-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+}
+
+.game-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.game-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0.5rem;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+}
+
+.game-title {
+    font-size: 0.9rem;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.game-provider {
+    font-size: 0.8rem;
+    color: #8e8e93;
+    margin: 0;
+}
+
+.bottom-navigation {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #2c2c2e;
+    display: flex;
+    justify-content: space-around;
+    padding: 0.5rem;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #8e8e93;
+    text-decoration: none;
+    font-size: 0.8rem;
+}
+
+.nav-item.active {
+    color: #ffd700;
+}
+
+.nav-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.load-container {
+    margin-top: 50px;
+}

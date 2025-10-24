@@ -11,7 +11,6 @@ import GameModal from "../components/Modal/GameModal";
 import LoadGames from "../components/Loading/LoadGames";
 import SearchInput from "../components/SearchInput";
 import SearchSelect from "../components/SearchSelect";
-import LoginModal from "../components/Modal/LoginModal";
 import "animate.css";
 
 let selectedGameId = null;
@@ -38,7 +37,6 @@ const LiveCasino = () => {
   const [pageData, setPageData] = useState({});
   const [gameUrl, setGameUrl] = useState("");
   const [isLoadingGames, setIsLoadingGames] = useState(false);
-  const [showLoginModal, setShowLoginModal] = useState(false);
   const [txtSearch, setTxtSearch] = useState("");
   const [searchDelayTimer, setSearchDelayTimer] = useState();
   const [shouldShowGameModal, setShouldShowGameModal] = useState(false);
@@ -384,14 +382,6 @@ const LiveCasino = () => {
     setShouldShowGameModal(false);
   };
 
-  const handleLoginClick = () => {
-    setShowLoginModal(true);
-  };
-
-  const handleLoginConfirm = () => {
-    setShowLoginModal(false);
-  };
-
   const handleCategorySelect = (category, index) => {
     setSelectedProvider(null);
     setTxtSearch("");
@@ -571,13 +561,6 @@ const LiveCasino = () => {
 
   return (
     <>
-      {showLoginModal && (
-        <LoginModal
-          isOpen={showLoginModal}
-          onClose={() => setShowLoginModal(false)}
-          onConfirm={handleLoginConfirm}
-        />
-      )}
       {shouldShowGameModal && selectedGameId !== null ? (
         <GameModal
           gameUrl={gameUrl}

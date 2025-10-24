@@ -3,7 +3,6 @@ import { AppContext } from "../../AppContext";
 import { NavigationContext } from "../Layout/NavigationContext";
 import { callApi } from "../../utils/Utils";
 import LoadApi from "../Loading/LoadApi";
-import LoginModal from "../Modal/LoginModal";
 import GameModal from "../Modal/GameModal";
 import Icons from '/src/assets/svg/icons.svg';
 
@@ -24,14 +23,9 @@ const HomeSearch = ({
     const [txtSearch, setTxtSearch] = useState("");
     const [isSearch, setIsSearch] = useState(false);
     const searchRef = useRef(null);
-    const [showLoginModal, setShowLoginModal] = useState(false);
     const [searchDelayTimer, setSearchDelayTimer] = useState();
     const [shouldShowGameModal, setShouldShowGameModal] = useState(false);
     const [isGameLoadingError, setIsGameLoadingError] = useState(false);
-
-    const handleLoginConfirm = () => {
-        setShowLoginModal(false);
-    };
 
     const launchGame = (game, type, launcher, isDemo = false) => {
         setShouldShowGameModal(true);
@@ -137,13 +131,6 @@ const HomeSearch = ({
 
     return (
         <>
-            {showLoginModal && (
-                <LoginModal
-                    isOpen={showLoginModal}
-                    onClose={() => setShowLoginModal(false)}
-                    onConfirm={handleLoginConfirm}
-                />
-            )}
             <div id="game_field_search_block" className="game-search">
                 <div className="field">
                     <input

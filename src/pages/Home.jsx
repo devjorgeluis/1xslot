@@ -1,7 +1,6 @@
 import { useContext, useState, useEffect, useRef } from "react";
-import { useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import { AppContext } from "../AppContext";
-import { LayoutContext } from "../components/Layout/LayoutContext";
 import { NavigationContext } from "../components/Layout/NavigationContext";
 import { callApi } from "../utils/Utils";
 import Header from "../components/Layout/Header";
@@ -11,7 +10,6 @@ import MenuContainer from "../components/Home/MenuContainer";
 import GameSlideshow from "../components/Home/GameSlideshow";
 import HotGameSlideshow from "../components/Home/HotGameSlideshow";
 import GameModal from "../components/Modal/GameModal";
-import LoginModal from "../components/Modal/LoginModal";
 
 let selectedGameId = null;
 let selectedGameType = null;
@@ -32,11 +30,11 @@ const Home = () => {
   const [mainCategories, setMainCategories] = useState([]);
   const [pageData, setPageData] = useState({});
   const [gameUrl, setGameUrl] = useState("");
-  const [showLoginModal, setShowLoginModal] = useState(false);
   const [shouldShowGameModal, setShouldShowGameModal] = useState(false);
   const [isGameLoadingError, setIsGameLoadingError] = useState(false);
   const refGameModal = useRef();
-  const { isSlotsOnly, isLogin } = useOutletContext();
+  const { isSlotsOnly, isLogin, isMobile } = useOutletContext();
+  const navigate = useNavigate();
 
   useEffect(() => {
     selectedGameId = null;
@@ -189,20 +187,8 @@ const Home = () => {
     setShouldShowGameModal(false);
   };
 
-  const handleLoginConfirm = () => {
-    setShowLoginModal(false);
-  };
-
   return (
     <>
-      {showLoginModal && (
-        <LoginModal
-          isOpen={showLoginModal}
-          onClose={() => setShowLoginModal(false)}
-          onConfirm={handleLoginConfirm}
-        />
-      )}
-
       {shouldShowGameModal && selectedGameId !== null ? (
         <GameModal
           gameUrl={gameUrl}
@@ -212,10 +198,11 @@ const Home = () => {
           launchInNewTab={() => launchGame(null, null, "tab")}
           ref={refGameModal}
           onClose={closeGameModal}
+          isMobile={isMobile}
         />
       ) : (
         <>
-          <Header isLogin={isLogin} />
+          <Header isLogin={isLogin} isMobile={isMobile} />
           <div className="main-content">
             <div className="page__row">
               <Slideshow />
@@ -226,7 +213,7 @@ const Home = () => {
                 if (isLogin) {
                   launchGame(game, "slot", "tab");
                 } else {
-                  setShowLoginModal(true);
+                  navigate("/login");
                 }
               }} />}
             </div>
@@ -234,14 +221,14 @@ const Home = () => {
               if (isLogin) {
                 launchGame(game, "slot", "tab");
               } else {
-                setShowLoginModal(true);
+                navigate("/login");
               }
             }} />}
             {topLiveCasino.length > 0 && <GameSlideshow games={topLiveCasino} name="liveCasino" title="Casino en Vivo" icon="spades" link="/live-casino" onGameClick={(game) => {
               if (isLogin) {
                 launchGame(game, "slot", "tab");
               } else {
-                setShowLoginModal(true);
+                navigate("/login");
               }
             }} />}
           </div>

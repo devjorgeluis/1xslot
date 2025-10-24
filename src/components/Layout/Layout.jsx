@@ -4,10 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../AppContext";
 import { LayoutContext } from "./LayoutContext";
 import { callApi } from "../../utils/Utils";
-import Header from "./Header";
 import Sidebar from "./Sidebar";
-import Footer from "./Footer";
-import LoginModal from "../Modal/LoginModal";
 import { NavigationContext } from "./NavigationContext";
 import FullDivLoading from "../Loading/FullDivLoading";
 import ChatButton from "../ChatButton";
@@ -18,7 +15,6 @@ const Layout = () => {
     const [isLogin, setIsLogin] = useState(contextData.session !== null);
     const [isMobile, setIsMobile] = useState(false);
     const [userBalance, setUserBalance] = useState("");
-    const [showLoginModal, setShowLoginModal] = useState(false);
     const [isSlotsOnly, setIsSlotsOnly] = useState("");
     const [showFullDivLoading, setShowFullDivLoading] = useState(false);
     const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
@@ -115,14 +111,6 @@ const Layout = () => {
         }
     };
 
-    const handleLoginClick = () => {
-        setShowLoginModal(true);
-    };
-
-    const handleLoginSuccess = (balance) => {
-        setUserBalance(balance);
-    };
-
     const handleLogoutClick = () => {
         callApi(contextData, "POST", "/logout", (result) => {
             if (result.status === "success") {
@@ -137,7 +125,6 @@ const Layout = () => {
     const layoutContextValue = {
         isLogin,
         userBalance,
-        handleLoginClick,
         handleLogoutClick,
         refreshBalance,
         isSidebarExpanded,
@@ -153,15 +140,6 @@ const Layout = () => {
             >
                 <>
                     <FullDivLoading show={showFullDivLoading} />
-                    {/* {!isSportsPage && <ChatButton />} */}
-                    {showLoginModal && (
-                        <LoginModal
-                            isMobile={isMobile}
-                            isOpen={showLoginModal}
-                            onClose={() => setShowLoginModal(false)}
-                            onLoginSuccess={handleLoginSuccess}
-                        />
-                    )}
                     <div className="page">
                         <Sidebar isSlotsOnly={isSlotsOnly} isMobile={isMobile} />
                         <div className="page__wrap">

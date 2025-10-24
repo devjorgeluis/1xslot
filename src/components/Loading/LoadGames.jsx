@@ -1,3 +1,5 @@
+import ImgCasino from "/src/assets/img/casino.jpg";
+
 const LoadGames = () => {
     const GameSkeleton = () => (
         <div className="slots-games__item-wrap">
@@ -17,6 +19,9 @@ const LoadGames = () => {
                             </div>
                         </div>
                         <div className="slots-games__ribbons"></div>
+                        <div className="mobile-slots-game">
+                            <img src={ImgCasino} alt="casino" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -24,13 +29,9 @@ const LoadGames = () => {
     );
 
     return (
-        <div className="slots-games__wrap">
-            <div className="slots-games__list">
-                {Array.from({ length: 5 }, (_, index) => (
-                    <GameSkeleton key={index} />
-                ))}
-            </div>
-        </div>
+        Array.from({ length: 8 }, (_, index) => (
+            <GameSkeleton key={index} />
+        ))
     );
 };
 
