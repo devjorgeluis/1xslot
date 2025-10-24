@@ -514,7 +514,7 @@
     margin: 10px 0
 }
 
-.profile-actions li {
+.profile-actions a {
     display: flex;
     gap: 12px;
     align-items: center;
@@ -522,7 +522,7 @@
     color: #bdbdbd
 }
 
-.profile-actions li i {
+.profile-actions a i {
     font-size: 20px;
     color: #727272
 }

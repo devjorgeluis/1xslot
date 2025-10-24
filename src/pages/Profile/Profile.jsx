@@ -30,12 +30,12 @@ const Profile = () => {
                         </div>
 
                         <h3 className="section-title">Extra</h3>
-                        <ul className="profile-actions">
-                            <li onClick={() => navigate('/terms')}>
+                        <div className="profile-actions">
+                            <a href="/docs/FULL_DOC_RULES_EN_GB.pdf" target="_blank" rel="noopener noreferrer">
                                 <i className="material-icons">flag</i>
                                 Términos y condiciones
-                            </li>
-                        </ul>
+                            </a>
+                        </div>
                     </>
                 ) : (
                     <>
@@ -51,17 +51,20 @@ const Profile = () => {
                         </div>
 
                         <h3 className="section-title">Transacciones</h3>
-                        <ul className="profile-actions">
-                            <li onClick={() => navigate('/profile/history')}><i className="material-icons">history</i>Historial de transacciones</li>
-                        </ul>
+                        <div className="profile-actions">
+                            <a onClick={() => navigate('/profile/history')}>
+                                <i className="material-icons">history</i>
+                                Historial de transacciones
+                            </a>
+                        </div>
 
                         <h3 className="section-title">Extra</h3>
-                        <ul className="profile-actions">
-                            <li onClick={() => navigate('/terms')}>
+                        <div className="profile-actions">
+                            <a href="/docs/FULL_DOC_RULES_EN_GB.pdf" target="_blank" rel="noopener noreferrer">
                                 <i className="material-icons">flag</i>
                                 Términos y condiciones
-                            </li>
-                        </ul>
+                            </a>
+                        </div>
                     </>
                 )}
             </div>
