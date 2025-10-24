@@ -11697,8 +11697,21 @@ body.swal2-shown.swal2-height-auto {
     display: none;
 }
 
+.loading-page {
+    width: 100vw;
+    height: 100vh;
+    z-index: 10000;
+    background-color: rgba(0, 0, 0, .2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+
 .loading-icon {
-    margin: 10px auto;
     display: block;
 }
 

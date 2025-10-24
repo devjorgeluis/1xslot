@@ -1,8 +1,10 @@
-import iconLoading from '/src/assets/svg/loading.svg';
+import iconLoading from '/src/assets/svg/loading.gif';
 
 const LoadApi = () => {
   return (
-    <img src={iconLoading} width={100} className="loading-icon" />
+    <div className="loading-page">
+      <img src={iconLoading} width={30} className="loading-icon" />
+    </div>
   );
 };
 

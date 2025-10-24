@@ -4,6 +4,7 @@ import { AppContext } from "../AppContext";
 import { callApi } from "../utils/Utils";
 import LoadApi from "../components/Loading/LoadApi";
 import BackButton from "../components/BackButton";
+import AuthErrorModal from "../components/Modal/AuthErrorModal";
 import ImgLogo from "/src/assets/svg/logo.svg";
 import "../css/Login.css";
 
@@ -12,17 +13,41 @@ const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
-    const [errorMsg, setErrorMsg] = useState("");
+    const [errors, setErrors] = useState({
+        username: "",
+        password: ""
+    });
     const [isLoading, setIsLoading] = useState(false);
+    const [showAuthError, setShowAuthError] = useState(false);
     const navigate = useNavigate();
 
+    const validateForm = () => {
+        const newErrors = {
+            username: "",
+            password: ""
+        };
+        let isValid = true;
+
+        if (!username.trim()) {
+            newErrors.username = "Campo vacío";
+            isValid = false;
+        }
+
+        if (!password.trim()) {
+            newErrors.password = "Campo vacío";
+            isValid = false;
+        }
+
+        setErrors(newErrors);
+        return isValid;
+    };
+
     const handleSubmit = (event) => {
-        const form = event.currentTarget;
         event.preventDefault();
         event.stopPropagation();
-        if (form.checkValidity()) {
+        
+        if (validateForm()) {
             setIsLoading(true);
-
             let body = {
                 username: username,
                 password: password,
@@ -35,7 +60,6 @@ const Login = () => {
                 JSON.stringify(body)
             );
         }
-        setErrorMsg("Invalid credentials");
     };
 
     const callbackSubmitLogin = (result) => {
@@ -48,7 +72,7 @@ const Login = () => {
                 navigate("/");
             }, 1000);
         } else {
-            setErrorMsg("Correo electrónico o contraseña no válidos");
+            setShowAuthError(true);
         }
     };
 
@@ -69,25 +93,38 @@ const Login = () => {
                 
                 <form onSubmit={handleSubmit} className="login-form">
                     <h1 className="login-title">Acceso</h1>
-                    <div className="form-group">
+                    <div className={`form-group ${errors.username ? 'error' : ''}`}>
                         <input
                             type="text"
                             className="form-input"
                             placeholder="Nombre de usuario"
                             value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            required
+                            onChange={(e) => {
+                                setUsername(e.target.value);
+                                if (errors.username) {
+                                    setErrors({...errors, username: ""});
+                                }
+                            }}
                         />
+                        {errors.username && (
+                            <div className="error-message">
+                                {errors.username}
+                            </div>
+                        )}
                     </div>
                     
-                    <div className="form-group">
+                    <div className={`form-group ${errors.password ? 'error' : ''}`}>
                         <input
                             type={showPassword ? "text" : "password"}
                             className="form-input"
                             placeholder="Contraseña"
                             value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
+                            onChange={(e) => {
+                                setPassword(e.target.value);
+                                if (errors.password) {
+                                    setErrors({...errors, password: ""});
+                                }
+                            }}
                         />
                         <button
                             type="button"
@@ -96,6 +133,11 @@ const Login = () => {
                         >
                             {showPassword ? <span className="material-icons">visibility_off</span> : <span className="material-icons">visibility</span>}
                         </button>
+                        {errors.password && (
+                            <div className="error-message">
+                                {errors.password}
+                            </div>
+                        )}
                     </div>
                     
                     <button type="submit" className="login-button">
@@ -103,6 +145,11 @@ const Login = () => {
                     </button>
                 </form>
             </div>
+
+            <AuthErrorModal
+                isOpen={showAuthError}
+                onClose={() => setShowAuthError(false)}
+            />
         </div>
     );
 };
