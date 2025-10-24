@@ -365,6 +365,52 @@
     background-color: #4a4a4c;
 }
 
+/* Confirm logout modal styles */
+.confirm-logout-modal {
+    background-color: #2c2c2e;
+    border-radius: 12px;
+    padding: 18px;
+    width: 90%;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+}
+
+.confirm-title {
+    color: #fff;
+    font-size: 1.05rem;
+    text-align: center;
+    margin: 0;
+}
+
+.confirm-sub {
+    color: #bdbdbd;
+    text-align: center;
+    margin: 0 0 4px 0;
+}
+
+.confirm-btn {
+    border: none;
+    padding: 10px 12px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+}
+
+.confirm-btn.stay {
+    background: #4f473a;
+    color: #c2ad68;
+}
+
+.confirm-btn.exit {
+    background: #4f473a;
+    color: #c2ad68;
+}
+
+
 .auth-header {
     text-align: center;
     height: 50px;

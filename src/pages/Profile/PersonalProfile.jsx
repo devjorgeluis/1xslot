@@ -3,6 +3,7 @@ import { callApi } from "../../utils/Utils";
 import { AppContext } from "../../AppContext";
 import Header from "../../components/Auth/Header";
 import LoadApi from "../../components/Loading/LoadApi";
+import ConfirmLogoutModal from "../../components/Modal/ConfirmLogoutModal";
 
 const PersonalProfile = () => {
     const { contextData } = useContext(AppContext);
@@ -20,6 +21,8 @@ const PersonalProfile = () => {
             }
         }, null);
     };
+
+    const [showConfirm, setShowConfirm] = useState(false);
 
     return (
         <div className="personal-profile-container">
@@ -48,9 +51,15 @@ const PersonalProfile = () => {
                     <span className="profile-value">{contextData?.session?.user?.phone || '-'}</span>
                 </div>
             </div>
-            <button className="logout-btn" onClick={() => handleLogout()}>
+            <button className="logout-btn" onClick={() => setShowConfirm(true)}>
                 <span className="material-icons">logout</span> Cerrar sesión
             </button>
+
+            <ConfirmLogoutModal
+                isOpen={showConfirm}
+                onClose={() => setShowConfirm(false)}
+                onConfirm={() => { setShowConfirm(false); handleLogout(); }}
+            />
         </div>
     );
 };
