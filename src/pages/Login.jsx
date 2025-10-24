@@ -6,7 +6,6 @@ import LoadApi from "../components/Loading/LoadApi";
 import BackButton from "../components/BackButton";
 import AuthErrorModal from "../components/Modal/AuthErrorModal";
 import ImgLogo from "/src/assets/svg/logo.svg";
-import "../css/Login.css";
 
 const Login = () => {
     const { contextData, updateSession } = useContext(AppContext);

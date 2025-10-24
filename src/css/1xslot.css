@@ -9014,39 +9014,6 @@ body .slots-bottom__list {
     margin-bottom: 10px
 }
 
-.login-header-container {
-    text-align: center;
-    margin-top: 10px;
-}
-
-.login-btn {
-    background-color: #FDDC8D;
-    border-radius: 10px;
-    width: 150px;
-    display: block;
-    text-align: center;
-    padding: 10px;
-    font-weight: bold;
-    margin: auto;
-}
-
-.back-button {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background-color: rgba(0, 0, 0, .5);
-    position: absolute;
-    top: 20px;
-    left: 20px;
-}
-
-.back-button i {
-    color: white;
-}
-
 .game-view-container .game-close,
 .game-view-container .game-fullscreen {
     color: #fff
