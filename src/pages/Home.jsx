@@ -204,8 +204,8 @@ const Home = () => {
           isMobile={isMobile}
         />
       ) : (
-      <>
-          <Header isLogin={isLogin} isMobile={isMobile} />
+        <>
+          <Header isLogin={isLogin} isMobile={isMobile} link="/" />
           <div className="main-content">
             <div className="page__row">
               <Slideshow />

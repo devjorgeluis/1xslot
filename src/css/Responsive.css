@@ -41,6 +41,10 @@
         border-radius: 10px;
     }
 
+    .casino .slider__item {
+        height: 150px;
+    }
+
     .slider__title {
         box-shadow: none;
         padding: 0;

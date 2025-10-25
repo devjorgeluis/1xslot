@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { callApi } from "../../utils/Utils";
 import { AppContext } from "../../AppContext";
-import Header from "../../components/Auth/Header";
+import AuthHeader from "../../components/Auth/AuthHeader";
 import LoadApi from "../../components/Loading/LoadApi";
 import ConfirmLogoutModal from "../../components/Modal/ConfirmLogoutModal";
 
@@ -27,7 +27,7 @@ const PersonalProfile = () => {
     return (
         <div className="personal-profile-container">
             {isLoading && <LoadApi isLoading={isLoading} />}
-            <Header title="Perfil personal" link="/profile" />
+            <AuthHeader title="Perfil personal" link="/profile" />
 
             <div className="profile-section">Cuenta principal</div>
             <h2 className="profile-balance">{parseFloat(contextData.session.user.balance).toFixed(2) || ''} $</h2>

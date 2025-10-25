@@ -4,8 +4,10 @@ import { AppContext } from "../AppContext";
 import { LayoutContext } from "../components/Layout/LayoutContext";
 import { NavigationContext } from "../components/Layout/NavigationContext";
 import { callApi } from "../utils/Utils";
+import Header from "../components/Layout/Header";
+import Footer from "../components/Layout/Footer";
+import Slideshow from "../components/Home/Slideshow";
 import MenuContainer from "../components/Casino/MenuContainer";
-import Slideshow from "../components/Casino/Slideshow";
 import GameSlideshow from "../components/Home/GameSlideshow";
 import GameCard from "/src/components/GameCard";
 import CategoryContainer from "../components/CategoryContainer";
@@ -501,166 +503,35 @@ const Casino = () => {
           isMobile={isMobile}
         />
       ) : (
-        <>
-          <div className="slots-wrapper">
-            <MenuContainer />
-            <Slideshow />
-            <section className="slots-main">
-              <section className="slots-filter">
-                <form className="slots-filter__form">
-                  <button className="slots-filter__clear" onClick={clearSearch}>
-                    Borrar filtro
-                  </button>
-                  <div className="slots-filter__container">
-                    <div className="slots-filter__block slots-filter__block--one">
-                      <section className={`slots-filter__category ${isCollectionsOpen ? 'slots-filter__category--is-opened' : ''}`}>
-                        <button type="button" className="slots-filter__title" onClick={toggleCollections}>
-                          Colecciones
-                          <svg className="slots-filter__ico">
-                            <use xlinkHref={`${Icons}#arrow-bottom`}></use>
-                          </svg>
-                        </button>
-                        <div className="slots-filter__list">
-                          {tags.map((tag, index) => (
-                            <label className={`slots-filter__label ${selectedCategoryIndex === index ? 'active' : ''}`} key={tag.code}>
-                              <input
-                                type="radio"
-                                name="games-category"
-                                className="slots-filter__radio"
-                                checked={selectedCategoryIndex === index}
-                                onChange={() => handleCategorySelect(tag, index)}
-                              />
-                              <span className="slots-filter__radio-desc">{tag.name}</span>
-                            </label>
-                          ))}
-                        </div>
-                      </section>
-                    </div>
-                    <div className="slots-filter__block slots-filter__block--two" searchstring={providerSearch}>
-                      <section className={`slots-filter__providers providers ${isProvidersOpen ? 'slots-filter__category--is-opened' : ''}`}>
-                        <div className="slots-filter__title" onClick={toggleProviders}>
-                          Proveedores
-                          <svg className="slots-filter__ico">
-                            <use xlinkHref={`${Icons}#arrow-bottom`}></use>
-                          </svg>
-                        </div>
-                        {
-                          isProvidersOpen &&
-                          <>
-                            <div className="providers__wrap">
-                              <div className="field">
-                                <input
-                                  placeholder="Búsqueda por proveedor"
-                                  type="text"
-                                  className="field__input"
-                                  value={providerSearch}
-                                  onChange={handleProviderSearch}
-                                />
-                                <svg className="field__ico">
-                                  <use xlinkHref={`${Icons}#search`}></use>
-                                </svg>
-                              </div>
-                            </div>
-                            <section className="ps-container providers__scroll providers__scroll--categories ps ps--theme_default ps--active-y">
-                              <div className="providers__list">
-                                {filteredProviders.map((provider, index) => (
-                                  <a
-                                    key={provider.id}
-                                    id={`product-zdrqv-${provider.id}`}
-                                    title={provider.name}
-                                    href="javascript:void(0)"
-                                    className={`providers__item ${selectedProvider?.id === provider.id ? 'active' : ''}`}
-                                    onClick={() => handleProviderSelect(provider, index)}
-                                  >
-                                    <img
-                                      src={provider.image_local ? `${contextData.cdnUrl}${provider.image_local}` : provider.image_url}
-                                      alt={provider.name}
-                                      className="providers__img"
-                                    />
-                                  </a>
-                                ))}
-                              </div>
-                            </section>
-                          </>
-                        }
-                      </section>
-                    </div>
-                  </div>
-                </form>
-              </section>
-              <div className="slots-content">
-                <SearchInput
-                  txtSearch={txtSearch}
-                  setTxtSearch={setTxtSearch}
-                  searchRef={searchRef}
-                  search={search}
-                  clearSearch={clearSearch}
-                  isMobile={isMobile}
+        <div className="casino">
+          <Header isLogin={isLogin} isMobile={isMobile} link="/casino" />
+          <div className="main-content">
+            <div className="page__row">
+              <Slideshow />
+            </div>
+            {firstFiveCategoriesGames.map((entry, catIndex) => {
+              if (!entry || !entry.games) return null;
+              return (
+                <GameSlideshow
+                  key={entry?.category?.id || catIndex}
+                  games={entry.games.slice(0, 10)}
+                  name={entry?.category?.name}
+                  title={entry?.category?.name}
+                  icon=""
+                  slideshowKey={entry?.category?.id}
+                  onGameClick={(game) => {
+                    if (isLogin) {
+                      launchGame(game, "slot", "tab");
+                    } else {
+                      navigate("/login");
+                    }
+                  }}
                 />
-                <div className="slots-games">
-                  {(txtSearch || selectedProvider || isSingleCategoryView || isExplicitSingleCategoryView) ? (
-                    <>
-                      <div className="slots-games__wrap">
-                        <div className="slots-games__list">
-                          {games.map((game) => (
-                            <GameCard
-                              key={game.id}
-                              id={game.id}
-                              provider={activeCategory?.name || 'Casino'}
-                              title={game.name}
-                              imageSrc={game.imageDataSrc || game.image_url}
-                              mobileShowMore={mobileShowMore}
-                              onClick={() => (isLogin ? launchGame(game, "slot", "tab") : handleLoginClick())}
-                            />
-                          ))}
-                        </div>
-                      </div>
-                      {isLoadingGames && <LoadGames />}
-                      {hasMoreGames && (
-                        <div className="slots-games-list__controls">
-                          <button className="slots-games__button slots-games-list__btn" onClick={loadMoreGames}>
-                            Mostrar más
-                          </button>
-                        </div>
-                      )}
-                    </>
-                  ) : (
-                    <>
-                      {firstFiveCategoriesGames.map((entry, catIndex) => {
-                        if (!entry || !entry.games) return null;
-                        const categoryKey = entry.category?.id || `cat-${catIndex}`;
-
-                        return (
-                          <div className="slots-games__wrap" key={categoryKey}>
-                            <div className="slots-games__nav">
-                              <h2 className="slots-games__title">
-                                {entry?.category?.name || ''}
-                              </h2>
-                              <div className="slots-games__nav-wrap">
-                                <a className="slots-games__button" onClick={() => loadMoreContent(entry.category, catIndex)}>Mostrar todo</a>
-                              </div>
-                            </div>
-                            <div className="slots-games__list">
-                              {
-                                <GameSlideshow games={entry.games.slice(0, 10)} name="casino" title="Tragamonedas Destacadas" icon="/src/assets/svg/players_choice.svg" onGameClick={(game) => {
-                                if (isLogin) {
-                                  launchGame(game, "slot", "tab");
-                                } else {
-                                  navigate("/login");
-                                }
-                              }} />}
-                            </div>
-                          </div>
-                        );
-                      })}
-                      {isLoadingGames && <LoadGames />}
-                    </>
-                  )}
-                </div>
-              </div>
-            </section>
+              );
+            })}
           </div>
-        </>
+          <Footer isLogin={isLogin} isSlotsOnly={isSlotsOnly} />
+        </div>
       )}
       {isGameLoadingError && (
         <div className="container">

@@ -8,7 +8,7 @@ import 'swiper/css/navigation';
 import Icons from '/src/assets/svg/icons.svg';
 import GameCard from '../GameCard';
 
-const GameSlideshow = ({ games, name, title, icon, link, onGameClick }) => {
+const GameSlideshow = ({ games, name, title, icon, link, onGameClick, slideshowKey }) => {
     const { contextData } = useContext(AppContext);
     const navigate = useNavigate();
     const swiperRef = useRef(null);
@@ -25,13 +25,12 @@ const GameSlideshow = ({ games, name, title, icon, link, onGameClick }) => {
             <div className="content-tile__header">
                 <div className="content-tile-with-icon">
                     {icon && (
-                    <svg className="content-tile__ico">
-                        <use xlinkHref={`${Icons}#${icon}`}></use>
-                    </svg>
-                )}
+                        <svg className="content-tile__ico">
+                            <use xlinkHref={`${Icons}#${icon}`}></use>
+                        </svg>
+                    )}
                     <span className="content-tile__title">{title}</span>
                 </div>
-                
                 <span className="content-title__all" onClick={() => navigate(link)}>Todo</span>
             </div>
             <div className="content-tile__body">
@@ -57,14 +56,14 @@ const GameSlideshow = ({ games, name, title, icon, link, onGameClick }) => {
                     style={{ width: '100%' }}
                 >
                     {games?.map((game, index) => (
-                        <SwiperSlide key={game.id || index} className="swiper-slide">
+                        <SwiperSlide key={slideshowKey ? game.id + slideshowKey : game.id} className="swiper-slide">
                             <GameCard
                                 key={game.id}
                                 id={game.id}
                                 provider={'Casino'}
                                 title={game.name}
                                 imageSrc={game.image_local !== null ? contextData.cdnUrl + game.image_local : game.image_url}
-                                 onClick={(e) => {
+                                onClick={(e) => {
                                     e.preventDefault();
                                     handleGameClick(game);
                                 }}
@@ -85,7 +84,7 @@ const GameSlideshow = ({ games, name, title, icon, link, onGameClick }) => {
                         </svg>
                     </div>
                     <div
-                        className={`content-tile__arrow ${uniqueId}-next content-tile__next`}
+                        className={`content-tile__arrow ${uniqueId}-back content-tile__next`}
                         tabIndex={0}
                         role="button"
                         aria-label="Next slide"

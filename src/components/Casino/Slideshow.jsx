@@ -95,7 +95,7 @@ const Slideshow = () => {
     ];
 
     return (
-        <section className="slots-slider">
+        <div className="slider">
             <Swiper
                 modules={[ Autoplay]}
                 spaceBetween={0}
@@ -105,21 +105,20 @@ const Slideshow = () => {
                 className="swiper-container"
             >
                 {slides.map((slide) => (
-                    <SwiperSlide key={slide.id}>
-                        <a href="javascript:void(0)" className="slots-slider__item">
-                            <div
-                                className="slots-slider__img"
-                                style={{
-                                    backgroundImage: `url(${slide.image})`
-                                }}
-                            ></div>
-                            <div className="slots-slider__description"></div>
-                        </a>
+                    <SwiperSlide key={slide.id} className="swiper-slide">
+                        <div
+                            className="slider__item swiper-lazy swiper-lazy-loaded"
+                            style={{
+                                backgroundImage: `url(${slide.image})`
+                            }}
+                        >
+                            <div className="slider__layout"></div>
+                        </div>
                     </SwiperSlide>
                 ))}
                 <span className="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
             </Swiper>
-        </section>
+        </div>
     );
 }
 

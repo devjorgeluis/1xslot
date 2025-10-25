@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { AppContext } from "../../AppContext";
-import Header from "../../components/Auth/Header";
+import AuthHeader from "../../components/Auth/AuthHeader";
 
 const Profile = () => {
     const navigate = useNavigate();
@@ -18,7 +18,7 @@ const Profile = () => {
 
     return (
         <div className="container account-page-container">
-            <Header title="Mi cuenta" link="/" />
+            <AuthHeader title="Mi cuenta" link="/" />
             <div className="account-content-container">
                 {!contextData?.session ? (
                     <>
