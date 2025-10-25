@@ -17,6 +17,7 @@ import SearchInput from "../components/SearchInput";
 import SearchSelect from "../components/SearchSelect";
 import Icons from '/src/assets/svg/icons.svg';
 import "animate.css";
+import ProviderModal from "../components/Modal/ProviderModal";
 
 let selectedGameId = null;
 let selectedGameType = null;
@@ -54,6 +55,7 @@ const Casino = () => {
   const [isCollectionsOpen, setIsCollectionsOpen] = useState(true); // Accordion state for Colecciones
   const [isProvidersOpen, setIsProvidersOpen] = useState(true); // Accordion state for Proveedores
   const [providerSearch, setProviderSearch] = useState(""); // Search input for providers
+  const [showProviderModal, setShowProviderModal] = useState(false);
   const refGameModal = useRef();
   const location = useLocation();
   const searchRef = useRef(null);
@@ -504,7 +506,7 @@ const Casino = () => {
         />
       ) : (
         <div className="casino">
-          <Header isLogin={isLogin} isMobile={isMobile} link="/casino" />
+          <Header isLogin={isLogin} isMobile={isMobile} link="/casino" onOpenProviders={() => setShowProviderModal(true)} />
           <div className="main-content">
             <div className="page__row">
               <Slideshow />
@@ -533,6 +535,18 @@ const Casino = () => {
           <Footer isLogin={isLogin} isSlotsOnly={isSlotsOnly} />
         </div>
       )}
+      {/* Provider modal (opened from Header filter icon) */}
+      <ProviderModal
+        isOpen={showProviderModal}
+        onClose={() => setShowProviderModal(false)}
+        onSelect={(p) => {
+          handleProviderSelect(p);
+          setShowProviderModal(false);
+        }}
+        contextData={contextData}
+        initialProviders={categories}
+        searchText={providerSearch}
+      />
       {isGameLoadingError && (
         <div className="container">
           <div className="row">

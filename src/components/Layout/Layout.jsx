@@ -143,7 +143,7 @@ const Layout = () => {
                     <div className="page">
                         <Sidebar isSlotsOnly={isSlotsOnly} isMobile={isMobile} />
                         <div className="page__wrap">
-                            <main>
+                            <main className="main">
                                 <Outlet context={{ isSlotsOnly, isLogin, isMobile }} />
                             </main>
                         </div>

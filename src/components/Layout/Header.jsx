@@ -6,7 +6,8 @@ import ImgLogo from "/src/assets/svg/logo.svg";
 const Header = ({
     isLogin,
     isMobile,
-    link
+    link,
+    onOpenProviders
 }) => {
     const navigate = useNavigate();
     const [showFilterModal, setShowFilterModal] = useState(false);
@@ -22,12 +23,15 @@ const Header = ({
             <div className="header">
                 <div className="header-container">
                     <div className="headerLeft">
-                        <a aria-current="page" className="linkCss active" onClick={() => navigate(link)}>
+                        <a aria-current="page" className="linkCss active" onClick={() => navigate("/")}>
                             <img alt="logo" className="logo light-logo" src={ImgLogo} width={100} />
                         </a>
                     </div>
                     <div className="headerRight">
                         <i className="material-icons" onClick={() => setShowFilterModal(true)}>search</i>
+                        {
+                            link === "/casino" && <i className="material-icons" onClick={() => onOpenProviders && onOpenProviders()}>filter_alt</i>
+                        }
                         <i className="material-icons" onClick={() => navigate("/profile")}>account_circle</i>
                     </div>
                 </div>
