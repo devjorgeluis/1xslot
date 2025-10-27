@@ -55,8 +55,7 @@ const HotGameSlideshow = ({ games, name, title, icon, link, onGameClick }) => {
                                 provider={'Casino'}
                                 title={game.name}
                                 imageSrc={game.image_local !== null ? contextData.cdnUrl + game.image_local : game.image_url}
-                                 onClick={(e) => {
-                                    e.preventDefault();
+                                onGameClick={() => {
                                     handleGameClick(game);
                                 }}
                             />

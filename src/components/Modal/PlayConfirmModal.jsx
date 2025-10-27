@@ -10,14 +10,14 @@ const PlayConfirmModal = ({ isOpen, onClose, onPlay, gameName, costText }) => {
                     <span className="play-icon">
                         <i className="material-icons">arrow_right</i>
                     </span>
-                    <div className="play-text">Play</div>
+                    <div className="play-text">Jugar</div>
                 </button>
 
                 <button className="play-action" onClick={onClose}>
                     <span className="play-cancel">
                         <i className="material-icons">close</i>
                     </span>
-                    <div className="play-text">Cancel</div>
+                    <div className="play-text">Cancelar</div>
                 </button>
             </div>
         </div>

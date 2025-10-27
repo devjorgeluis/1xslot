@@ -7,17 +7,13 @@ import { callApi } from "../utils/Utils";
 import Header from "../components/Layout/Header";
 import Footer from "../components/Layout/Footer";
 import Slideshow from "../components/Home/Slideshow";
-import MenuContainer from "../components/Casino/MenuContainer";
 import GameSlideshow from "../components/Home/GameSlideshow";
 import GameCard from "/src/components/GameCard";
-import CategoryContainer from "../components/CategoryContainer";
 import GameModal from "../components/Modal/GameModal";
-import LoadGames from "../components/Loading/LoadGames";
-import SearchInput from "../components/SearchInput";
-import SearchSelect from "../components/SearchSelect";
-import Icons from '/src/assets/svg/icons.svg';
-import "animate.css";
 import ProviderModal from "../components/Modal/ProviderModal";
+import PlayConfirmModal from "../components/Modal/PlayConfirmModal";
+import LoadApi from "../components/Loading/LoadApi";
+import "animate.css";
 
 let selectedGameId = null;
 let selectedGameType = null;
@@ -30,6 +26,8 @@ const Casino = () => {
   const pageTitle = "Casino";
   const { contextData } = useContext(AppContext);
   const { isLogin } = useContext(LayoutContext);
+  const [showPlayConfirm, setShowPlayConfirm] = useState(false);
+  const [selectedGameForPlay, setSelectedGameForPlay] = useState(null);
   const { setShowFullDivLoading } = useContext(NavigationContext);
   const navigate = useNavigate();
   const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
@@ -40,25 +38,18 @@ const Casino = () => {
   const [mainCategories, setMainCategories] = useState([]);
   const [activeCategory, setActiveCategory] = useState({});
   const [selectedProvider, setSelectedProvider] = useState(null);
-  const [isProviderDropdownOpen, setIsProviderDropdownOpen] = useState(false);
   const [pageData, setPageData] = useState({});
   const [gameUrl, setGameUrl] = useState("");
   const [isLoadingGames, setIsLoadingGames] = useState(false);
-  const [txtSearch, setTxtSearch] = useState("");
-  const [searchDelayTimer, setSearchDelayTimer] = useState();
   const [shouldShowGameModal, setShouldShowGameModal] = useState(false);
   const [isGameLoadingError, setIsGameLoadingError] = useState(false);
   const [mobileShowMore, setMobileShowMore] = useState(false);
   const [isSingleCategoryView, setIsSingleCategoryView] = useState(false);
   const [isExplicitSingleCategoryView, setIsExplicitSingleCategoryView] = useState(false);
   const [hasMoreGames, setHasMoreGames] = useState(true);
-  const [isCollectionsOpen, setIsCollectionsOpen] = useState(true); // Accordion state for Colecciones
-  const [isProvidersOpen, setIsProvidersOpen] = useState(true); // Accordion state for Proveedores
-  const [providerSearch, setProviderSearch] = useState(""); // Search input for providers
-  const [showProviderModal, setShowProviderModal] = useState(false);
+  const [showFilterModal, setShowFilterModal] = useState(false);
   const refGameModal = useRef();
   const location = useLocation();
-  const searchRef = useRef(null);
   const { isSlotsOnly, isMobile } = useOutletContext();
   const lastLoadedTagRef = useRef("");
   const pendingCategoryFetchesRef = useRef(0);
@@ -87,7 +78,6 @@ const Casino = () => {
     setActiveCategory({});
     setIsSingleCategoryView(false);
     setIsExplicitSingleCategoryView(false);
-    setProviderSearch("");
     getPage("casino");
     window.scrollTo(0, 0);
   }, [location.pathname]);
@@ -326,170 +316,74 @@ const Casino = () => {
     setShouldShowGameModal(false);
   };
 
-  const handleCategorySelect = (category, index) => {
+  const handleCategorySelect = (category) => {
     setActiveCategory(category);
     setSelectedProvider(null);
-    setTxtSearch("");
-    setSelectedCategoryIndex(index);
-    setIsSingleCategoryView(true);
-    setIsExplicitSingleCategoryView(true);
-    if (category.code === "home") {
-      setIsSingleCategoryView(false);
-      setIsExplicitSingleCategoryView(false);
-      setGames([]);
-      setFirstFiveCategoriesGames([]);
-      const firstFiveCategories = categories.slice(0, 5);
-      if (firstFiveCategories.length > 0) {
-        pendingCategoryFetchesRef.current = firstFiveCategories.length;
-        setIsLoadingGames(true);
-        firstFiveCategories.forEach((item, index) => {
-          fetchContentForCategory(item, item.id, item.table_name, index, true, pageData.page_group_code);
-        });
-      } else {
-        setIsLoadingGames(false);
-      }
-      navigate("/casino");
-      lastLoadedTagRef.current = "";
-    } else {
-      fetchContent(category, category.id, category.table_name, index, true);
-      lastLoadedTagRef.current = category.code;
-    }
+    setShowFilterModal(false);
   };
 
   const handleProviderSelect = (provider, index = 0) => {
-    setSelectedProvider(provider);
-    setIsProviderDropdownOpen(false);
-    setTxtSearch("");
-    setProviderSearch("");
-    setIsExplicitSingleCategoryView(true);
-    setIsSingleCategoryView(true);
-    if (categories.length > 0 && provider) {
-      setActiveCategory(provider);
-      setSelectedCategoryIndex(index);
-      fetchContent(provider, provider.id, provider.table_name, index, true);
-      lastLoadedTagRef.current = provider.code;
-      if (isMobile) {
-        setMobileShowMore(true);
+    if (provider) {
+      setSelectedProvider(provider);
+      setIsExplicitSingleCategoryView(true);
+      setIsSingleCategoryView(true);
+      if (categories.length > 0 && provider) {
+        setActiveCategory(provider);
+        setSelectedCategoryIndex(index);
+        fetchContent(provider, provider.id, provider.table_name, index, true, "default_pages_home");
+        lastLoadedTagRef.current = provider.code;
+        if (isMobile) {
+          setMobileShowMore(true);
+        }
       }
-    } else if (!provider && categories.length > 0) {
-      const firstCategory = categories[0];
-      setActiveCategory(firstCategory);
-      setSelectedCategoryIndex(0);
+    } else {
+      setSelectedProvider(null);
       setIsSingleCategoryView(false);
       setIsExplicitSingleCategoryView(false);
       setGames([]);
       setFirstFiveCategoriesGames([]);
-      const firstFiveCategories = categories.slice(0, 5);
-      if (firstFiveCategories.length > 0) {
-        pendingCategoryFetchesRef.current = firstFiveCategories.length;
-        setIsLoadingGames(true);
-        firstFiveCategories.forEach((item, index) => {
-          fetchContentForCategory(item, item.id, item.table_name, index, true, pageData.page_group_code);
-        });
-      } else {
-        setIsLoadingGames(false);
+
+      if (categories.length > 0) {
+        const firstFiveCategories = categories.slice(0, 5);
+        if (firstFiveCategories.length > 0) {
+          pendingCategoryFetchesRef.current = firstFiveCategories.length;
+          setIsLoadingGames(true);
+          firstFiveCategories.forEach((item, index) => {
+            fetchContentForCategory(item, item.id, item.table_name, index, true, "default_pages_home");
+          });
+        } else {
+          setIsLoadingGames(false);
+        }
       }
-      navigate("/casino");
+      navigate("/casino", { replace: true });
       lastLoadedTagRef.current = "";
     }
   };
 
-  const search = (e) => {
-    let keyword = e.target.value;
-    setTxtSearch(keyword);
-    setIsExplicitSingleCategoryView(true);
-    setIsSingleCategoryView(true);
-    lastLoadedTagRef.current = "";
-
-    if (keyword === "") {
-      clearSearch();
-      return;
-    }
-
-    do_search(keyword);
-  };
-
-  const do_search = (keyword) => {
-    clearTimeout(searchDelayTimer);
-
-    setGames([]);
-    setIsLoadingGames(true);
-
-    let pageSize = 20;
-
-    let searchDelayTimerTmp = setTimeout(function () {
-      callApi(
-        contextData,
-        "GET",
-        "/search-content?keyword=" + keyword + "&page_group_code=" + pageData.page_group_code + "&length=" + pageSize,
-        callbackSearch,
-        null
-      );
-    }, 1000);
-
-    setSearchDelayTimer(searchDelayTimerTmp);
-  };
-
-  const callbackSearch = (result) => {
-    if (result.status === 500 || result.status === 422) {
-      setIsLoadingGames(false);
-    } else {
-      configureImageSrc(result);
-      setGames(result.content);
-      pageCurrent = 0;
-      lastLoadedTagRef.current = "";
-    }
-    setIsLoadingGames(false);
-  };
-
-  const clearSearch = () => {
-    setTxtSearch("");
-    setProviderSearch("");
-    setSelectedProvider(null);
-    setIsSingleCategoryView(false);
-    setIsExplicitSingleCategoryView(false);
-    navigate("/casino");
-    lastLoadedTagRef.current = "";
-    if (categories.length > 0) {
-      const firstCategory = categories[0];
-      setActiveCategory(firstCategory);
-      setSelectedCategoryIndex(0);
+  const handleBackButton = () => {
+    if (selectedProvider) {
+      handleProviderSelect(null);
+    } else if (isExplicitSingleCategoryView || isSingleCategoryView) {
+      setSelectedProvider(null);
+      setIsSingleCategoryView(false);
+      setIsExplicitSingleCategoryView(false);
       setGames([]);
       setFirstFiveCategoriesGames([]);
-      const firstFiveCategories = categories.slice(0, 5);
-      if (firstFiveCategories.length > 0) {
-        pendingCategoryFetchesRef.current = firstFiveCategories.length;
-        setIsLoadingGames(true);
-        firstFiveCategories.forEach((item, index) => {
-          fetchContentForCategory(item, item.id, item.table_name, index, true, pageData.page_group_code);
-        });
-      } else {
-        setIsLoadingGames(false);
+
+      if (categories.length > 0) {
+        const firstFiveCategories = categories.slice(0, 5);
+        if (firstFiveCategories.length > 0) {
+          pendingCategoryFetchesRef.current = firstFiveCategories.length;
+          setIsLoadingGames(true);
+          firstFiveCategories.forEach((item, index) => {
+            fetchContentForCategory(item, item.id, item.table_name, index, true, "default_pages_home");
+          });
+        }
       }
-      if (isMobile) {
-        setMobileShowMore(false);
-      }
-    } else {
-      getPage("casino");
+      navigate("/casino", { replace: true });
+      window.location.hash = "";
     }
   };
-
-  const handleProviderSearch = (e) => {
-    setProviderSearch(e.target.value.toLowerCase());
-  };
-
-  const toggleCollections = () => {
-    setIsCollectionsOpen((prev) => !prev);
-  };
-
-  const toggleProviders = () => {
-    setIsProvidersOpen((prev) => !prev);
-  };
-
-  // Filter providers based on search input
-  const filteredProviders = categories.filter((provider) =>
-    provider.name.toLowerCase().includes(providerSearch)
-  );
 
   return (
     <>
@@ -506,61 +400,186 @@ const Casino = () => {
         />
       ) : (
         <div className="casino">
-          <Header isLogin={isLogin} isMobile={isMobile} link="/casino" onOpenProviders={() => setShowProviderModal(true)} />
-          <div className="main-content">
-            <div className="page__row">
-              <Slideshow />
+          {!selectedProvider && !isExplicitSingleCategoryView && !isSingleCategoryView && !isLoadingGames && (
+            <>
+              <Header
+                isLogin={isLogin}
+                isMobile={isMobile}
+                link="/casino"
+                onOpenProviders={() => setShowFilterModal(true)}
+              />
+              <div className="page__row">
+                <Slideshow />
+              </div>
+            </>
+          )}
+
+          {(selectedProvider || isExplicitSingleCategoryView || isSingleCategoryView) && (
+            <div className="category-header">
+              <button
+                className="back-btn"
+                onClick={handleBackButton}
+              >
+                <span className="material-icons">arrow_back</span>
+              </button>
+              <div className="category-title">
+                {selectedProvider ? selectedProvider.name : activeCategory?.name || 'Casino'}
+              </div>
+              {/* <button className="filter-btn" onClick={() => setShowFilterModal(true)}>
+                <span className="material-icons">tune</span>
+              </button> */}
             </div>
-            {firstFiveCategoriesGames.map((entry, catIndex) => {
-              if (!entry || !entry.games) return null;
-              return (
-                <GameSlideshow
-                  key={entry?.category?.id || catIndex}
-                  games={entry.games.slice(0, 10)}
-                  name={entry?.category?.name}
-                  title={entry?.category?.name}
-                  icon=""
-                  slideshowKey={entry?.category?.id}
-                  onGameClick={(game) => {
-                    if (isLogin) {
-                      launchGame(game, "slot", "tab");
-                    } else {
-                      navigate("/login");
+          )}
+
+          <div className="main-content">
+            {(selectedProvider || isExplicitSingleCategoryView) ? (
+              <>
+                <div className="games-grid">
+                  {games.map((game) => (
+                    <GameCard
+                      key={game.id}
+                      id={game.id}
+                      provider={activeCategory?.name || 'Casino'}
+                      title={game.name}
+                      imageSrc={game.image_local !== null ? contextData.cdnUrl + game.image_local : game.image_url}
+                      game={game}
+                      mobileShowMore={mobileShowMore}
+                      onGameClick={(game) => {
+                        if (isLogin) {
+                          setSelectedGameForPlay(game);
+                          setShowPlayConfirm(true);
+                        } else {
+                          navigate("/login");
+                        }
+                      }}
+                    />
+                  ))}
+                </div>
+                {(isExplicitSingleCategoryView || selectedProvider) && hasMoreGames && games.length > 0 && (
+                  <div className="text-center">
+                    <a className="load-more" onClick={loadMoreGames}>
+                      Mostrar todo
+                    </a>
+                  </div>
+                )}
+              </>
+            ) : (
+              <>
+                {isSingleCategoryView ? (
+                  <>
+                    <div className="games-grid">
+                      {games.map((game) => (
+                        <GameCard
+                          key={game.id}
+                          id={game.id}
+                          provider={activeCategory?.name || 'Casino'}
+                          title={game.name}
+                          imageSrc={game.image_local !== null ? contextData.cdnUrl + game.image_local : game.image_url}
+                          game={game}
+                          mobileShowMore={mobileShowMore}
+                          onGameClick={(game) => {
+                            if (isLogin) {
+                              setSelectedGameForPlay(game);
+                              setShowPlayConfirm(true);
+                            } else {
+                              navigate("/login");
+                            }
+                          }}
+                        />
+                      ))}
+                    </div>
+                    {
+                      games.length > 0 && (
+                        <div className="text-center">
+                          <a className="load-more" onClick={loadMoreGames}>
+                            Mostrar todo
+                          </a>
+                        </div>
+                      )
                     }
-                  }}
-                />
-              );
-            })}
+                  </>
+                ) : (
+                  firstFiveCategoriesGames.map((entry, catIndex) => {
+                    if (!entry || !entry.games) return null;
+                    return (
+                      <GameSlideshow
+                        key={entry?.category?.id || catIndex}
+                        games={entry.games.slice(0, 10)}
+                        name={entry?.category?.name}
+                        title={entry?.category?.name}
+                        icon=""
+                        slideshowKey={entry?.category?.id}
+                        loadMoreContent={() => loadMoreContent(entry.category, catIndex)}
+                        onGameClick={(game) => {
+                          if (isLogin) {
+                            setSelectedGameForPlay(game);
+                            setShowPlayConfirm(true);
+                          } else {
+                            navigate("/login");
+                          }
+                        }}
+                      />
+                    )
+                  }))}
+              </>
+            )}
           </div>
           <Footer isLogin={isLogin} isSlotsOnly={isSlotsOnly} />
+          {isLoadingGames && <LoadApi />}
         </div>
       )}
-      {/* Provider modal (opened from Header filter icon) */}
+
       <ProviderModal
-        isOpen={showProviderModal}
-        onClose={() => setShowProviderModal(false)}
-        onSelect={(p) => {
-          handleProviderSelect(p);
-          setShowProviderModal(false);
+        isOpen={showFilterModal}
+        onClose={() => setShowFilterModal(false)}
+        onCategorySelect={(category) => {
+          handleCategorySelect(category);
+        }}
+        onCategoryClick={(tag, _id, _table, index) => {
+          setIsLoadingGames(true);
+          if (window.location.hash !== `#${tag.code}`) {
+            window.location.hash = `#${tag.code}`;
+          } else {
+            setSelectedCategoryIndex(index);
+            setIsSingleCategoryView(false);
+            setIsExplicitSingleCategoryView(false);
+            getPage(tag.code);
+          }
+        }}
+        onSelectProvider={(provider) => {
+          handleProviderSelect(provider);
+          setShowFilterModal(false);
         }}
         contextData={contextData}
-        initialProviders={categories}
-        searchText={providerSearch}
+        tags={tags}
+        categories={categories}
+        selectedCategoryIndex={selectedCategoryIndex}
       />
+
+      <PlayConfirmModal
+        isOpen={showPlayConfirm}
+        onClose={() => setShowPlayConfirm(false)}
+        onPlay={() => {
+          setShowPlayConfirm(false);
+          if (selectedGameForPlay) launchGame(selectedGameForPlay, "slot", "tab");
+        }}
+        gameName={selectedGameForPlay?.name}
+        costText={selectedGameForPlay?.costText}
+      />
+
       {isGameLoadingError && (
         <div className="container">
           <div className="row">
             <div className="col-md-6 error-loading-game">
               <div className="alert alert-warning">Error al cargar el juego. Inténtalo de nuevo o ponte en contacto con el equipo de soporte.</div>
-              <a className="btn btn-primary" onClick={() => window.location.reload()}>
-                Volver a la página principal
-              </a>
+              <a className="btn btn-primary" onClick={() => window.location.reload()}>Regresar a la página de inicio</a>
             </div>
           </div>
         </div>
       )}
     </>
   );
+
 };
 
 export default Casino;

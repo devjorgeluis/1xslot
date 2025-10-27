@@ -23,6 +23,7 @@
         padding: 1em .625em 60px;
     }
 
+
     .page {
         min-width: auto;
         min-height: 80vh;
@@ -143,6 +144,7 @@
         text-overflow: ellipsis;
         overflow: hidden;
         width: 130px;
+        color: #fff;
     }
 
     .hot-games .slots-games-name {
@@ -174,6 +176,7 @@
         position: absolute;
         right: 5px;
         bottom: 15px;
+        color: #fff;
     }
 
     .hot-games .more-icon {
@@ -201,5 +204,18 @@
         letter-spacing: 0;
         font-weight: bold;
         justify-content: space-between;
+    }
+
+    .category-header {
+        padding: 16px;
+    }
+
+    .category-header .category-title {
+        font-size: 16px;
+    }
+
+    .category-header .back-btn .material-icons,
+    .category-header .filter-btn .material-icons {
+        font-size: 22px;
     }
 }

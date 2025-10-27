@@ -1,5 +1,5 @@
 import { useContext, useRef, useMemo } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { AppContext } from '../../AppContext';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
@@ -8,9 +8,12 @@ import 'swiper/css/navigation';
 import Icons from '/src/assets/svg/icons.svg';
 import GameCard from '../GameCard';
 
-const GameSlideshow = ({ games, name, title, icon, link, onGameClick, slideshowKey }) => {
+const GameSlideshow = ({ games, name, title, icon, link, onGameClick, slideshowKey, loadMoreContent }) => {
     const { contextData } = useContext(AppContext);
     const navigate = useNavigate();
+    const location = useLocation();
+    const isCasino = location.pathname === "/casino";
+
     const swiperRef = useRef(null);
     const uniqueId = useMemo(() => `slideshow-${name}-${Math.random().toString(36).substr(2, 9)}`, [name]);
 
@@ -31,7 +34,7 @@ const GameSlideshow = ({ games, name, title, icon, link, onGameClick, slideshowK
                     )}
                     <span className="content-tile__title">{title}</span>
                 </div>
-                <span className="content-title__all" onClick={() => navigate(link)}>Todo</span>
+                <span className="content-title__all" onClick={() => isCasino ? loadMoreContent() : navigate(link)}>Todo</span>
             </div>
             <div className="content-tile__body">
                 <Swiper
@@ -63,8 +66,7 @@ const GameSlideshow = ({ games, name, title, icon, link, onGameClick, slideshowK
                                 provider={'Casino'}
                                 title={game.name}
                                 imageSrc={game.image_local !== null ? contextData.cdnUrl + game.image_local : game.image_url}
-                                onClick={(e) => {
-                                    e.preventDefault();
+                                onGameClick={() => {
                                     handleGameClick(game);
                                 }}
                             />

@@ -1,11 +1,14 @@
 import { useContext, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../AppContext";
 import { NavigationContext } from "../Layout/NavigationContext";
 import { callApi } from "../../utils/Utils";
 import Footer from "../Layout/Footer";
 import GameModal from "./GameModal";
+import PlayConfirmModal from "./PlayConfirmModal";
 import GameCard from "../GameCard"
 import LoadApi from "../Loading/LoadApi";
+import ImgNoResult from "/src/assets/img/no-image.png";
 import "../../css/FilterModal.css";
 
 
@@ -15,9 +18,11 @@ let selectedGameLauncher = null;
 let selectedGameName = null;
 let selectedGameImg = null;
 
-const FilterModal = ({ isMobile, onClose }) => {
+const FilterModal = ({ isLogin, isMobile, onClose }) => {
     const { contextData } = useContext(AppContext);
     const { setShowFullDivLoading } = useContext(NavigationContext);
+    const [showPlayConfirm, setShowPlayConfirm] = useState(false);
+    const [selectedGameForPlay, setSelectedGameForPlay] = useState(null);
     const [games, setGames] = useState([]);
     const [shouldShowGameModal, setShouldShowGameModal] = useState(false);
     const [gameUrl, setGameUrl] = useState("");
@@ -26,6 +31,7 @@ const FilterModal = ({ isMobile, onClose }) => {
     const [searchDelayTimer, setSearchDelayTimer] = useState();
     const searchRef = useRef(null);
     const refGameModal = useRef();
+    const navigate = useNavigate();
 
     const launchGame = (game, type, launcher) => {
         setShouldShowGameModal(true);
@@ -115,13 +121,15 @@ const FilterModal = ({ isMobile, onClose }) => {
         } else {
             configureImageSrc(result, true);
             setGames(result.content);
+            console.log(result.content);
+
         }
     };
 
     const configureImageSrc = (result) => {
         (result.content || []).forEach((element) => {
-            element.imageDataSrc = element.image_local 
-                ? contextData.cdnUrl + element.image_local 
+            element.imageDataSrc = element.image_local
+                ? contextData.cdnUrl + element.image_local
                 : element.image_url;
         });
     };
@@ -156,18 +164,32 @@ const FilterModal = ({ isMobile, onClose }) => {
                     <LoadApi />
                 </div>
             ) : (
-                <div className="games-grid">
-                    {games.map((game) => (
-                        <GameCard
-                            key={game.id}
-                            id={game.id}
-                            provider={'Casino'}
-                            title={game.name}
-                            imageSrc={game.image_local !== null ? contextData.cdnUrl + game.image_local : game.image_url}
-                            onClick={() => launchGame(game, "slot", "tab")}
-                        />
-                    ))}
-                </div>
+                games.length > 0 ? (
+                    <div className="games-grid">
+                        {games.map((game) => (
+                            <GameCard
+                                key={game.id}
+                                id={game.id}
+                                provider={'Casino'}
+                                title={game.name}
+                                imageSrc={game.image_local !== null ? contextData.cdnUrl + game.image_local : game.image_url}
+                                onGameClick={(game) => {
+                                    if (isLogin) {
+                                        setSelectedGameForPlay(game);
+                                        setShowPlayConfirm(true);
+                                    } else {
+                                        navigate("/login");
+                                    }
+                                }}
+                            />
+                        ))}
+                    </div>
+                ) : txtSearch !== "" && games.length === 0 && (
+                    <div className="no-results">
+                        <img src={ImgNoResult} alt="No results found" />
+                        <div>No se encontraron resultados</div>
+                    </div>
+                )
             )}
 
             <Footer />
@@ -184,6 +206,17 @@ const FilterModal = ({ isMobile, onClose }) => {
                     isMobile={isMobile}
                 />
             )}
+
+            <PlayConfirmModal
+                isOpen={showPlayConfirm}
+                onClose={() => setShowPlayConfirm(false)}
+                onPlay={() => {
+                    setShowPlayConfirm(false);
+                    if (selectedGameForPlay) launchGame(selectedGameForPlay, "slot", "tab");
+                }}
+                gameName={selectedGameForPlay?.name}
+                costText={selectedGameForPlay?.costText}
+            />
         </div>
     );
 };

@@ -16,6 +16,7 @@ const Header = ({
         <>
             {showFilterModal && (
                 <FilterModal
+                    isLogin = {isLogin}
                     isMobile = {isMobile}
                     onClose={() => setShowFilterModal(false)}
                 />
