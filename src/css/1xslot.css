@@ -4159,25 +4159,15 @@ fieldset[disabled] .multiselect {
 }
 
 .slots-games__item-wrap {
-    width: 20%;
+    width: 100%;
     min-width: 20%;
     padding: .125em;
     box-sizing: border-box
 }
 
 @media(max-width: 1365px) {
-    .slots-games__item-wrap {
-        width:25%
-    }
-
     .games-grid .slots-games__item-wrap {
         width: 100%;
-    }
-}
-
-@media(max-width: 1023px) {
-    .slots-games__item-wrap {
-        width:33.33%
     }
 }
 
@@ -9035,11 +9025,25 @@ body .slots-bottom__list {
     color: #ef14c8
 }
 
+.game-window {
+    position: relative;
+}
+
+.game-window-header {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
 .game-view-container {
     position: relative;
     z-index: 1;
-    max-width: 1140px;
     margin: 0 auto
+}
+
+.game-view-container iframe {
+    width: 100%;
+    height: 100%;
 }
 
 .game-view-container.fullscreen {
@@ -9292,7 +9296,7 @@ body .slots-bottom__list {
 }
 
 .game-window-iframe-wrapper {
-    height: 75vh;
+    height: 90vh;
 }
 
 .js-loader {
@@ -9313,9 +9317,10 @@ body .slots-bottom__list {
     padding: 0 30px;
 }
 
-.error-loading-game .btn {
-    font-weight: 600;
-    margin-top: 5% !important
+.error-loading-game a {
+    margin-top: 30px;
+    cursor: pointer;
+    display: block;
 }
 
 .error-loading-game .alert-warning {

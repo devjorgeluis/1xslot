@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const ProviderModal = ({
     isOpen,
@@ -16,6 +16,9 @@ const ProviderModal = ({
     const [showSearch, setShowSearch] = useState(false);
     const [view, setView] = useState('filter');
     const navigate = useNavigate();
+
+    const location = useLocation();
+    const isCasino = location.pathname === "/casino";
 
     useEffect(() => {
         if (!isOpen) {
@@ -83,18 +86,21 @@ const ProviderModal = ({
                                 </div>
                             </div>
 
-                            <div className="filter-section">
-                                <div className="filter-section-title">Por proveedor</div>
-                                <button
-                                    className="select-providers-btn"
-                                    onClick={() => setView('providers')}
-                                >
-                                    <span>Seleccionar proveedores</span>
-                                    <div className="provider-arrow">
-                                        <span className="material-icons">chevron_right</span>
-                                    </div>
-                                </button>
-                            </div>
+                            {
+                                isCasino && <div className="filter-section">
+                                    <div className="filter-section-title">Por proveedor</div>
+                                    <button
+                                        className="select-providers-btn"
+                                        onClick={() => setView('providers')}
+                                    >
+                                        <span>Seleccionar proveedores</span>
+                                        <div className="provider-arrow">
+                                            <span className="material-icons">chevron_right</span>
+                                        </div>
+                                    </button>
+                                </div>
+                            }
+                            
                         </div>
                     </>
                 )}

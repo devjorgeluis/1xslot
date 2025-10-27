@@ -218,4 +218,12 @@
     .category-header .filter-btn .material-icons {
         font-size: 22px;
     }
+
+    .games-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .slots-games__item-wrap {
+        width: 20%;
+    }
 }

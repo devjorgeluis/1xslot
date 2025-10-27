@@ -9,7 +9,6 @@ import PlayConfirmModal from "./PlayConfirmModal";
 import GameCard from "../GameCard"
 import LoadApi from "../Loading/LoadApi";
 import ImgNoResult from "/src/assets/img/no-image.png";
-import "../../css/FilterModal.css";
 
 
 let selectedGameId = null;

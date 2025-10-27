@@ -5,6 +5,7 @@ import './css/1xslot.css'
 import './css/Auth.css'
 import './css/Home.css'
 import './css/Calendar.css'
+import "./css/FilterModal.css";
 import './css/Responsive.css'
 
 import App from './App.jsx'

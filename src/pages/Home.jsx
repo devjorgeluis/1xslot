@@ -258,7 +258,7 @@ const Home = () => {
           <div className="row">
             <div className="col-md-6 error-loading-game">
               <div className="alert alert-warning">Error al cargar el juego. Inténtalo de nuevo o contacta con el equipo de soporte.</div>
-              <a className="btn btn-primary" onClick={() => window.location.reload()}>Regresar a la página de inicio</a>
+              <a className="btn-primary" onClick={() => window.location.reload()}>Regresar a la página de inicio</a>
             </div>
           </div>
         </div>

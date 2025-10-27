@@ -12,11 +12,6 @@ const GameModal = (props) => {
   const [iframeLoaded, setIframeLoaded] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isGameLoadingError, setIsGameLoadingError] = useState(false);
-  const [games, setGames] = useState([]);
-  const [searchDelayTimer, setSearchDelayTimer] = useState();
-  const [txtSearch, setTxtSearch] = useState("");
-  const [isSearch, setIsSearch] = useState(false);
-  const searchRef = useRef(null);
 
   useEffect(() => {
     if (props.gameUrl !== null && props.gameUrl !== "") {
@@ -119,57 +114,11 @@ const GameModal = (props) => {
     return null;
   }
 
-  const launchGame = (game, type, launcher) => {
-    setUrl(null);
-    setIframeLoaded(false);
-    setTxtSearch("");
-    document.getElementById("game-window-iframe").classList.add("d-none");
-
-    setTimeout(() => {
-      callApi(contextData, "GET", "/get-game-url?game_id=" + game.id, callbackLaunchGame, null);
-    }, 50);
-  };
-
-  const callbackLaunchGame = (result) => {
-    if (result.status == "0") {
-      setUrl(result.url);
-    } else {
-      setIsGameLoadingError(true);
-    }
-  };
-
-  const configureImageSrc = (result) => {
-    (result.content || []).forEach((element) => {
-      let imageDataSrc = element.image_url;
-      if (element.image_local != null) {
-        imageDataSrc = contextData.cdnUrl + element.image_local;
-      }
-      element.imageDataSrc = imageDataSrc;
-    });
-  };
-
   return (
-<>
-      <div className="d-none game-container">
-        {
-          !isFullscreen && <div className="games-block-title_gamesBlockTitle">
-            <div className="games-block-title_gamesBlockTitleSeparator games-block-title_gamesBlockTitleLeft"></div>
-            <p className="games-block-title_gamesBlockTitleText">{props.gameName || "Joker's Jewels"}</p>
-            <div className="games-block-title_gamesBlockTitleSeparator games-block-title_gamesBlockTitleRight"></div>
-          </div>
-        }
+    <>
+      <div className="d-none game-view-container game-container">
         <div className="game-window">
           <div className="game-window-header">
-            <div className="game-window-header-item align-center close-window">
-              <span className="close-button" onClick={closeModal} title="Close">
-                <ImCross />
-              </span>
-            </div>
-            <div className="game-window-header-item align-center reload-window">
-              <span className="icon-reload" onClick={reload} title="Reload">
-                <ImRedo />
-              </span>
-            </div>
             <div className="game-window-header-item align-center full-window">
               {isFullscreen ? (
                 <span
@@ -189,15 +138,6 @@ const GameModal = (props) => {
                 </span>
               )}
             </div>
-            <div className="game-window-header-item align-center new-window">
-              <span
-                className="icon-new-window"
-                onClick={launchInNewTab}
-                title="Open In New Window"
-              >
-                <ImNewTab />
-              </span>
-            </div>
           </div>
 
           {iframeLoaded}
@@ -207,7 +147,7 @@ const GameModal = (props) => {
               id="game-window-loading"
               className="game-window-iframe-wrapper"
             >
-              <DivLoading />
+              <LoadApi />
             </div>
           )}
 

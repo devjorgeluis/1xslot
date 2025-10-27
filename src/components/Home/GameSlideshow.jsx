@@ -12,7 +12,7 @@ const GameSlideshow = ({ games, name, title, icon, link, onGameClick, slideshowK
     const { contextData } = useContext(AppContext);
     const navigate = useNavigate();
     const location = useLocation();
-    const isCasino = location.pathname === "/casino";
+    const isCasino = location.pathname === "/casino" || location.pathname === "/live-casino";
 
     const swiperRef = useRef(null);
     const uniqueId = useMemo(() => `slideshow-${name}-${Math.random().toString(36).substr(2, 9)}`, [name]);

@@ -11721,4 +11721,5 @@ body.swal2-shown.swal2-height-auto {
     color: #C9B58B;
     font-size: 13px;
     border-radius: 10px;
+    cursor: pointer;
 }

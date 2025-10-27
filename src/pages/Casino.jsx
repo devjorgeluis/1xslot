@@ -425,9 +425,6 @@ const Casino = () => {
               <div className="category-title">
                 {selectedProvider ? selectedProvider.name : activeCategory?.name || 'Casino'}
               </div>
-              {/* <button className="filter-btn" onClick={() => setShowFilterModal(true)}>
-                <span className="material-icons">tune</span>
-              </button> */}
             </div>
           )}
 
@@ -572,14 +569,13 @@ const Casino = () => {
           <div className="row">
             <div className="col-md-6 error-loading-game">
               <div className="alert alert-warning">Error al cargar el juego. Inténtalo de nuevo o ponte en contacto con el equipo de soporte.</div>
-              <a className="btn btn-primary" onClick={() => window.location.reload()}>Regresar a la página de inicio</a>
+              <a className="btn-primary" onClick={() => window.location.reload()}>Regresar a la página de inicio</a>
             </div>
           </div>
         </div>
       )}
     </>
   );
-
 };
 
 export default Casino;

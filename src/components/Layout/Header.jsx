@@ -31,7 +31,7 @@ const Header = ({
                     <div className="headerRight">
                         <i className="material-icons" onClick={() => setShowFilterModal(true)}>search</i>
                         {
-                            link === "/casino" && <i className="material-icons" onClick={() => onOpenProviders && onOpenProviders()}>filter_alt</i>
+                            (link === "/casino" || link === "/live-casino") && <i className="material-icons" onClick={() => onOpenProviders && onOpenProviders()}>filter_alt</i>
                         }
                         <i className="material-icons" onClick={() => navigate("/profile")}>account_circle</i>
                     </div>
