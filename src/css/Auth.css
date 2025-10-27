@@ -184,7 +184,7 @@
 
 .form-group {
     position: relative;
-    margin-bottom: 1rem;
+    margin-bottom: 24px;
 }
 
 .form-input {
@@ -201,6 +201,7 @@
 
 .form-input::placeholder {
     color: #8e8e93;
+    transition: all 0.3s ease;
 }
 
 .form-input:focus {
@@ -208,9 +209,37 @@
     border-color: #FDDC8D;
 }
 
+.form-input:focus::placeholder {
+    opacity: 0;
+}
+
+.input-label {
+    position: absolute;
+    left: 0;
+    top: 12px;
+    color: #8e8e93;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(0);
+}
+
+.form-group.has-value .input-label,
+.form-input:focus + .input-label {
+    opacity: 1;
+    transform: translateY(-20px);
+    font-size: 0.875rem;
+    color: #FDDC8D;
+}
+
 .form-group.error .form-input,
 .form-group.error .form-input::placeholder {
     border-color: #FF3B30;
+    color: #FF3B30;
+}
+
+.form-group.error .input-label {
     color: #FF3B30;
 }
 
@@ -226,18 +255,16 @@
     gap: 4px;
 }
 
-.input-label {
+.password-toggle {
     position: absolute;
-    left: 0;
-    top: -20px;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
     color: #8e8e93;
-    font-size: 0.875rem;
-    transition: all 0.3s ease;
-}
-
-.form-group.has-value .input-label,
-.form-input:focus+.input-label {
-    color: #FDDC8D;
+    cursor: pointer;
+    padding: 4px;
 }
 
 .password-toggle {

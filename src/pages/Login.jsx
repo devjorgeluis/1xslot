@@ -12,6 +12,7 @@ const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+    const [focusedField, setFocusedField] = useState(null);
     const [errors, setErrors] = useState({
         username: "",
         password: ""
@@ -92,12 +93,15 @@ const Login = () => {
                 
                 <form onSubmit={handleSubmit} className="login-form">
                     <h1 className="login-title">Acceso</h1>
-                    <div className={`form-group ${errors.username ? 'error' : ''}`}>
+                    
+                    <div className={`form-group ${errors.username ? 'error' : ''} ${focusedField === 'username' || username ? 'has-value' : ''}`}>
                         <input
                             type="text"
                             className="form-input"
                             placeholder="Nombre de usuario"
                             value={username}
+                            onFocus={() => setFocusedField('username')}
+                            onBlur={() => setFocusedField(null)}
                             onChange={(e) => {
                                 setUsername(e.target.value);
                                 if (errors.username) {
@@ -105,6 +109,9 @@ const Login = () => {
                                 }
                             }}
                         />
+                        <label className="input-label">
+                            Nombre de usuario
+                        </label>
                         {errors.username && (
                             <div className="error-message">
                                 {errors.username}
@@ -112,12 +119,14 @@ const Login = () => {
                         )}
                     </div>
                     
-                    <div className={`form-group ${errors.password ? 'error' : ''}`}>
+                    <div className={`form-group ${errors.password ? 'error' : ''} ${focusedField === 'password' || password ? 'has-value' : ''}`}>
                         <input
                             type={showPassword ? "text" : "password"}
                             className="form-input"
                             placeholder="Contraseña"
                             value={password}
+                            onFocus={() => setFocusedField('password')}
+                            onBlur={() => setFocusedField(null)}
                             onChange={(e) => {
                                 setPassword(e.target.value);
                                 if (errors.password) {
@@ -125,6 +134,9 @@ const Login = () => {
                                 }
                             }}
                         />
+                        <label className="input-label">
+                            Contraseña
+                        </label>
                         <button
                             type="button"
                             className="password-toggle"
