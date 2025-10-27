@@ -1,7 +1,8 @@
 import { useContext, useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useOutletContext } from "react-router-dom";
 import { AppContext } from "../AppContext";
 import { callApi } from "../utils/Utils";
+import Header from "../components/Layout/Header";
 import LoadApi from "../components/Loading/LoadApi";
 import "animate.css";
 
@@ -11,6 +12,7 @@ const Sports = () => {
     const [sportsEmbedUrl, setSportsEmbedUrl] = useState("");
     const [isLoading, setIsLoading] = useState(true);
     const location = useLocation();
+    const { isLogin, isMobile } = useOutletContext();
 
     useEffect(() => {
         loadSportsPage();
@@ -36,16 +38,19 @@ const Sports = () => {
                     <LoadApi />
                 </div>
             ) : sportsEmbedUrl ? (
-                <div className="game-iframe-view_gameIframeWrapper game-iframe-view_sportbook">
-                    <iframe
-                        src={sportsEmbedUrl}
-                        title="Sportsbook"
-                        className="game-iframe-view_gameIframe game-iframe-view_sportbook"
-                        allowFullScreen
-                        loading="lazy"
-                        style={{ border: 'none' }}
-                    />
-                </div>
+                <>
+                    <div className="game-iframe-view_gameIframeWrapper game-iframe-view_sportbook">
+                        <iframe
+                            src={sportsEmbedUrl}
+                            title="Sportsbook"
+                            className="game-iframe-view_gameIframe game-iframe-view_sportbook"
+                            allowFullScreen
+                            loading="lazy"
+                            style={{ border: 'none' }}
+                        />
+                    </div>
+                    <Header isLogin={isLogin} isMobile={isMobile} link="/" />
+                </>
             ) : (
                 <div className="game-iframe-view_gameIframeWrapper game-iframe-view_sportbook">
                     <div className="no-game">

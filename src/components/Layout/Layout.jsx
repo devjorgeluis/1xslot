@@ -22,9 +22,6 @@ const Layout = () => {
     const [showMobileSearch, setShowMobileSearch] = useState(false);
     const navigate = useNavigate();
 
-    const location = useLocation();
-    const isSportsPage = location.pathname === "/sports" || location.pathname === "/live-sports";
-
     const toggleSidebar = () => {
         setIsSidebarExpanded(!isSidebarExpanded);
     };

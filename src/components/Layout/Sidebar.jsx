@@ -1,10 +1,11 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import ImgLogo from "/src/assets/svg/logo.svg";
 import Icons from '/src/assets/svg/icons.svg';
 
 const Sidebar = ({ isSlotsOnly, isMobile }) => {
     const location = useLocation();
+    const navigate = useNavigate();
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -56,11 +57,8 @@ const Sidebar = ({ isSlotsOnly, isMobile }) => {
                         </a>
                     </div>
                     <div className="column__action">
-                        <button id="curLoginForm" className="btn btn--transparent curloginDropTop">
+                        <button id="curLoginForm" className="btn btn--transparent curloginDropTop" onClick={() => navigate("/login")}>
                             Iniciar sesión
-                        </button>
-                        <button className="btn btn--second register_button_main">
-                            Registro
                         </button>
                     </div>
                     <div className="column-menu column__menu scrollbar">

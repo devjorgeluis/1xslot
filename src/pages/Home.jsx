@@ -212,7 +212,7 @@ const Home = () => {
             </div>
             <MenuContainer />
             <div className="hot-games">
-              {topGames.length > 0 && <HotGameSlideshow games={topGames} name="games" title="Juegos" icon="" onGameClick={(game) => {
+              {topGames.length > 0 && <HotGameSlideshow games={topGames} name="games" title="Juegos" icon="" link="/casino" onGameClick={(game) => {
                 if (isLogin) {
                   setSelectedGameForPlay(game);
                   setShowPlayConfirm(true);

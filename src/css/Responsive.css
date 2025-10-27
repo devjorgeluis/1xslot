@@ -9,6 +9,11 @@
 }
 
 @media (max-width: 768px) {
+    .login-form {
+        position: fixed;
+        height: 50vh;
+    }
+
     .page:not(.lk) .column {
         display: none;
     }
