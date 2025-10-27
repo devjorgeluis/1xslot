@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { LayoutContext } from "./Layout/LayoutContext";
-import Icons from '/src/assets/svg/icons.svg';
 
 const SearchInput = ({
     txtSearch,
@@ -24,19 +23,17 @@ const SearchInput = ({
     };
 
     return (
-        <div className="field">
+        <div className="search-container">
+            <i className="material-icons search-icon">search</i>
             <input
                 ref={searchRef}
-                className="field__input"
+                className="search-input"
                 placeholder="Buscar"
                 value={txtSearch}
                 onChange={handleChange}
                 onKeyUp={search}
                 onFocus={handleFocus}
             />
-            <svg className="field__ico">
-                <use xlinkHref={`${Icons}#search`}></use>
-            </svg>
         </div>
     );
 };

@@ -2,7 +2,6 @@ import { useContext, useState, useEffect, useRef } from "react";
 import { useLocation, useOutletContext, useNavigate } from "react-router-dom";
 import { AppContext } from "../AppContext";
 import { LayoutContext } from "../components/Layout/LayoutContext";
-import { NavigationContext } from "../components/Layout/NavigationContext";
 import { callApi } from "../utils/Utils";
 import Header from "../components/Layout/Header";
 import Footer from "../components/Layout/Footer";
@@ -28,7 +27,6 @@ const Casino = () => {
   const { isLogin } = useContext(LayoutContext);
   const [showPlayConfirm, setShowPlayConfirm] = useState(false);
   const [selectedGameForPlay, setSelectedGameForPlay] = useState(null);
-  const { setShowFullDivLoading } = useContext(NavigationContext);
   const navigate = useNavigate();
   const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
   const [tags, setTags] = useState([]);
@@ -283,7 +281,6 @@ const Casino = () => {
 
   const launchGame = (game, type, launcher) => {
     setShouldShowGameModal(true);
-    setShowFullDivLoading(true);
     selectedGameId = game.id != null ? game.id : selectedGameId;
     selectedGameType = type != null ? type : selectedGameType;
     selectedGameLauncher = launcher != null ? launcher : selectedGameLauncher;
@@ -293,7 +290,6 @@ const Casino = () => {
   };
 
   const callbackLaunchGame = (result) => {
-    setShowFullDivLoading(false);
     if (result.status == "0") {
       switch (selectedGameLauncher) {
         case "modal":

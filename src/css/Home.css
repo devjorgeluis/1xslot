@@ -209,38 +209,6 @@
     }
 }
 
-@font-face {
-    font-family: "Rubik";
-    font-weight: 300;
-    font-style: normal;
-    src: url("/default/fonts/Rubik/Rubik-Light.woff2") format("woff2"),url("/default/fonts/Rubik/Rubik-Light.woff") format("woff");
-    font-display: swap
-}
-
-@font-face {
-    font-family: "Rubik";
-    font-weight: 400;
-    font-style: normal;
-    src: url("/default/fonts/Rubik/Rubik.woff2") format("woff2"),url("/default/fonts/Rubik/Rubik.woff") format("woff");
-    font-display: swap
-}
-
-@font-face {
-    font-family: "Rubik";
-    font-weight: 500;
-    font-style: normal;
-    src: url("/default/fonts/Rubik/Rubik-Medium.woff2") format("woff2"),url("/default/fonts/Rubik/Rubik-Medium.woff") format("woff");
-    font-display: swap
-}
-
-@font-face {
-    font-family: "Rubik";
-    font-weight: 700;
-    font-style: normal;
-    src: url("/default/fonts/Rubik/Rubik-Bold.woff2") format("woff2"),url("/default/fonts/Rubik/Rubik-Bold.woff") format("woff");
-    font-display: swap
-}
-
 .slots-games__bg {
     background-image: url("../assets/img/blankslot.jpg");
     background-size: cover
@@ -1816,7 +1784,6 @@
 }
 
 .widget-field-cheker .widget-field-cheker__input:checked+.widget-field-cheker__lab {
-    background: url("/genfiles/cms/99-61/desktop/commonMedia/checked-widget-icon.svg") no-repeat #27be75 center center;
     background-size: 80%
 }
 
@@ -2281,16 +2248,9 @@ body.swal2-shown.swal2-height-auto {
     width: 9em;
     height: 19.375em;
     content: "";
-    background-image: url("/genfiles/cms/99-61/desktop/cupids-shot-decorations/decor-contacts.png");
     background-repeat: no-repeat;
     background-size: contain;
     pointer-events: none
-}
-
-@media(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi),(min-resolution: 2dppx) {
-    .page__row--hearts::before {
-        background-image:url("/genfiles/cms/99-61/desktop/cupids-shot-decorations/decor-contacts-2x.png")
-    }
 }
 
 .page__row--hearts2::before {
@@ -2301,16 +2261,9 @@ body.swal2-shown.swal2-height-auto {
     width: 30.0625em;
     height: 9.375em;
     content: "";
-    background-image: url("/genfiles/cms/99-61/desktop/cupids-shot-decorations/decor-all-page.png");
     background-repeat: no-repeat;
     background-size: contain;
     pointer-events: none
-}
-
-@media(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi),(min-resolution: 2dppx) {
-    .page__row--hearts2::before {
-        background-image:url("/genfiles/cms/99-61/desktop/cupids-shot-decorations/decor-all-page-2x.png")
-    }
 }
 
 .page__row--around-world-journey::before {
@@ -2321,16 +2274,9 @@ body.swal2-shown.swal2-height-auto {
     width: 6.5625em;
     height: 5em;
     content: "";
-    background-image: url("/genfiles/cms/99-61/desktop/around-world-journey-decorations/decor_jet.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain
-}
-
-@media(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi),(min-resolution: 2dppx) {
-    .page__row--around-world-journey::before {
-        background-image:url("/genfiles/cms/99-61/desktop/around-world-journey-decorations/decor_jet-2x.png")
-    }
 }
 
 @media(max-width: 1599px) {
@@ -2762,7 +2708,6 @@ body.swal2-shown.swal2-height-auto {
 
 .wf-fixed-link--lang-ru {
     background-color: rgba(0,0,0,0);
-    background-image: url("/genfiles/cms/1/desktop/promotions/winter-fight/wf-link-bg-ru.png");
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: contain
@@ -2770,7 +2715,6 @@ body.swal2-shown.swal2-height-auto {
 
 .wf-fixed-link--lang-en {
     background-color: rgba(0,0,0,0);
-    background-image: url("/genfiles/cms/1/desktop/promotions/winter-fight/wf-link-bg-en.png");
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: contain
@@ -2785,7 +2729,6 @@ body.swal2-shown.swal2-height-auto {
     height: 16.25em;
     cursor: pointer;
     background-color: rgba(0,0,0,0);
-    background-image: url("/genfiles/cms/238-323/desktop/jvspin/buffalo/click_me_buffalo.png");
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: contain
@@ -2802,26 +2745,9 @@ body.swal2-shown.swal2-height-auto {
 .bg-fixed-link__link {
     width: 18.375em;
     height: 6.75em;
-    background-image: url("/genfiles/cms/99-61/desktop/1xslots-birthday/left_link_ru.png");
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: contain
-}
-
-@media(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi),(min-resolution: 2dppx) {
-    .bg-fixed-link__link {
-        background-image:url("/genfiles/cms/99-61/desktop/1xslots-birthday/left_link_ru-2x.png")
-    }
-}
-
-.bg-fixed-link__link--lang-en {
-    background-image: url("/genfiles/cms/99-61/desktop/1xslots-birthday/left_link_en.png")
-}
-
-@media(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi),(min-resolution: 2dppx) {
-    .bg-fixed-link__link--lang-en {
-        background-image:url("/genfiles/cms/99-61/desktop/1xslots-birthday/left_link_en-2x.png")
-    }
 }
 
 .bg-fixed-link__close {
@@ -2835,7 +2761,6 @@ body.swal2-shown.swal2-height-auto {
     padding: 0;
     border: 0;
     background-color: rgba(0,0,0,0);
-    background-image: url("/genfiles/cms/99-61/desktop/1xslots-birthday/close.svg");
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: contain;
@@ -3099,10 +3024,6 @@ body.swal2-shown.swal2-height-auto {
     transition: box-shadow .3s ease
 }
 
-.bonuses_registration_alright {
-    background-image: url("/genfiles/cms/1/desktop/popups/post_reg/bonuses_registration_agree_xcasino.jpg")
-}
-
 .bonuses_registration_alright.active,.bonuses_registration_alright:hover {
     box-shadow: inset 0 0 0 1px #fde4a5
 }
@@ -3110,10 +3031,6 @@ body.swal2-shown.swal2-height-auto {
 .bonuses_registration_alright.active p,.bonuses_registration_alright:hover p {
     background-color: #fde4a5;
     color: #333
-}
-
-.bonuses_registration_refuse {
-    background-image: url("/genfiles/cms/1/desktop/popups/post_reg/bonuses_registration_refuse_xcasino.jpg")
 }
 
 .bonuses_registration_refuse.active,.bonuses_registration_refuse:hover {
@@ -3595,13 +3512,6 @@ body.swal2-shown.swal2-height-auto {
     left: 23.2%;
     width: 1.8125em;
     height: 1.6875em;
-    background-image: url("/genfiles/cms/99-61/desktop/cupids-shot-decorations/decor-footer1.png")
-}
-
-@media(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi),(min-resolution: 2dppx) {
-    .footer__col--hearts-top::before {
-        background-image:url("/genfiles/cms/99-61/desktop/cupids-shot-decorations/decor-footer1-2x.png")
-    }
 }
 
 .footer__col--hearts-top::after {
@@ -3610,13 +3520,6 @@ body.swal2-shown.swal2-height-auto {
     width: 6.5em;
     height: 5em;
     margin-left: -4.5em;
-    background-image: url("/genfiles/cms/99-61/desktop/cupids-shot-decorations/decor-footer2.png")
-}
-
-@media(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi),(min-resolution: 2dppx) {
-    .footer__col--hearts-top::after {
-        background-image:url("/genfiles/cms/99-61/desktop/cupids-shot-decorations/decor-footer2-2x.png")
-    }
 }
 
 .footer__col--hearts-bottom::before {
@@ -3624,13 +3527,6 @@ body.swal2-shown.swal2-height-auto {
     right: 1.875em;
     width: 13.9375em;
     height: 17.5625em;
-    background-image: url("/genfiles/cms/99-61/desktop/cupids-shot-decorations/decor-footer4.png")
-}
-
-@media(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi),(min-resolution: 2dppx) {
-    .footer__col--hearts-bottom::before {
-        background-image:url("/genfiles/cms/99-61/desktop/cupids-shot-decorations/decor-footer4-2x.png")
-    }
 }
 
 .footer__col--hearts-bottom::after {
@@ -3638,13 +3534,6 @@ body.swal2-shown.swal2-height-auto {
     left: 2.5em;
     width: 8.75em;
     height: 8.75em;
-    background-image: url("/genfiles/cms/99-61/desktop/cupids-shot-decorations/decor-footer6.png")
-}
-
-@media(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi),(min-resolution: 2dppx) {
-    .footer__col--hearts-bottom::after {
-        background-image:url("/genfiles/cms/99-61/desktop/cupids-shot-decorations/decor-footer6-2x.png")
-    }
 }
 
 .footer__info--beach-drive {
@@ -3659,7 +3548,6 @@ body.swal2-shown.swal2-height-auto {
     width: 4.75em;
     height: 8.25em;
     content: "";
-    background: url("/genfiles/cms/99-61/desktop/around-world-journey-decorations/decor_yacht_left.svg") center/contain no-repeat;
     inset-inline-end: 4.375em
 }
 
@@ -3707,7 +3595,6 @@ body.swal2-shown.swal2-height-auto {
     top: 16.625em;
     width: 10.0625em;
     height: 9.25em;
-    background: url("/genfiles/cms/99-61/desktop/halloween-decorations/img-bat.png") no-repeat;
     left: 15.375em
 }
 
@@ -3885,13 +3772,6 @@ body.swal2-shown.swal2-height-auto {
     left: 55%;
     width: 1.875em;
     height: 1.875em;
-    background-image: url("/genfiles/cms/99-61/desktop/cupids-shot-decorations/decor-footer3.png")
-}
-
-@media(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi),(min-resolution: 2dppx) {
-    .footer-menu--hearts::before {
-        background-image:url("/genfiles/cms/99-61/desktop/cupids-shot-decorations/decor-footer3-2x.png")
-    }
 }
 
 .footer-menu--hearts::after {
@@ -3899,13 +3779,6 @@ body.swal2-shown.swal2-height-auto {
     left: 7.125em;
     width: 4em;
     height: 4em;
-    background-image: url("/genfiles/cms/99-61/desktop/cupids-shot-decorations/decor-footer5.png")
-}
-
-@media(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi),(min-resolution: 2dppx) {
-    .footer-menu--hearts::after {
-        background-image:url("/genfiles/cms/99-61/desktop/cupids-shot-decorations/decor-footer5-2x.png")
-    }
 }
 
 .footer-menu--around-world-journey::before,.footer-menu--around-world-journey::after {
@@ -3919,7 +3792,6 @@ body.swal2-shown.swal2-height-auto {
     inset-inline-start: -9.375em;
     width: 5.125em;
     height: 8.9375em;
-    background: url("/genfiles/cms/99-61/desktop/around-world-journey-decorations/decor_yacht_right.svg") center/contain no-repeat
 }
 
 .footer-menu--around-world-journey::after {
@@ -3927,7 +3799,6 @@ body.swal2-shown.swal2-height-auto {
     inset-inline-start: 37.5em;
     width: 6em;
     height: 6.5em;
-    background: url("/genfiles/cms/99-61/desktop/around-world-journey-decorations/decor_dolphins.svg") center/contain no-repeat
 }
 
 @media(max-width: 1599px) {
@@ -4736,7 +4607,6 @@ body.swal2-shown.swal2-height-auto {
     right: 1.875em;
     width: 6.25em;
     height: 100%;
-    background: url("/genfiles/cms/99-61/desktop/media_asset/profile-test.png") center no-repeat;
     background-size: 100% auto
 }
 
@@ -4864,7 +4734,6 @@ body.swal2-shown.swal2-height-auto {
     top: 22%;
     left: 20%;
     z-index: 1;
-    background-image: url("/genfiles/cms/99-61/desktop/media_asset/status.png");
     background-size: 400%
 }
 
@@ -5458,7 +5327,6 @@ body.swal2-shown.swal2-height-auto {
     margin-right: .625em;
     border-radius: 50%;
     background-color: #2b2b2b;
-    background-image: url("/genfiles/cms/1/desktop/slots/new/blankslot.jpg")
 }
 
 .game-status__img {
@@ -5901,7 +5769,6 @@ body.swal2-shown.swal2-height-auto {
 }
 
 .game-search .casino-games__bg {
-    background-image: url("/genfiles/cms/1-285/desktop/liveCasino/casino-default-bg.jpg");
     background-position: center;
     background-size: cover
 }
@@ -5999,7 +5866,6 @@ body.swal2-shown.swal2-height-auto {
     box-sizing: border-box;
     padding-top: 55%;
     border: 1px solid #30353b;
-    background-image: url("/genfiles/cms/1-285/desktop/liveCasino/game-img.jpg");
     background-position: center;
     background-size: cover
 }
@@ -6239,7 +6105,6 @@ body.swal2-shown.swal2-height-auto {
     width: 100%;
     height: 3.125em;
     content: "";
-    background: url("/genfiles/cms/99-61/desktop/new-year-decorations-2024/garland-big.png") 2% 0/cover no-repeat;
     left: 0
 }
 
@@ -6310,7 +6175,6 @@ body.swal2-shown.swal2-height-auto {
     width: 100%;
     height: 100%;
     content: "";
-    background: url("/genfiles/cms/99-61/desktop/new-year-decorations-2024/snow.png") 0 0/cover no-repeat;
     left: 0
 }
 
@@ -6483,7 +6347,6 @@ body.swal2-shown.swal2-height-auto {
 
 .column-menu__link--around-world-journey .column-menu__item {
     margin-bottom: auto;
-    background: url("/genfiles/cms/99-61/desktop/around-world-journey-decorations/icon-menu.png") left center/contain no-repeat
 }
 
 .column-menu__link--around-world-journey .column-menu__ico {
@@ -6750,17 +6613,10 @@ body.swal2-shown.swal2-height-auto {
     width: 3.5625em;
     height: 2.75em;
     content: "";
-    background-image: url("/genfiles/cms/99-61/desktop/cupids-shot-decorations/decor-aside.png");
     background-repeat: no-repeat;
     background-size: contain;
     pointer-events: none;
     right: .9375em
-}
-
-@media(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi),(min-resolution: 2dppx) {
-    .column-support--hearts::after {
-        background-image:url("/genfiles/cms/99-61/desktop/cupids-shot-decorations/decor-aside-2x.png")
-    }
 }
 
 .column-timer {
@@ -7355,7 +7211,6 @@ body.swal2-shown.swal2-height-auto {
 
 .slider-slots {
     height: 26.25em;
-    background: url("/genfiles/cms/99-61/desktop/media_asset/banner-slots.jpg") 0 0 no-repeat
 }
 
 .content__row {
@@ -7603,13 +7458,11 @@ body.swal2-shown.swal2-height-auto {
 }
 
 .content-blank__item--jackpot::before {
-    background-image: url("/genfiles/cms/99-61/desktop/media_asset/jackpot-golden-coins.png");
     background-position: 90% center;
     background-size: auto 100%
 }
 
 .content-blank__item--bonus::before {
-    background-image: url("/genfiles/cms/99-61/desktop/media_asset/bonus-woman.png");
     background-position: 95% bottom;
     background-size: auto 97%
 }
@@ -7814,28 +7667,14 @@ body.swal2-shown.swal2-height-auto {
 }
 
 .page:not(.lk) .page__wrap--hearts {
-    background-image: url("/genfiles/cms/99-61/desktop/cupids-shot-decorations/decor-all-page.png"),url("/genfiles/cms/99-61/desktop/media_asset/bg.jpg");
     background-position: right 6.875em top .625em,center top;
     background-repeat: no-repeat,no-repeat;
     background-size: 30.0625em 9.375em,100% auto
 }
 
-@media(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi),(min-resolution: 2dppx) {
-    .page:not(.lk) .page__wrap--hearts {
-        background-image:url("/genfiles/cms/99-61/desktop/cupids-shot-decorations/decor-all-page-2x.png"),url("/genfiles/cms/99-61/desktop/media_asset/bg.jpg")
-    }
-}
-
 .page:not(.lk) .page__wrap--hearts .information,.page:not(.lk) .page__wrap--hearts .game-table {
-    background-image: url("/genfiles/cms/99-61/desktop/cupids-shot-decorations/decor-all-page.png");
     background-repeat: no-repeat;
     background-size: 30.0625em 9.375em
-}
-
-@media(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi),(min-resolution: 2dppx) {
-    .page:not(.lk) .page__wrap--hearts .information,.page:not(.lk) .page__wrap--hearts .game-table {
-        background-image:url("/genfiles/cms/99-61/desktop/cupids-shot-decorations/decor-all-page-2x.png")
-    }
 }
 
 .page:not(.lk) .page__wrap--hearts .information {
@@ -7854,16 +7693,9 @@ body.swal2-shown.swal2-height-auto {
     z-index: 50;
     width: 30.0625em;
     height: 9.375em;
-    background-image: url("/genfiles/cms/99-61/desktop/cupids-shot-decorations/decor-all-page.png");
     background-repeat: no-repeat;
     background-size: contain;
     pointer-events: none
-}
-
-@media(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi),(min-resolution: 2dppx) {
-    .page:not(.lk) .page__wrap--hearts .slots-slider::before {
-        background-image:url("/genfiles/cms/99-61/desktop/cupids-shot-decorations/decor-all-page-2x.png")
-    }
 }
 
 @media(max-width: 1199px) {
@@ -7877,13 +7709,6 @@ body.swal2-shown.swal2-height-auto {
     content: "";
     position: absolute;
     z-index: 150 !important;
-    background: url("/genfiles/cms/99-61/desktop/around-world-journey-decorations/decor_jet.png") center/contain no-repeat
-}
-
-@media(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi),(min-resolution: 2dppx) {
-    .page:not(.lk) .page__wrap--around-world-journey:not(:has(iframe))::before,.page:not(.lk) .page__wrap--around-world-journey-2::before {
-        background-image:url("/genfiles/cms/99-61/desktop/around-world-journey-decorations/decor_jet-2x.png")
-    }
 }
 
 .page:not(.lk) .page__wrap--around-world-journey:not(:has(iframe))::before {
@@ -8192,16 +8017,9 @@ body.swal2-shown.swal2-height-auto {
     right: 6.875em;
     width: 30.0625em;
     height: 9.375em;
-    background-image: url("/genfiles/cms/99-61/desktop/cupids-shot-decorations/decor-all-page.png");
     background-repeat: no-repeat;
     background-size: contain;
     pointer-events: none
-}
-
-@media(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi),(min-resolution: 2dppx) {
-    .xgames .games-project-page--hearts::before {
-        background-image:url("/genfiles/cms/99-61/desktop/cupids-shot-decorations/decor-all-page-2x.png")
-    }
 }
 
 .yahtzee-popup__list {
@@ -8956,7 +8774,6 @@ body.swal2-shown.swal2-height-auto {
     justify-content: center;
     flex-basis: 1.25em;
     height: 4.375em;
-    background: url("/genfiles/cms/99-61/desktop/media_asset/game-task-img.png") center no-repeat;
     background-size: cover
 }
 
@@ -9283,7 +9100,6 @@ body.swal2-shown.swal2-height-auto {
     flex: 0 0 auto;
     width: 24.625em;
     height: 41.0625em;
-    background: url("/genfiles/cms/99-61/desktop/media_asset/appPopupPhone.png") no-repeat center;
     background-size: 100% 100%;
     margin-left: 2.1875em
 }
@@ -9533,7 +9349,6 @@ body.swal2-shown.swal2-height-auto {
     padding: 2.5em 25em 2.5em 2.5em;
     max-width: 53.625em;
     border-radius: 1.25em;
-    background: url("/genfiles/cms/99/desktop/app-download-popup/1xSlots_android-popup-desctop.png") 100% 100% no-repeat,linear-gradient(89.83deg, hsl(12, 10%, 10%) 0.15%, hsl(12, 32%, 24%) 99.86%);
     background-size: auto 100%
 }
 
@@ -9795,7 +9610,6 @@ body.swal2-shown.swal2-height-auto {
     width: 55.625em;
     margin: 0 auto;
     padding: 3.125em 2.5em;
-    background: url("/genfiles/cms/99-61/desktop/media_asset/info-popup.png") center no-repeat;
     background-size: cover;
     border: 1px solid rgba(64,64,64,.1);
     background-color: rgba(36,35,37,.95)
@@ -9876,7 +9690,6 @@ body.swal2-shown.swal2-height-auto {
 }
 
 .tournament-item__games .casino-games__bg {
-    background-image: url("/genfiles/cms/1-285/desktop/liveCasino/casino-default-bg.jpg");
     background-position: center;
     background-size: cover
 }
@@ -9974,7 +9787,6 @@ body.swal2-shown.swal2-height-auto {
     box-sizing: border-box;
     padding-top: 55%;
     border: 1px solid #30353b;
-    background-image: url("/genfiles/cms/1-285/desktop/liveCasino/game-img.jpg");
     background-position: center;
     background-size: cover
 }
@@ -11381,17 +11193,10 @@ body.swal2-shown.swal2-height-auto {
     width: 9em;
     height: 19.375em;
     content: "";
-    background-image: url("/genfiles/cms/99-61/desktop/cupids-shot-decorations/decor-contacts.png");
     background-repeat: no-repeat;
     background-size: contain;
     pointer-events: none;
     right: 0
-}
-
-@media(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi),(min-resolution: 2dppx) {
-    .information-contacts__wrap--hearts::before {
-        background-image:url("/genfiles/cms/99-61/desktop/cupids-shot-decorations/decor-contacts-2x.png")
-    }
 }
 
 .vdp-datepicker__calendar .day-header {

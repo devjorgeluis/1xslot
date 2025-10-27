@@ -7,8 +7,6 @@ import Sports from "./pages/Sports";
 import Profile from "./pages/Profile/Profile";
 import PersonalProfile from "./pages/Profile/PersonalProfile";
 import ProfileHistory from "./pages/Profile/ProfileHistory";
-import About from "./pages/Information/About";
-import Contacts from "./pages/Information/Contacts";
 import NoPage from "./pages/NoPage";
 import Layout from "./components/Layout/Layout";
 
@@ -25,8 +23,6 @@ export default function AppRoutes() {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/personal-profile" element={<PersonalProfile />} />
                 <Route path="/profile/history" element={<ProfileHistory />} />
-                <Route path="/information/about" element={<About />} />
-                <Route path="/information/contacts" element={<Contacts />} />
                 <Route path="*" element={<NoPage />} />
             </Route>
         </Routes>

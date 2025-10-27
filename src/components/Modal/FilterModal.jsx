@@ -1,13 +1,13 @@
 import { useContext, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../AppContext";
-import { NavigationContext } from "../Layout/NavigationContext";
 import { callApi } from "../../utils/Utils";
 import Footer from "../Layout/Footer";
 import GameModal from "./GameModal";
 import PlayConfirmModal from "./PlayConfirmModal";
 import GameCard from "../GameCard"
 import LoadApi from "../Loading/LoadApi";
+import SearchInput from "../SearchInput";
 import ImgNoResult from "/src/assets/img/no-image.png";
 
 
@@ -19,7 +19,6 @@ let selectedGameImg = null;
 
 const FilterModal = ({ isLogin, isMobile, onClose }) => {
     const { contextData } = useContext(AppContext);
-    const { setShowFullDivLoading } = useContext(NavigationContext);
     const [showPlayConfirm, setShowPlayConfirm] = useState(false);
     const [selectedGameForPlay, setSelectedGameForPlay] = useState(null);
     const [games, setGames] = useState([]);
@@ -43,7 +42,6 @@ const FilterModal = ({ isLogin, isMobile, onClose }) => {
     };
 
     const callbackLaunchGame = (result) => {
-        setShowFullDivLoading(false);
         if (result.status == "0") {
             switch (selectedGameLauncher) {
                 case "modal":
@@ -139,23 +137,19 @@ const FilterModal = ({ isLogin, isMobile, onClose }) => {
                 <i className="material-icons back-filter-button" onClick={onClose}>
                     arrow_back
                 </i>
-                <div className="search-container">
-                    <i className="material-icons search-icon">search</i>
-                    <input
-                        ref={searchRef}
-                        type="text"
-                        className="search-input"
-                        placeholder="Buscar"
-                        value={txtSearch}
-                        onChange={(event) => {
-                            setTxtSearch(event.target.value);
-                        }}
-                        onKeyUp={(event) => {
-                            search(event);
-                        }}
-                        autoFocus
-                    />
-                </div>
+                <SearchInput
+                    txtSearch={txtSearch}
+                    setTxtSearch={setTxtSearch}
+                    searchRef={searchRef}
+                    search={search}
+                    onChange={(event) => {
+                        setTxtSearch(event.target.value);
+                    }}
+                    onKeyUp={(event) => {
+                        search(event);
+                    }}
+                    autoFocus
+                />
             </div>
 
             {isSearch ? (

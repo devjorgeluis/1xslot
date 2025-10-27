@@ -1,6 +1,5 @@
 import { useContext, useState, useRef } from "react";
 import { AppContext } from "../../AppContext";
-import { NavigationContext } from "../Layout/NavigationContext";
 import { callApi } from "../../utils/Utils";
 import LoadApi from "../Loading/LoadApi";
 import GameModal from "../Modal/GameModal";
@@ -16,7 +15,6 @@ const HomeSearch = ({
     isMobile
 }) => {
     const { contextData } = useContext(AppContext);
-    const { setShowFullDivLoading } = useContext(NavigationContext);
     const [games, setGames] = useState([]);
     const [gameUrl, setGameUrl] = useState("");
     const refGameModal = useRef();
@@ -38,7 +36,6 @@ const HomeSearch = ({
     };
 
     const callbackLaunchGame = (result) => {
-        setShowFullDivLoading(false);
         if (result.status == "0") {
             switch (selectedGameLauncher) {
                 case "modal":

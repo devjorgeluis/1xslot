@@ -1,17 +1,11 @@
-import { useContext, useState, useEffect, useRef } from "react";
-import { AppContext } from "../../AppContext";
-import { callApi } from "../../utils/Utils";
-import LoadCasino from "../Loading/LoadCasino";
+import { useState, useEffect } from "react";
 import LoadApi from "../Loading/LoadApi";
 import IconEnlarge from "/src/assets/svg/enlarge.svg";
-import IconClose from "/src/assets/svg/large-close.svg";
 
 const GameModal = (props) => {
-  const { contextData } = useContext(AppContext);
   const [url, setUrl] = useState(null);
   const [iframeLoaded, setIframeLoaded] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [isGameLoadingError, setIsGameLoadingError] = useState(false);
 
   useEffect(() => {
     if (props.gameUrl !== null && props.gameUrl !== "") {
@@ -25,20 +19,6 @@ const GameModal = (props) => {
       }
     }
   }, [props.gameUrl, props.isMobile]);
-
-  const closeModal = () => {
-    resetModal();
-    document.getElementsByClassName("game-view-container")[0].classList.add("d-none");
-    if (props.onClose) {
-      props.onClose();
-    }
-  };
-
-  const resetModal = () => {
-    setUrl(null);
-    setIframeLoaded(false);
-    document.getElementById("game-window-iframe").classList.add("d-none");
-  };
 
   const toggleFullScreen = () => {
     const gameWindow = document.getElementsByClassName("game-window")[0];

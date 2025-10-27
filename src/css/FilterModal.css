@@ -173,10 +173,6 @@
     padding: 16px 12px;
 }
 
-.provider-header .back-btn {
-    height: 24px;
-}
-
 .provider-title {
     flex: 1;
     text-align: left;

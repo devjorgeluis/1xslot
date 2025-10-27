@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import FilterModal from "../Modal/filterModal";
+import FilterModal from "../Modal/FilterModal";
 import ImgLogo from "/src/assets/svg/logo.svg";
 
 const Header = ({

@@ -1,13 +1,11 @@
 import { useContext, useState, useEffect } from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../AppContext";
 import { LayoutContext } from "./LayoutContext";
 import { callApi } from "../../utils/Utils";
 import Sidebar from "./Sidebar";
 import { NavigationContext } from "./NavigationContext";
-import FullDivLoading from "../Loading/FullDivLoading";
-import ChatButton from "../ChatButton";
 
 const Layout = () => {
     const { contextData } = useContext(AppContext);
@@ -16,9 +14,7 @@ const Layout = () => {
     const [isMobile, setIsMobile] = useState(false);
     const [userBalance, setUserBalance] = useState("");
     const [isSlotsOnly, setIsSlotsOnly] = useState("");
-    const [showFullDivLoading, setShowFullDivLoading] = useState(false);
     const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
-    const [isSmallScreen, setIsSmallScreen] = useState(false);
     const [showMobileSearch, setShowMobileSearch] = useState(false);
     const navigate = useNavigate();
 
@@ -40,29 +36,10 @@ const Layout = () => {
         const checkIsMobile = () => {
             return window.innerWidth <= 767;
         };
-
-        const checkShouldCollapseSidebar = () => {
-            return window.innerWidth < 1024;
-        };
-
-        const checkIsSmallScreen = () => {
-            return window.innerWidth < 1024;
-        };
-
         setIsMobile(checkIsMobile());
-        setIsSmallScreen(checkIsSmallScreen());
-
-        if (checkShouldCollapseSidebar()) {
-            setIsSidebarExpanded(false);
-        }
 
         const handleResize = () => {
             setIsMobile(checkIsMobile());
-            setIsSmallScreen(checkIsSmallScreen());
-
-            if (checkShouldCollapseSidebar()) {
-                setIsSidebarExpanded(false);
-            }
         };
 
         window.addEventListener('resize', handleResize);
@@ -87,13 +64,12 @@ const Layout = () => {
 
     const getPage = (page) => {
         setSelectedPage(page);
-        setShowFullDivLoading(true);
         callApi(contextData, "GET", "/get-page?page=" + page, callbackGetPage, null);
         navigate("/" + (page === "home" ? "" : page));
     };
 
     const callbackGetPage = () => {
-        setShowFullDivLoading(false);
+        
     };
 
     const callbackGetStatus = (result) => {
@@ -133,10 +109,9 @@ const Layout = () => {
     return (
         <LayoutContext.Provider value={layoutContextValue}>
             <NavigationContext.Provider
-                value={{ selectedPage, setSelectedPage, getPage, showFullDivLoading, setShowFullDivLoading }}
+                value={{ selectedPage, setSelectedPage, getPage }}
             >
                 <>
-                    <FullDivLoading show={showFullDivLoading} />
                     <div className="page">
                         <Sidebar isSlotsOnly={isSlotsOnly} isMobile={isMobile} />
                         <div className="page__wrap">

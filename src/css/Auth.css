@@ -23,6 +23,7 @@
     color: #bdbdbd;
     margin-right: 8px;
     cursor: pointer;
+    height: 24px;
 }
 
 .profile-title {
@@ -670,4 +671,101 @@
     font-weight: bold;
     color: #fff;
     margin: 5px 0 0 16px;
+}
+
+.transaction-container {
+    margin-top: 20px;
+    height: 400px;
+}
+
+.transaction-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 8px 16px;
+    line-height: 1.5;
+}
+
+.transaction-content .transaction-icon {
+    width: 30px;
+    min-width: 30px;
+    height: 30px;
+    background: #FBDD8D;
+    color: #000;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.transaction-content .transaction-icon i {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.transaction-content .transaction-date {
+    color: #858585;
+    font-size: 12px;
+}
+
+.transaction-table__status-pagination {
+    padding: 32px
+}
+
+@media (max-width: 768px) {
+    .transaction-table__status-pagination {
+        padding: 16px;
+    }
+}
+
+.transaction-table__status-pagination .transaction-table__status {
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-direction: row !important;
+    gap: 0px
+}
+
+.transaction-table__status-pagination .transaction-table__status .transaction-table__no-data--span {
+    font-size: 16px;
+    font-weight: 500
+}
+
+.transaction-table__status-pagination .transaction-table__status .currency-icon-container {
+    width: 40px;
+    height: 100%;
+    display: flex;
+    justify-content: center
+}
+
+.transaction-table__status-pagination .transaction-table__status .currency-icon-container i {
+    width: 24px;
+    height: 24px
+}
+
+.transaction-table__status-pagination .transaction-table__paginate {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    margin: auto;
+}
+
+.transaction-table__status-pagination .transaction-table__paginate .transaction-table-paginate--btn {
+    margin: 0 5px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid hsla(0, 0%, 100%, .1);
+    border-radius: 5px;
+    background: transparent;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.transaction-table__status-pagination .transaction-table__spinner--spinner {
+    margin: 0 auto;
+    scale: .8
 }

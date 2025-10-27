@@ -2,7 +2,6 @@ import { useContext, useState, useEffect, useRef } from "react";
 import { useLocation, useOutletContext, useNavigate } from "react-router-dom";
 import { AppContext } from "../AppContext";
 import { LayoutContext } from "../components/Layout/LayoutContext";
-import { NavigationContext } from "../components/Layout/NavigationContext";
 import { callApi } from "../utils/Utils";
 import Header from "../components/Layout/Header";
 import Footer from "../components/Layout/Footer";
@@ -13,10 +12,6 @@ import GameModal from "../components/Modal/GameModal";
 import ProviderModal from "../components/Modal/ProviderModal";
 import PlayConfirmModal from "../components/Modal/PlayConfirmModal";
 import LoadApi from "../components/Loading/LoadApi";
-import CategoryContainer from "../components/CategoryContainer";
-import LoadGames from "../components/Loading/LoadGames";
-import SearchInput from "../components/SearchInput";
-import SearchSelect from "../components/SearchSelect";
 import "animate.css";
 
 let selectedGameId = null;
@@ -32,7 +27,6 @@ const LiveCasino = () => {
   const { isLogin } = useContext(LayoutContext);
   const [showPlayConfirm, setShowPlayConfirm] = useState(false);
   const [selectedGameForPlay, setSelectedGameForPlay] = useState(null);
-  const { setShowFullDivLoading } = useContext(NavigationContext);
   const navigate = useNavigate();
   const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
   const [games, setGames] = useState([]);
@@ -41,12 +35,9 @@ const LiveCasino = () => {
   const originalCategoriesRef = useRef([]);
   const [activeCategory, setActiveCategory] = useState({});
   const [selectedProvider, setSelectedProvider] = useState(null);
-  const [isProviderDropdownOpen, setIsProviderDropdownOpen] = useState(false);
   const [pageData, setPageData] = useState({});
   const [gameUrl, setGameUrl] = useState("");
   const [isLoadingGames, setIsLoadingGames] = useState(false);
-  const [txtSearch, setTxtSearch] = useState("");
-  const [searchDelayTimer, setSearchDelayTimer] = useState();
   const [shouldShowGameModal, setShouldShowGameModal] = useState(false);
   const [isGameLoadingError, setIsGameLoadingError] = useState(false);
   const [mobileShowMore, setMobileShowMore] = useState(false);
@@ -56,7 +47,6 @@ const LiveCasino = () => {
   const [showFilterModal, setShowFilterModal] = useState(false);
   const refGameModal = useRef();
   const location = useLocation();
-  const searchRef = useRef(null);
   const { isSlotsOnly, isMobile } = useOutletContext();
   const hasFetchedContentRef = useRef(false);
   const prevHashRef = useRef("");
@@ -371,7 +361,6 @@ const LiveCasino = () => {
 
   const launchGame = (game, type, launcher) => {
     setShouldShowGameModal(true);
-    setShowFullDivLoading(true);
     selectedGameId = game.id != null ? game.id : selectedGameId;
     selectedGameType = type != null ? type : selectedGameType;
     selectedGameLauncher = launcher != null ? launcher : selectedGameLauncher;
@@ -381,7 +370,6 @@ const LiveCasino = () => {
   };
 
   const callbackLaunchGame = (result) => {
-    setShowFullDivLoading(false);
     if (result.status == "0") {
       switch (selectedGameLauncher) {
         case "modal":
@@ -411,8 +399,6 @@ const LiveCasino = () => {
   };
 
   const handleProviderSelect = (provider, index = 0) => {
-    setIsProviderDropdownOpen(false);
-    setTxtSearch("");
     if (categories.length > 0 && provider) {
       if (provider.code === "home") {
         setSelectedProvider(null);
