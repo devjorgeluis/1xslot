@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import ImgLogo from "/src/assets/svg/logo.svg";
 import Icons from '/src/assets/svg/icons.svg';
 
-const Sidebar = ({ isSlotsOnly }) => {
+const Sidebar = ({ isSlotsOnly, supportParent, openSupportModal}) => {
     const location = useLocation();
     const navigate = useNavigate();
 

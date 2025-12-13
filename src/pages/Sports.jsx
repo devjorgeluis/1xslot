@@ -12,7 +12,7 @@ const Sports = () => {
     const [sportsEmbedUrl, setSportsEmbedUrl] = useState("");
     const [isLoading, setIsLoading] = useState(true);
     const location = useLocation();
-    const { isLogin, isMobile } = useOutletContext();
+    const { isLogin, isMobile, supportParent, openSupportModal } = useOutletContext();
 
     useEffect(() => {
         loadSportsPage();
@@ -49,7 +49,7 @@ const Sports = () => {
                             style={{ border: 'none' }}
                         />
                     </div>
-                    <Header isLogin={isLogin} isMobile={isMobile} link="/" />
+                    <Header isLogin={isLogin} isMobile={isMobile} supportParent={supportParent} openSupportModal={openSupportModal} link="/" />
                 </>
             ) : (
                 <div className="game-iframe-view_gameIframeWrapper game-iframe-view_sportbook">

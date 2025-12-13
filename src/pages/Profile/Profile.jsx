@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useOutletContext } from "react-router-dom";
 import { AppContext } from "../../AppContext";
 import AuthHeader from "../../components/Auth/AuthHeader";
 
@@ -7,6 +7,7 @@ const Profile = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const { contextData } = useContext(AppContext);
+    const { supportParent, openSupportModal } = useOutletContext();
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -35,6 +36,12 @@ const Profile = () => {
                                 <i className="material-icons">flag</i>
                                 Términos y condiciones
                             </a>
+                            {
+                                supportParent && <a href="#" onClick={() => openSupportModal(true)}>
+                                    <i className="material-icons">phone</i>
+                                    Contactá a Tu Cajero
+                                </a>
+                            }
                         </div>
                     </>
                 ) : (
@@ -64,6 +71,12 @@ const Profile = () => {
                                 <i className="material-icons">flag</i>
                                 Términos y condiciones
                             </a>
+                            {
+                                supportParent && <a href="#" onClick={() => openSupportModal(true)}>
+                                    <i className="material-icons">phone</i>
+                                    Contactá a Tu Cajero
+                                </a>
+                            }
                         </div>
                     </>
                 )}

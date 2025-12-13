@@ -2,12 +2,15 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FilterModal from "../Modal/FilterModal";
 import ImgLogo from "/src/assets/svg/logo.svg";
+import ImgSupport from "/src/assets/svg/support-black.svg";
 
 const Header = ({
     isLogin,
     isMobile,
     link,
-    onOpenProviders
+    onOpenProviders,
+    supportParent,
+    openSupportModal
 }) => {
     const navigate = useNavigate();
     const [showFilterModal, setShowFilterModal] = useState(false);
@@ -29,6 +32,9 @@ const Header = ({
                         </a>
                     </div>
                     <div className="headerRight">
+                        <button className="button-support" onClick={() => { openSupportModal(false); }}>
+                            <img src={ImgSupport} />
+                        </button>
                         <i className="material-icons" onClick={() => setShowFilterModal(true)}>search</i>
                         {
                             (link === "/casino" || link === "/live-casino") && <i className="material-icons" onClick={() => onOpenProviders && onOpenProviders()}>filter_alt</i>

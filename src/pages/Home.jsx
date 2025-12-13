@@ -34,7 +34,7 @@ const Home = () => {
   const [shouldShowGameModal, setShouldShowGameModal] = useState(false);
   const [isGameLoadingError, setIsGameLoadingError] = useState(false);
   const refGameModal = useRef();
-  const { isSlotsOnly, isLogin, isMobile } = useOutletContext();
+  const { isSlotsOnly, isLogin, isMobile, supportParent, openSupportModal } = useOutletContext();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -201,7 +201,7 @@ const Home = () => {
         />
       ) : (
         <>
-          <Header isLogin={isLogin} isMobile={isMobile} link="/" />
+          <Header isLogin={isLogin} isMobile={isMobile} supportParent={supportParent} openSupportModal={openSupportModal} link="/" />
           <div className="main-content">
             <div className="page__row">
               <Slideshow />

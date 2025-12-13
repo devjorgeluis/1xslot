@@ -47,7 +47,7 @@ const LiveCasino = () => {
   const [showFilterModal, setShowFilterModal] = useState(false);
   const refGameModal = useRef();
   const location = useLocation();
-  const { isSlotsOnly, isMobile } = useOutletContext();
+  const { isSlotsOnly, isMobile, supportParent, openSupportModal } = useOutletContext();
   const hasFetchedContentRef = useRef(false);
   const prevHashRef = useRef("");
   const pendingCategoryFetchesRef = useRef(0);
@@ -503,6 +503,8 @@ const LiveCasino = () => {
                 isMobile={isMobile}
                 link="/live-casino"
                 onOpenProviders={() => setShowFilterModal(true)}
+                supportParent={supportParent}
+                openSupportModal={openSupportModal} 
               />
               <div className="page__row">
                 <Slideshow />
