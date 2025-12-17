@@ -36,6 +36,33 @@ const Home = () => {
   const refGameModal = useRef();
   const { isSlotsOnly, isLogin, isMobile, supportParent, openSupportModal } = useOutletContext();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        const currentPath = window.location.pathname;
+        if (currentPath === '/' || currentPath === '') {
+          
+          selectedGameId = null;
+          selectedGameType = null;
+          selectedGameLauncher = null;
+          selectedGameName = null;
+          selectedGameImg = null;
+          setGameUrl("");
+          setShouldShowGameModal(false);
+          
+          getPage("home");
+          getStatus();
+        }
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);   
 
   useEffect(() => {
     selectedGameId = null;

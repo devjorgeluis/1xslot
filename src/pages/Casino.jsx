@@ -53,6 +53,34 @@ const Casino = () => {
   const pendingCategoryFetchesRef = useRef(0);
 
   useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        const currentPath = window.location.pathname;
+        
+        if (currentPath === '/casino') {
+          selectedGameId = null;
+          selectedGameType = null;
+          selectedGameLauncher = null;
+          selectedGameName = null;
+          selectedGameImg = null;
+          setGameUrl("");
+          setShouldShowGameModal(false);
+          setActiveCategory({});
+          setIsSingleCategoryView(false);
+          setIsExplicitSingleCategoryView(false);
+          
+          getPage("casino");
+        }
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []); 
+
+  useEffect(() => {
     if (!location.hash || tags.length === 0) return;
     const hashCode = location.hash.replace('#', '');
     const tagIndex = tags.findIndex(t => t.code === hashCode);

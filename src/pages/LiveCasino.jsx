@@ -54,6 +54,37 @@ const LiveCasino = () => {
   const lastLoadedCategoryRef = useRef(null);
 
   useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        const currentPath = window.location.pathname;
+        if (currentPath === '/live-casino' || currentPath === '/livecasino') {
+          
+          selectedGameId = null;
+          selectedGameType = null;
+          selectedGameLauncher = null;
+          selectedGameName = null;
+          selectedGameImg = null;
+          setGameUrl("");
+          setShouldShowGameModal(false);
+          setActiveCategory({});
+          setIsSingleCategoryView(false);
+          setIsExplicitSingleCategoryView(false);
+          hasFetchedContentRef.current = false;
+          lastLoadedCategoryRef.current = null;
+          
+          getPage("livecasino");
+        }
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
+
+  useEffect(() => {
     selectedGameId = null;
     selectedGameType = null;
     selectedGameLauncher = null;
