@@ -17,6 +17,7 @@ const Login = () => {
         username: "",
         password: ""
     });
+    const [errorMsg, setErrorMsg] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [showAuthError, setShowAuthError] = useState(false);
     const navigate = useNavigate();
@@ -51,6 +52,7 @@ const Login = () => {
             let body = {
                 username: username,
                 password: password,
+                site_label: "main",
             };
             callApi(
                 contextData,
@@ -71,8 +73,12 @@ const Login = () => {
             setTimeout(() => {
                 navigate(-1);
             }, 1000);
+        } else if (result.status === "country") {
+            setShowAuthError(true);
+            setErrorMsg(result.message);
         } else {
             setShowAuthError(true);
+            setErrorMsg("Correo electrónico o contraseña no válidos");
         }
     };
 
@@ -160,6 +166,7 @@ const Login = () => {
             <AuthErrorModal
                 isOpen={showAuthError}
                 onClose={() => setShowAuthError(false)}
+                errorMsg={errorMsg}
             />
         </div>
     );
