@@ -1,6 +1,8 @@
-// import HomeSearch from "./HomeSearch";
+import { useOutletContext } from "react-router-dom";
 
 const MenuContainer = () => {
+    const { isSlotsOnly } = useOutletContext();
+
     return <>
         <div className="content__row">
             <div id="main_menu" className="content-menu">
@@ -10,12 +12,15 @@ const MenuContainer = () => {
                 <a href="/casino" className="content-menu__item active">
                     Tragamonedas
                 </a>
-                <a href="/live-casino" className="content-menu__item">
-                    Casino en Directo
-                </a>
-                <a href="/sports" className="content-menu__item">Deportes</a>
+                {
+                    isSlotsOnly === "false" && <>
+                        <a href="/live-casino" className="content-menu__item">
+                            Casino en Directo
+                        </a>
+                        <a href="/sports" className="content-menu__item">Deportes</a>
+                    </>
+                }
             </div>
-            {/* <HomeSearch /> */}
         </div>
     </>
 }

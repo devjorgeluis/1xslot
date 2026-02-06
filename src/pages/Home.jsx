@@ -244,7 +244,7 @@ const Home = () => {
                 }
               }} />}
             </div>
-            {topCasino.length > 0 && <GameSlideshow games={topCasino} name="casino" title="Tragamonedas" icon="cherry" link="/casino" onGameClick={(game) => {
+            {topCasino.length > 0 && isSlotsOnly === "false" && <GameSlideshow games={topCasino} name="casino" title="Tragamonedas" icon="cherry" link="/casino" onGameClick={(game) => {
               if (isLogin) {
                 setSelectedGameForPlay(game);
                 setShowPlayConfirm(true);
@@ -252,7 +252,7 @@ const Home = () => {
                 navigate("/login");
               }
             }} />}
-            {topLiveCasino.length > 0 && <GameSlideshow games={topLiveCasino} name="liveCasino" title="Casino en Vivo" icon="spades" link="/live-casino" onGameClick={(game) => {
+            {topLiveCasino.length > 0 && isSlotsOnly === "false" && <GameSlideshow games={topLiveCasino} name="liveCasino" title="Casino en Vivo" icon="spades" link="/live-casino" onGameClick={(game) => {
               if (isLogin) {
                 setSelectedGameForPlay(game);
                 setShowPlayConfirm(true);
